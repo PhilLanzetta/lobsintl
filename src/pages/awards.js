@@ -26,7 +26,7 @@ const Awards = ({ data }) => {
                     return (
                       <li key={award.id} className="listing-list-item">
                         <p className="upper">{award.awardName}</p>
-                        <p>{award.project[0].projectName}</p>
+                        {award.project && <p>{award.project[0].projectName}</p>}
                       </li>
                     )
                   } else return null
