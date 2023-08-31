@@ -1719,3 +1719,101 @@ Listing Page (Awards/Clients/Network)
     padding-top: 160px;
   }
 }
+
+/*
+==========
+Search Page
+==========
+*/
+
+.search-page {
+  width: 100%;
+  min-height: 95vh;
+  padding: 40px;
+  padding-top: 250px;
+}
+
+.search-box {
+  width: 100%;
+}
+
+.search-box-form {
+  width: 100%;
+  position: relative;
+  margin-bottom: var(--spacing-md);
+}
+
+.search-box-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--fadedColor);
+  font-family: var(--font-primary);
+  font-size: var(--font-lg-resp);
+  font-weight: var(--thin-weight);
+  color: var(--color);
+}
+
+.search-box-form input:focus {
+  outline: none;
+}
+
+.search-box-input::placeholder {
+  color: var(--color);
+}
+
+.search-box-submit,
+.search-box-reset {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  height: var(--font-md-resp);
+  width: var(--font-md-resp);
+}
+
+.search-box-submit {
+  right: calc(20px + var(--font-md-resp));
+}
+
+.search-box-icon {
+  height: 100%;
+  width: 100%;
+}
+
+.hits-container {
+  margin: var(--spacing-md) 0;
+  margin-top: 200px;
+}
+
+.hits-container ol {
+  list-style: none;
+}
+
+.search-result-item {
+  display: flex;
+  margin: var(--spacing-md) 0;
+  border-top: 1px solid var(--fadedColor);
+  padding-top: var(--spacing-md);
+}
+
+.search-result-category {
+  width: 25%;
+}
+
+.search-result-image {
+  width: clamp(200px, 25%, 400px);
+  aspect-ratio: 3 / 2;
+  margin-right: var(--spacing-sm);
+}
+
+.search-result-title {
+  margin-bottom: var(--spacing-sm);
+}
+
+.search-info-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}

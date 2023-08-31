@@ -40,6 +40,10 @@ const pageQuery = `{
         slug
         typology
         year
+        heroImage {
+          description
+          gatsbyImageData(width: 400)
+        }
         internal {
           contentDigest
         }

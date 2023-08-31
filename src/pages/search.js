@@ -1,5 +1,5 @@
-import React, {useMemo} from 'react'
-import Layout from '../components/layout'
+import React, { useMemo } from "react"
+import Layout from "../components/layout"
 import algoliasearch from "algoliasearch/lite"
 import {
   InstantSearch,
@@ -61,25 +61,28 @@ const Search = () => {
 
   return (
     <Layout>
-      <div>
-        <InstantSearch
-          searchClient={searchClient}
-          indexName='Pages'
-        >
+      <div className="search-page">
+        <InstantSearch searchClient={searchClient} indexName="Pages">
           <SearchBox
-            placeholder="Search our Site"
+            placeholder="Search"
             searchAsYouType={false}
+            classNames={{
+              root: "search-box",
+              form: "search-box-form",
+              input: "search-box-input",
+              reset: "search-box-reset",
+              submit: "search-box-submit",
+              submitIcon: "search-box-icon",
+              resetIcon: "search-box-icon",
+            }}
           />
           <EmptyQueryBoundary fallback={null}>
             <NoResultsBoundary fallback={<NoResults />}>
-              <Hits hitComponent={Hit} />
+              <Hits
+                hitComponent={Hit}
+                classNames={{ root: "hits-container" }}
+              />
             </NoResultsBoundary>
-            <Pagination
-              showFirst={false}
-              showLast={false}
-              showNext={false}
-              showPrevious={false}
-            />
           </EmptyQueryBoundary>
         </InstantSearch>
       </div>
