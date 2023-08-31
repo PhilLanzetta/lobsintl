@@ -40,6 +40,9 @@ const pageQuery = `{
         slug
         typology
         year
+        internal {
+          contentDigest
+        }
       }
     }
   }
