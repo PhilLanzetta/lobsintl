@@ -16,32 +16,34 @@ const Hit = ({ hit }) => {
   return (
     <div className="search-result-item">
       <p className="upper search-result-category">Project</p>
-      <GatsbyImage
-        image={heroImage.gatsbyImageData}
-        alt={heroImage.description}
-        className="search-result-image"
-      ></GatsbyImage>
       <div className="search-info-container">
-        <div>
-          <p className="search-result-title">{projectName}</p>
-          <div className="tile-tag-container">
-            {typology.map((type, index) => (
-              <p key={index} className="tile-tag-btn">
-                {type}
-              </p>
-            ))}
-            {geographicRegion === "Worldwide" ? (
-              <p className="tile-tag-btn">{geographicRegion}</p>
-            ) : (
-              <p className="tile-tag-btn">
-                {city}, {country}
-              </p>
-            )}
+        <GatsbyImage
+          image={heroImage.gatsbyImageData}
+          alt={heroImage.description}
+          className="search-result-image"
+        ></GatsbyImage>
+        <div className="search-info-text">
+          <div>
+            <p className="search-result-title">{projectName}</p>
+            <div className="tile-tag-container">
+              {typology.map((type, index) => (
+                <p key={index} className="tile-tag-btn">
+                  {type}
+                </p>
+              ))}
+              {geographicRegion === "Worldwide" ? (
+                <p className="tile-tag-btn">{geographicRegion}</p>
+              ) : (
+                <p className="tile-tag-btn">
+                  {city}, {country}
+                </p>
+              )}
+            </div>
           </div>
+          <Link to={`/projects/${slug}`} className="search-learn-more">
+            <AiOutlinePlus></AiOutlinePlus> Learn More
+          </Link>
         </div>
-        <Link to={`/projects/${slug}`} className="search-learn-more">
-          <AiOutlinePlus></AiOutlinePlus> Learn More
-        </Link>
       </div>
     </div>
   )
