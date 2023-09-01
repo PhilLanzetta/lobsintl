@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Link } from "gatsby"
 import useWindowSize from "../utils/useWindowSize"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
+import { Fade } from "react-awesome-reveal"
 
 const Header = ({ isOpen, toggleMenu, location }) => {
   const [aboutOpen, setAboutOpen] = useState(false)
@@ -94,7 +95,24 @@ const Header = ({ isOpen, toggleMenu, location }) => {
               </aside>
             </section>
           ) : (
-            <Link to="/about">About</Link>
+            <div
+              onMouseEnter={() => setAboutOpen(true)}
+              onMouseLeave={() => setAboutOpen(false)}
+              className="header-page-sub-menu-container"
+            >
+              <Link to="/about">About</Link>
+              {aboutOpen && (
+                <div className="header-page-sub-menu">
+                  <Fade cascade damping={0.25}>
+                    <Link to="/about/#who">Who we are</Link>
+                    <Link to="/about/#philosophy">Our philosophy</Link>
+                    <Link to="/about/#approach">Our design approach</Link>
+                    <Link to="/about/#awards">Awards</Link>
+                    <Link to="/about/#books">Books</Link>
+                  </Fade>
+                </div>
+              )}
+            </div>
           )}
           {mobile ? (
             <section>
@@ -127,7 +145,22 @@ const Header = ({ isOpen, toggleMenu, location }) => {
               </aside>
             </section>
           ) : (
-            <Link to="/team">Team</Link>
+            <div
+              onMouseEnter={() => setTeamOpen(true)}
+              onMouseLeave={() => setTeamOpen(false)}
+              className="header-page-sub-menu-container"
+            >
+              <Link to="/about">Team</Link>
+              {teamOpen && (
+                <div className="header-page-sub-menu">
+                  <Fade cascade damping={0.25}>
+                    <Link to="/team/#herve">Hervé Descottes</Link>
+                    <Link to="/team/#teamMembers">Team Members</Link>
+                    <Link to="/team/#careers">Careers</Link>
+                  </Fade>
+                </div>
+              )}
+            </div>
           )}
           {mobile ? (
             <section>
@@ -161,7 +194,23 @@ const Header = ({ isOpen, toggleMenu, location }) => {
               </aside>
             </section>
           ) : (
-            <Link to="/about">News</Link>
+            <div
+              onMouseEnter={() => setNewsOpen(true)}
+              onMouseLeave={() => setNewsOpen(false)}
+              className="header-page-sub-menu-container"
+            >
+              <Link to="/news">News</Link>
+              {newsOpen && (
+                <div className="header-page-sub-menu">
+                  <Fade cascade damping={0.25}>
+                    <Link to="news">Projects</Link>
+                    <Link to="news">Articles</Link>
+                    <Link to="news">Awards</Link>
+                    <Link to="news">People</Link>
+                  </Fade>
+                </div>
+              )}
+            </div>
           )}
           <Link to="/clients">Clients</Link>
         </div>

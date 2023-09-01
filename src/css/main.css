@@ -278,6 +278,26 @@ header {
   min-height: 200vh;
 }
 
+.header-page-sub-menu-container {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.header-page-sub-menu {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.header-page-sub-menu a {
+  opacity: var(--less-opacity);
+  transition: all var(--fast-transition);
+}
+
+.header-page-sub-menu a:hover {
+  opacity: 1;
+  transition: all var(--fast-transition);
+}
+
 @media screen and (max-width: 600px) {
   .header-logo {
     top: 20px;
@@ -500,6 +520,18 @@ SINGLE PROJECT PAGE
   }
   100% {
     z-index: 0;
+  }
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInHalf {
+  100% {
+    opacity: var(--less-opacity);
   }
 }
 
