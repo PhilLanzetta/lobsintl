@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Layout from "../components/layout"
 import { Link, graphql } from "gatsby"
 import HideOnScroll from "../components/hideOnScroll"
@@ -9,13 +9,15 @@ import { Fade } from "react-awesome-reveal"
 
 const News = ({ data, location }) => {
   const allNews = data.allContentfulNewsEntry.nodes
-  const [newsItems, setNewsItems] = useState(allNews)
+  const [newsItems, setNewsItems] = useState(
+    location.state?.category
+      ? allNews.filter(item => item.category === location.state.category)
+      : allNews
+  )
   const filterNews = category => {
     const filteredNews = allNews.filter(item => item.category === category)
     setNewsItems(filteredNews)
   }
-
-  console.log(newsItems)
 
   return (
     <Layout>

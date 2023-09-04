@@ -28,6 +28,13 @@ exports.createPages = async ({ actions, graphql }) => {
             }
           }
         }
+        allContentfulNewsEntry(filter: { externalLink: { eq: null } }) {
+          edges {
+            node {
+              slug
+            }
+          }
+        }
       }
     `
   )
@@ -35,6 +42,7 @@ exports.createPages = async ({ actions, graphql }) => {
   const projects = result.data.allContentfulProject.edges
   const teamMembers = result.data.allContentfulTeamMember.edges
   const careers = result.data.allContentfulCareerPosting.edges
+  const newsItems = result.data.allContentfulNewsEntry.edges
 
   projects.forEach(({ node }, index) => {
     const projectSlug = node.slug
@@ -65,6 +73,17 @@ exports.createPages = async ({ actions, graphql }) => {
       component: path.resolve(`./src/templates/careerPosting.js`),
       context: {
         slug: careerSlug,
+      },
+    })
+  })
+
+  newsItems.forEach(({ node }, index) => {
+    const newsSlug = node.slug
+    createPage({
+      path: `/news/${newsSlug}`,
+      component: path.resolve(`./src/templates/newsItemPage.js`),
+      context: {
+        slug: newsSlug,
       },
     })
   })

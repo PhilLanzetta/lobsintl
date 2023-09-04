@@ -35,7 +35,7 @@ const ModuleContent = ({ moduleContent }) => {
               ))}
             </div>
           )
-        } else
+        } else if (item.videoId) {
           return (
             <div key={item.videoId} className="module-video-container">
               <ReactPlayer
@@ -95,6 +95,16 @@ const ModuleContent = ({ moduleContent }) => {
               </div>
             </div>
           )
+        } else if (item.textId) {
+          return (
+            <div
+              key={item.textId}
+              dangerouslySetInnerHTML={{
+                __html: item.text.childMarkdownRemark.html,
+              }}
+            ></div>
+          )
+        }
       })}
     </div>
   )

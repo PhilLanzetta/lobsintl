@@ -2087,3 +2087,32 @@ News Page
 .news-item:nth-of-type(4n + 1) .news-date {
   margin-bottom: 0;
 }
+
+/*
+==========
+Single News Page
+==========
+*/
+
+.single-news-page {
+  padding: 40px;
+  padding-top: 120px;
+}
+
+.single-news-page h2 {
+  text-align: center;
+  width: var(--body-max-width);
+  margin: var(--spacing-md) auto;
+}
+
+.single-news-hero {
+  aspect-ratio: 3 / 2;
+  margin: var(--spacing-md) 0;
+}
+
+.single-news-date-credit {
+  width: var(--body-max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
