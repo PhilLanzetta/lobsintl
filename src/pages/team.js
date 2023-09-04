@@ -5,6 +5,8 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { marked } from "marked"
 import { Link } from "gatsby"
 import { BsArrowRight } from "react-icons/bs"
+import HideOnScroll from "../components/hideOnScroll"
+import { Fade } from "react-awesome-reveal"
 
 const Team = ({ data }) => {
   const teamInfo = data.contentfulTeamPage
@@ -22,158 +24,173 @@ const Team = ({ data }) => {
 
   return (
     <Layout>
-      <div className="page-header">
+      <HideOnScroll>
         <Link to="/team">Team</Link> |{" "}
         <Link to="/team/#herve">Hervé Descottes</Link> |{" "}
         <Link to="/team/#teamMembers">Team Members</Link> |{" "}
         <Link to="/team/#careers">Careers</Link>
-      </div>
-      <hr className="faded-line page-header-bottom"></hr>
+      </HideOnScroll>
       <div className="team-page">
         <GatsbyImage
           image={teamInfo.teamPhoto.gatsbyImageData}
           alt={teamInfo.teamPhoto.description}
         ></GatsbyImage>
-        <div id="herve" className="home-container">
-          <Link to="/team/herve-descottes" className="home-preface-link">
-            Hervé Descottes
-          </Link>
-          <div className="team-right">
-            <Link to={herve.slug} className="team-herve-photo">
-              <GatsbyImage
-                image={teamInfo.hervePhoto.gatsbyImageData}
-                alt={teamInfo.hervePhoto.description}
-              ></GatsbyImage>
+        <Fade triggerOnce={true} fraction={0.25}>
+          <div id="herve" className="home-container">
+            <Link to="/team/herve-descottes" className="home-preface-link">
+              Hervé Descottes
             </Link>
-            <div className="herve-abbridged">
-              <div dangerouslySetInnerHTML={{ __html: bioShortened }}></div>
-              <Link to={herve.slug} className="home-link">
-                <BsArrowRight></BsArrowRight> Learn More
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="team-members-container" id="teamMembers">
-          <p className="home-preface-link">Team Members</p>
-          <div className="team-location-container">
-            <p className="home-preface-link">New York</p>
-            <div className="head-shot-container">
-              <Link to={`/team/${herveTeam.slug}`} className="head-shot">
+            <div className="team-right">
+              <Link to={herve.slug} className="team-herve-photo">
                 <GatsbyImage
-                  image={herveTeam.headShot.gatsbyImageData}
-                  alt={herveTeam.headShot.description}
+                  image={teamInfo.hervePhoto.gatsbyImageData}
+                  alt={teamInfo.hervePhoto.description}
                 ></GatsbyImage>
-                <div>
-                  <p>{herveTeam.name}</p>
-                  <p className="faded">{herveTeam.title}</p>
-                </div>
               </Link>
-              {teamMembers.map(member => {
-                if (
-                  member.primaryOffice === "New York" &&
-                  member.headShot &&
-                  member.name !== "Hervé Descottes"
-                ) {
-                  return (
-                    <Link
-                      to={`/team/${member.slug}`}
-                      key={member.id}
-                      className="head-shot"
-                    >
-                      <GatsbyImage
-                        image={member.headShot.gatsbyImageData}
-                        alt={member.headShot.description}
-                      ></GatsbyImage>
-                      <div>
-                        <p>{member.name}</p>
-                        <p className="faded">{member.title}</p>
-                      </div>
-                    </Link>
-                  )
-                } else {
-                  return null
-                }
-              })}
+              <div className="herve-abbridged">
+                <div dangerouslySetInnerHTML={{ __html: bioShortened }}></div>
+                <Link to={herve.slug} className="home-link">
+                  <BsArrowRight></BsArrowRight> Learn More
+                </Link>
+              </div>
             </div>
           </div>
-          <div className="team-location-container">
-            <p className="home-preface-link">Paris</p>
-            <div className="head-shot-container">
-              {teamMembers.map(member => {
-                if (member.primaryOffice === "Paris" && member.headShot) {
-                  return (
-                    <Link
-                      to={`/team/${member.slug}`}
-                      key={member.id}
-                      className="head-shot"
-                    >
-                      <GatsbyImage
-                        image={member.headShot.gatsbyImageData}
-                        alt={member.headShot.description}
-                      ></GatsbyImage>
-                      <p>{member.name}</p>
-                      <p>{member.title}</p>
-                    </Link>
-                  )
-                } else {
-                  return null
-                }
-              })}
+        </Fade>
+        <Fade triggerOnce={true}>
+          <div className="team-members-container" id="teamMembers">
+            <p className="home-preface-link">Team Members</p>
+            <div className="team-location-container">
+              <p className="home-preface-link">New York</p>
+              <div className="head-shot-container">
+                <Link to={`/team/${herveTeam.slug}`} className="head-shot">
+                  <Fade triggerOnce={true}>
+                    <GatsbyImage
+                      image={herveTeam.headShot.gatsbyImageData}
+                      alt={herveTeam.headShot.description}
+                    ></GatsbyImage>
+                    <div>
+                      <p>{herveTeam.name}</p>
+                      <p className="faded">{herveTeam.title}</p>
+                    </div>
+                  </Fade>
+                </Link>
+                {teamMembers.map(member => {
+                  if (
+                    member.primaryOffice === "New York" &&
+                    member.headShot &&
+                    member.name !== "Hervé Descottes"
+                  ) {
+                    return (
+                      <Link
+                        to={`/team/${member.slug}`}
+                        key={member.id}
+                        className="head-shot"
+                      >
+                        <Fade triggerOnce={true}>
+                          <GatsbyImage
+                            image={member.headShot.gatsbyImageData}
+                            alt={member.headShot.description}
+                          ></GatsbyImage>
+                          <div>
+                            <p>{member.name}</p>
+                            <p className="faded">{member.title}</p>
+                          </div>
+                        </Fade>
+                      </Link>
+                    )
+                  } else {
+                    return null
+                  }
+                })}
+              </div>
             </div>
-          </div>
-          <div className="team-location-container">
-            <p className="home-preface-link">Seoul</p>
-            <div className="head-shot-container">
-              {teamMembers.map(member => {
-                if (member.primaryOffice === "Seoul" && member.headShot) {
-                  return (
-                    <Link
-                      to={`/team/${member.slug}`}
-                      key={member.id}
-                      className="head-shot"
-                    >
-                      <GatsbyImage
-                        image={member.headShot.gatsbyImageData}
-                        alt={member.headShot.description}
-                      ></GatsbyImage>
-                      <p>{member.name}</p>
-                      <p>{member.title}</p>
-                    </Link>
-                  )
-                } else {
-                  return null
-                }
-              })}
-            </div>
-          </div>
-        </div>
-        <div className="home-container" id="careers">
-          <p className="home-preface-link">Careers</p>
-          <div className="team-right">
-            <div className="careers-container">
-              <h2
-                dangerouslySetInnerHTML={{
-                  __html: marked.parse(teamInfo.careerPreface.careerPreface),
-                }}
-              ></h2>
-              {careers.map(career => (
-                <div key={career.id}>
-                  <hr className="faded"></hr>
-                  <div className="career-posting">
-                    <p>{career.jobTitle}</p>
-                    <Link
-                      to={`/careers/${career.slug}`}
-                      className="home-link career-apply"
-                    >
-                      <BsArrowRight></BsArrowRight> Apply Here
-                    </Link>
-                  </div>
+            <Fade triggerOnce={true}>
+              <div className="team-location-container">
+                <p className="home-preface-link">Paris</p>
+                <div className="head-shot-container">
+                  {teamMembers.map(member => {
+                    if (member.primaryOffice === "Paris" && member.headShot) {
+                      return (
+                        <Link
+                          to={`/team/${member.slug}`}
+                          key={member.id}
+                          className="head-shot"
+                        >
+                          <Fade triggerOnce={true}>
+                            <GatsbyImage
+                              image={member.headShot.gatsbyImageData}
+                              alt={member.headShot.description}
+                            ></GatsbyImage>
+                            <p>{member.name}</p>
+                            <p>{member.title}</p>
+                          </Fade>
+                        </Link>
+                      )
+                    } else {
+                      return null
+                    }
+                  })}
                 </div>
-              ))}
-              <hr className="faded"></hr>
+              </div>
+            </Fade>
+            <div className="team-location-container">
+              <p className="home-preface-link">Seoul</p>
+              <div className="head-shot-container">
+                {teamMembers.map(member => {
+                  if (member.primaryOffice === "Seoul" && member.headShot) {
+                    return (
+                      <Link
+                        to={`/team/${member.slug}`}
+                        key={member.id}
+                        className="head-shot"
+                      >
+                        <Fade triggerOnce={true}>
+                          <GatsbyImage
+                            image={member.headShot.gatsbyImageData}
+                            alt={member.headShot.description}
+                          ></GatsbyImage>
+                          <p>{member.name}</p>
+                          <p>{member.title}</p>
+                        </Fade>
+                      </Link>
+                    )
+                  } else {
+                    return null
+                  }
+                })}
+              </div>
             </div>
           </div>
-        </div>
+        </Fade>
+        <Fade triggerOnce={true}>
+          <div className="home-container" id="careers">
+            <p className="home-preface-link">Careers</p>
+            <div className="team-right">
+              <div className="careers-container">
+                <h2
+                  dangerouslySetInnerHTML={{
+                    __html: marked.parse(teamInfo.careerPreface.careerPreface),
+                  }}
+                ></h2>
+                {careers.map(career => (
+                  <div key={career.id}>
+                    <hr className="faded"></hr>
+                    <div className="career-posting">
+                      <p>{career.jobTitle}</p>
+                      <Link
+                        to={`/careers/${career.slug}`}
+                        className="home-link career-apply"
+                      >
+                        <BsArrowRight></BsArrowRight> Apply Here
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+                <hr className="faded"></hr>
+              </div>
+            </div>
+          </div>
+        </Fade>
       </div>
     </Layout>
   )

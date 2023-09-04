@@ -13,15 +13,15 @@ const ProjectGrid = ({
     <div className="projects-grid-container">
       {projects ? (
         projects.map(project => (
-          <ProjectTile
-            key={project.id}
-            project={project}
-            setCity={setCity}
-            setCountry={setCountry}
-            handleTypeFilter={handleTypeFilter}
-            setRegion={setRegion}
-            projectPage={projectPage}
-          ></ProjectTile>
+            <ProjectTile
+              key={project.id}
+              project={project}
+              setCity={setCity}
+              setCountry={setCountry}
+              handleTypeFilter={handleTypeFilter}
+              setRegion={setRegion}
+              projectPage={projectPage}
+            ></ProjectTile>
         ))
       ) : (
         <div>

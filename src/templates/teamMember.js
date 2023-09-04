@@ -3,6 +3,8 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import { GatsbyImage } from "gatsby-plugin-image"
 import ProjectGrid from "../components/projectGrid"
+import { Fade } from "react-awesome-reveal"
+import HideOnScroll from "../components/hideOnScroll"
 
 const TeamMember = ({ data }) => {
   const { name, title, headShot, project, bio } = data.contentfulTeamMember
@@ -13,33 +15,38 @@ const TeamMember = ({ data }) => {
 
   return (
     <Layout>
-      <div className="page-header">
+      <HideOnScroll>
         <Link to="/team">Team</Link> |{" "}
         <Link to="/team#teamMembers">Team Members</Link> | {name}
-      </div>
-      <hr className="faded-line page-header-bottom"></hr>
+      </HideOnScroll>
       <div className="team-member-container">
         <div className="team-member-info">
           <div className="team-member-photo-container">
-            {headShot && (
-              <GatsbyImage
-                image={headShot.gatsbyImageData}
-                alt={headShot.description}
-              ></GatsbyImage>
-            )}
+            <Fade triggerOnce={true}>
+              {headShot && (
+                <GatsbyImage
+                  image={headShot.gatsbyImageData}
+                  alt={headShot.description}
+                ></GatsbyImage>
+              )}
+            </Fade>
           </div>
           <div className="team-member-text">
             <div className="team-member-heading">
-              <h1>{name}</h1>
-              <h2>{title}</h2>
+              <Fade triggerOnce={true}>
+                <h1>{name}</h1>
+                <h2>{title}</h2>
+              </Fade>
             </div>
             {bio && (
-              <div
-                className="team-member-bio"
-                dangerouslySetInnerHTML={{
-                  __html: bio.childMarkdownRemark.html,
-                }}
-              ></div>
+              <Fade triggerOnce={true}>
+                <div
+                  className="team-member-bio"
+                  dangerouslySetInnerHTML={{
+                    __html: bio.childMarkdownRemark.html,
+                  }}
+                ></div>
+              </Fade>
             )}
           </div>
         </div>

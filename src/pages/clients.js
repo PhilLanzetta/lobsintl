@@ -2,6 +2,8 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Link } from "gatsby"
 import Layout from "../components/layout"
+import HideOnScroll from "../components/hideOnScroll"
+import { Fade } from "react-awesome-reveal"
 
 const Clients = ({ data }) => {
   function onlyUnique(value, index, array) {
@@ -21,23 +23,26 @@ const Clients = ({ data }) => {
 
   return (
     <Layout>
-      <div className="page-header">
+      <HideOnScroll>
         <Link to="/clients">Clients</Link>
-      </div>
-      <hr className="faded-line page-header-bottom"></hr>
+      </HideOnScroll>
       <div className="listing-page-container">
         <div className="listing-column-container">
           {alphabetHeaders.map((letter, index) => (
             <div key={index} className="listing-column-element">
-              <p className="listing-heading">{letter}</p>
+              <Fade triggerOnce={true}>
+                <p className="listing-heading">{letter}</p>
+              </Fade>
               <ul>
                 {sortedClients.map((client, index) => {
                   if (client.charAt(0) === letter) {
                     return (
                       <li className="listing-list-item" key={index}>
-                        <Link to="/projects" state={{ client: client }}>
-                          {client}
-                        </Link>
+                        <Fade triggerOnce={true}>
+                          <Link to="/projects" state={{ client: client }}>
+                            {client}
+                          </Link>
+                        </Fade>
                       </li>
                     )
                   } else {

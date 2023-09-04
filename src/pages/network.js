@@ -1,6 +1,8 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
+import HideOnScroll from "../components/hideOnScroll"
+import { Fade } from "react-awesome-reveal"
 
 const Network = ({ data }) => {
   function onlyUnique(value, index, array) {
@@ -39,30 +41,33 @@ const Network = ({ data }) => {
 
   return (
     <Layout>
-      <div className="page-header">
-        <Link to="/clients">Clients</Link>
-      </div>
-      <hr className="faded-line page-header-bottom"></hr>
+      <HideOnScroll>
+        <Link to="/network">Network</Link>
+      </HideOnScroll>
       <div className="listing-page-container">
         <div className="listing-column-container">
           {alphabetHeaders.map((letter, index) => (
             <div key={index} className="listing-column-element">
-              <p className="listing-heading">{letter}</p>
+              <Fade triggerOnce={true}>
+                <p className="listing-heading">{letter}</p>
+              </Fade>
               <ul>
                 {allData.map((item, index) => {
                   if (item.name.charAt(0) === letter) {
                     return (
                       <li className="listing-list-item" key={index}>
-                        <Link
-                          to="/projects"
-                          state={
-                            item.type === "architect"
-                              ? { architect: item.name }
-                              : { network: [item.type, item.name].join(": ") }
-                          }
-                        >
-                          {item.name}
-                        </Link>
+                        <Fade triggerOnce={true}>
+                          <Link
+                            to="/projects"
+                            state={
+                              item.type === "architect"
+                                ? { architect: item.name }
+                                : { network: [item.type, item.name].join(": ") }
+                            }
+                          >
+                            {item.name}
+                          </Link>
+                        </Fade>
                       </li>
                     )
                   } else {

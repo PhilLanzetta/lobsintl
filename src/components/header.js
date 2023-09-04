@@ -21,7 +21,7 @@ const Header = ({ isOpen, toggleMenu, location }) => {
 
   return (
     <header>
-      <Link to="/">
+      <Link to="/" className="header-logo-link">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 69.764 44.94"
@@ -103,7 +103,7 @@ const Header = ({ isOpen, toggleMenu, location }) => {
               <Link to="/about">About</Link>
               {aboutOpen && (
                 <div className="header-page-sub-menu">
-                  <Fade cascade damping={0.25}>
+                  <Fade cascade damping={0.05}>
                     <Link to="/about/#who">Who we are</Link>
                     <Link to="/about/#philosophy">Our philosophy</Link>
                     <Link to="/about/#approach">Our design approach</Link>
@@ -150,10 +150,10 @@ const Header = ({ isOpen, toggleMenu, location }) => {
               onMouseLeave={() => setTeamOpen(false)}
               className="header-page-sub-menu-container"
             >
-              <Link to="/about">Team</Link>
+              <Link to="/team">Team</Link>
               {teamOpen && (
                 <div className="header-page-sub-menu">
-                  <Fade cascade damping={0.25}>
+                  <Fade cascade damping={0.05}>
                     <Link to="/team/#herve">Hervé Descottes</Link>
                     <Link to="/team/#teamMembers">Team Members</Link>
                     <Link to="/team/#careers">Careers</Link>
@@ -202,7 +202,7 @@ const Header = ({ isOpen, toggleMenu, location }) => {
               <Link to="/news">News</Link>
               {newsOpen && (
                 <div className="header-page-sub-menu">
-                  <Fade cascade damping={0.25}>
+                  <Fade cascade damping={0.05}>
                     <Link to="news">Projects</Link>
                     <Link to="news">Articles</Link>
                     <Link to="news">Awards</Link>

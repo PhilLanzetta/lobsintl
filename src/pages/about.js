@@ -4,6 +4,8 @@ import { marked } from "marked"
 import Layout from "../components/layout"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { BsArrowRight } from "react-icons/bs"
+import HideOnScroll from "../components/hideOnScroll"
+import { Fade } from "react-awesome-reveal"
 
 const About = ({ data }) => {
   const {
@@ -24,137 +26,161 @@ const About = ({ data }) => {
 
   return (
     <Layout>
-      <div className="page-header">
+      <HideOnScroll>
         <Link to="/about/#top">About</Link> |{" "}
         <Link to="/about/#who">Who we are</Link> |{" "}
         <Link to="/about/#philosophy">Our philosophy</Link> |{" "}
         <Link to="/about/#approach">Design approach</Link> |{" "}
         <Link to="/about/#awards">Awards</Link> |{" "}
         <Link to="/about/#books">Books</Link>
-      </div>
-      <hr className="faded-line page-header-bottom"></hr>
+      </HideOnScroll>
       <div className="about-page">
-        <div
-          dangerouslySetInnerHTML={{ __html: marked.parse(headline.headline) }}
-          id="top"
-          className="about-page-headline"
-        ></div>
+        <Fade triggerOnce={true}>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: marked.parse(headline.headline),
+            }}
+            id="top"
+            className="about-page-headline"
+          ></div>
+        </Fade>
         <div className="about-featured">
           {firstHighlights.map((item, index) => (
-            <Link to={item.slug} className="about-featured-link" key={index}>
-              <GatsbyImage
-                image={item.heroImage.gatsbyImageData}
-                alt={item.heroImage.description}
-                className="about-featured-image"
-              ></GatsbyImage>
-              <p>{item.projectName}</p>
-            </Link>
+            <Fade
+              triggerOnce={true}
+              key={index}
+              className="about-featured-link"
+            >
+              <Link to={item.slug}>
+                <GatsbyImage
+                  image={item.heroImage.gatsbyImageData}
+                  alt={item.heroImage.description}
+                  className="about-featured-image"
+                ></GatsbyImage>
+                <p>{item.projectName}</p>
+              </Link>
+            </Fade>
           ))}
         </div>
-        <div className="home-container about-section">
-          <p className="home-preface-link">Who We Are</p>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: marked.parse(whoWeAre.whoWeAre),
-            }}
-            id="who"
-            className="home-right about-text"
-          ></div>
-        </div>
-        <div className="about-featured-link sierras">
-          <GatsbyImage
-            image={whoWeAreImage.image.gatsbyImageData}
-            alt={whoWeAreImage.image.description}
-            className="about-featured-image"
-          ></GatsbyImage>
-          <p>{whoWeAreImage.caption}</p>
-        </div>
-
-        <div className="home-container about-section">
-          <p className="home-preface-link">Our Philosophy</p>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: marked.parse(philosophy.philosophy),
-            }}
-            id="philosophy"
-            className="home-right about-text"
-          ></div>
-        </div>
+        <Fade triggerOnce={true} fraction={0.25}>
+          <div className="home-container about-section">
+            <p className="home-preface-link">Who We Are</p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: marked.parse(whoWeAre.whoWeAre),
+              }}
+              id="who"
+              className="home-right about-text"
+            ></div>
+          </div>
+          <div className="about-featured-link sierras">
+            <GatsbyImage
+              image={whoWeAreImage.image.gatsbyImageData}
+              alt={whoWeAreImage.image.description}
+              className="about-featured-image"
+            ></GatsbyImage>
+            <p>{whoWeAreImage.caption}</p>
+          </div>
+        </Fade>
+        <Fade triggerOnce={true} fraction={0.25}>
+          <div className="home-container about-section">
+            <p className="home-preface-link">Our Philosophy</p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: marked.parse(philosophy.philosophy),
+              }}
+              id="philosophy"
+              className="home-right about-text"
+            ></div>
+          </div>
+        </Fade>
         <div className="about-featured">
           {secondHighlights.map((item, index) => (
-            <Link to={item.slug} className="about-featured-link" key={index}>
-              <GatsbyImage
-                image={item.heroImage.gatsbyImageData}
-                alt={item.heroImage.description}
-                className="about-featured-image"
-              ></GatsbyImage>
-              <p>{item.projectName}</p>
-            </Link>
+            <Fade
+              triggerOnce={true}
+              className="about-featured-link"
+              key={index}
+            >
+              <Link to={item.slug}>
+                <GatsbyImage
+                  image={item.heroImage.gatsbyImageData}
+                  alt={item.heroImage.description}
+                  className="about-featured-image"
+                ></GatsbyImage>
+                <p>{item.projectName}</p>
+              </Link>
+            </Fade>
           ))}
         </div>
-        <div className="home-container about-section">
-          <p className="home-preface-link">Our Design Approach</p>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: marked.parse(designApproach.designApproach),
-            }}
-            id="approach"
-            className="home-right about-text"
-          ></div>
-        </div>
-        <div className="home-container about-section">
-          <p className="home-preface-link">Awards</p>
-          <div className="home-right about-awards">
-            <h2 id="awards">Our most recent awards</h2>
-            <div className="about-awards-container">
-              {awards.map(award => (
-                <div key={award.id}>
-                  <hr className="faded"></hr>
-                  <div className="about-award">
-                    <div>
-                      <p className="upper">{award.awardName}</p>
-                      <p>{award.project[0].projectName}</p>
+        <Fade triggerOnce={true} fraction={0.25}>
+          <div className="home-container about-section">
+            <p className="home-preface-link">Our Design Approach</p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: marked.parse(designApproach.designApproach),
+              }}
+              id="approach"
+              className="home-right about-text"
+            ></div>
+          </div>
+        </Fade>
+        <Fade triggerOnce={true} fraction={0.25}>
+          <div className="home-container about-section">
+            <p className="home-preface-link">Awards</p>
+            <div className="home-right about-awards">
+              <h2 id="awards">Our most recent awards</h2>
+              <div className="about-awards-container">
+                {awards.map(award => (
+                  <div key={award.id}>
+                    <hr className="faded"></hr>
+                    <div className="about-award">
+                      <div>
+                        <p className="upper">{award.awardName}</p>
+                        <p>{award.project[0].projectName}</p>
+                      </div>
+                      <p className="faded">{award.year}</p>
                     </div>
-                    <p className="faded">{award.year}</p>
                   </div>
+                ))}
+              </div>
+              <hr className="faded"></hr>
+              <Link to="/awards" className="home-link">
+                <BsArrowRight></BsArrowRight> See All
+              </Link>
+            </div>
+          </div>
+        </Fade>
+        <Fade triggerOnce={true} fraction={0.25}>
+          <div className="home-container about-section">
+            <p className="home-preface-link">Books</p>
+            <div className="home-right about-books" id="books">
+              {books.map(book => (
+                <div key={book.id} className="about-book-container">
+                  <GatsbyImage
+                    image={book.bookImage.gatsbyImageData}
+                    alt={book.bookImage.description}
+                  ></GatsbyImage>
+                  <p>
+                    {book.publisher}, {book.publicationYear}
+                  </p>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: marked.parse(book.description.description),
+                    }}
+                  ></div>
+                  <a
+                    href={book.purchaseLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="home-link"
+                  >
+                    <BsArrowRight></BsArrowRight>Order Here
+                  </a>
                 </div>
               ))}
             </div>
-            <hr className="faded"></hr>
-            <Link to="/awards" className="home-link">
-              <BsArrowRight></BsArrowRight> See All
-            </Link>
           </div>
-        </div>
-        <div className="home-container about-section">
-          <p className="home-preface-link">Books</p>
-          <div className="home-right about-books" id="books">
-            {books.map(book => (
-              <div key={book.id} className="about-book-container">
-                <GatsbyImage
-                  image={book.bookImage.gatsbyImageData}
-                  alt={book.bookImage.description}
-                ></GatsbyImage>
-                <p>
-                  {book.publisher}, {book.publicationYear}
-                </p>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: marked.parse(book.description.description),
-                  }}
-                ></div>
-                <a
-                  href={book.purchaseLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="home-link"
-                >
-                  <BsArrowRight></BsArrowRight>Order Here
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
+        </Fade>
       </div>
     </Layout>
   )

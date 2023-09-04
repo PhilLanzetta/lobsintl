@@ -1,6 +1,8 @@
 import React from "react"
 import Layout from "../components/layout"
 import { Link, graphql } from "gatsby"
+import HideOnScroll from "../components/hideOnScroll"
+import { Fade } from "react-awesome-reveal"
 
 const Awards = ({ data }) => {
   function onlyUnique(value, index, array) {
@@ -11,22 +13,27 @@ const Awards = ({ data }) => {
 
   return (
     <Layout>
-      <div className="page-header">
+      <HideOnScroll>
         <Link to="/about">About</Link> | <Link to="/awards">Awards</Link>
-      </div>
-      <hr className="faded-line page-header-bottom"></hr>
+      </HideOnScroll>
       <div className="listing-page-container">
         <div className="listing-column-container">
           {years.map((year, index) => (
             <div key={index} className="listing-column-element">
-              <p className="listing-heading">{year}</p>
+              <Fade triggerOnce={true}>
+                <p className="listing-heading">{year}</p>
+              </Fade>
               <ul>
                 {awards.map(award => {
                   if (award.year === year) {
                     return (
                       <li key={award.id} className="listing-list-item">
-                        <p className="upper">{award.awardName}</p>
-                        {award.project && <p>{award.project[0].projectName}</p>}
+                        <Fade triggerOnce={true}>
+                          <p className="upper">{award.awardName}</p>
+                          {award.project && (
+                            <p>{award.project[0].projectName}</p>
+                          )}
+                        </Fade>
                       </li>
                     )
                   } else return null

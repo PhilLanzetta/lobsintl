@@ -4,15 +4,15 @@ import GoogleMap from "../components/googleMap"
 import Layout from "../components/layout"
 import { Link } from "gatsby"
 import useWindowSize from "../utils/useWindowSize"
+import HideOnScroll from "../components/hideOnScroll"
 
 const Contact = () => {
   const { width } = useWindowSize()
   return (
     <Layout>
-      <div className="page-header">
+      <HideOnScroll>
         <Link to="/contact">Contact</Link>
-      </div>
-      <hr className="faded-line page-header-bottom"></hr>
+      </HideOnScroll>
       <div className="contact-container">
         <div className="contact-text-container">
           {width > 600 && (

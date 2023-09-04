@@ -255,8 +255,7 @@ const Projects = ({ data, location }) => {
       <div className="project-header">
         <Link to="/projects">Projects</Link>
       </div>
-      <hr className="faded-line page-header-bottom"></hr>
-      <div className="project-options-bar">
+      <div className={`project-options-bar ${filterOpen ? "" : "show-shadow"}`}>
         {filterOpen ? (
           <button
             className="project-options-button-top"
@@ -274,96 +273,6 @@ const Projects = ({ data, location }) => {
             Filter
           </button>
         )}
-        <div className={`filter-menu ${filterOpen ? "" : "hide-filter"}`}>
-          <div className="filter-column">
-            <button
-              className="project-options-button"
-              onClick={() => setFeaturedFilter(!featuredFilter)}
-            >
-              <div
-                className={`check-box ${featuredFilter ? "checked" : ""}`}
-              ></div>{" "}
-              Featured Projects
-            </button>
-            <button
-              className="project-options-button"
-              onClick={() => setRecent(!recent)}
-            >
-              <div className={`check-box ${recent ? "checked" : ""}`}></div>{" "}
-              Recently Completed
-            </button>
-            <button
-              className="project-options-button"
-              onClick={() => setProgressFilter(!progressFilter)}
-            >
-              <div
-                className={`check-box ${progressFilter ? "checked" : ""}`}
-              ></div>{" "}
-              In Progress
-            </button>
-          </div>
-          <div className="filter-column">
-            <p className="upper">Typology</p>
-            {typologies.map((type, index) => (
-              <button
-                key={index}
-                className="project-options-button"
-                onClick={() => handleTypeFilter(type)}
-              >
-                <div
-                  className={`check-box ${
-                    typologyFilter.includes(type) ? "checked" : ""
-                  }`}
-                ></div>{" "}
-                {type}
-              </button>
-            ))}
-          </div>
-          <div className="filter-column">
-            <p className="upper">Location</p>
-            {locations.map((locale, index) => (
-              <button
-                key={index}
-                className="project-options-button"
-                onClick={() => handleLocaleFilter(locale)}
-              >
-                <div
-                  className={`check-box ${
-                    regionFilter.includes(locale) ? "checked" : ""
-                  }`}
-                ></div>{" "}
-                {locale}
-              </button>
-            ))}
-          </div>
-          <div className="filter-column network-filter-column">
-            <div>
-              <p className="upper">Network</p>
-              <Link to="/network" className="network-see-all">
-                See All <BsArrowRight></BsArrowRight>
-              </Link>
-            </div>
-            <div className="filter-actions-container">
-              <button
-                disabled={isDisabled}
-                className="filter-apply"
-                onClick={() => {
-                  handleFilter()
-                  setFilterOpen(false)
-                }}
-              >
-                Apply
-              </button>
-              <button
-                className="clear-all-button"
-                onClick={() => handleClearAll()}
-                disabled={isDisabled}
-              >
-                <AiOutlineLine></AiOutlineLine> Clear all
-              </button>
-            </div>
-          </div>
-        </div>
         <div className="project-view-options">
           <button
             className={`project-options-button-top ${
@@ -392,6 +301,96 @@ const Projects = ({ data, location }) => {
             <BsCircleFill></BsCircleFill>
             Map
           </button>
+        </div>
+      </div>
+      <div className={`filter-menu ${filterOpen ? "" : "hide-filter"}`}>
+        <div className="filter-column">
+          <button
+            className="project-options-button"
+            onClick={() => setFeaturedFilter(!featuredFilter)}
+          >
+            <div
+              className={`check-box ${featuredFilter ? "checked" : ""}`}
+            ></div>{" "}
+            Featured Projects
+          </button>
+          <button
+            className="project-options-button"
+            onClick={() => setRecent(!recent)}
+          >
+            <div className={`check-box ${recent ? "checked" : ""}`}></div>{" "}
+            Recently Completed
+          </button>
+          <button
+            className="project-options-button"
+            onClick={() => setProgressFilter(!progressFilter)}
+          >
+            <div
+              className={`check-box ${progressFilter ? "checked" : ""}`}
+            ></div>{" "}
+            In Progress
+          </button>
+        </div>
+        <div className="filter-column">
+          <p className="upper">Typology</p>
+          {typologies.map((type, index) => (
+            <button
+              key={index}
+              className="project-options-button"
+              onClick={() => handleTypeFilter(type)}
+            >
+              <div
+                className={`check-box ${
+                  typologyFilter.includes(type) ? "checked" : ""
+                }`}
+              ></div>{" "}
+              {type}
+            </button>
+          ))}
+        </div>
+        <div className="filter-column">
+          <p className="upper">Location</p>
+          {locations.map((locale, index) => (
+            <button
+              key={index}
+              className="project-options-button"
+              onClick={() => handleLocaleFilter(locale)}
+            >
+              <div
+                className={`check-box ${
+                  regionFilter.includes(locale) ? "checked" : ""
+                }`}
+              ></div>{" "}
+              {locale}
+            </button>
+          ))}
+        </div>
+        <div className="filter-column network-filter-column">
+          <div>
+            <p className="upper">Network</p>
+            <Link to="/network" className="network-see-all">
+              See All <BsArrowRight></BsArrowRight>
+            </Link>
+          </div>
+          <div className="filter-actions-container">
+            <button
+              disabled={isDisabled}
+              className="filter-apply"
+              onClick={() => {
+                handleFilter()
+                setFilterOpen(false)
+              }}
+            >
+              Apply
+            </button>
+            <button
+              className="clear-all-button"
+              onClick={() => handleClearAll()}
+              disabled={isDisabled}
+            >
+              <AiOutlineLine></AiOutlineLine> Clear all
+            </button>
+          </div>
         </div>
       </div>
       {!isDisabled && (

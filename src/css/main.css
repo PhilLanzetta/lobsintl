@@ -83,12 +83,24 @@ button {
   font-size: inherit;
   font-weight: inherit;
   font-family: inherit;
+  transition: all var(--fast-transition);
+}
+
+button:hover {
+  opacity: var(--less-opacity);
+  transition: all var(--fast-transition);
 }
 
 a {
   font-family: inherit;
   text-decoration: none;
   color: inherit;
+  transition: all var(--fast-transition);
+}
+
+a:hover {
+  opacity: var(--less-opacity);
+  transition: all var(--fast-transition);
 }
 
 .upper {
@@ -133,6 +145,10 @@ header {
   fill: #fff;
 }
 
+.header-logo-link:hover {
+  opacity: 1;
+}
+
 .header-menu-btn {
   font-family: var(--font-primary);
   position: fixed;
@@ -147,6 +163,10 @@ header {
   cursor: pointer;
   mix-blend-mode: difference;
   color: #fff;
+}
+
+.header-menu-btn:hover {
+  opacity: 1;
 }
 
 .secondary-menu {
@@ -164,6 +184,7 @@ header {
   z-index: 200;
   overflow-y: scroll;
   max-height: 100vh;
+  box-shadow: 0px 1px 10px -4px var(--color);
 }
 
 .secondary-link-container {
@@ -489,6 +510,12 @@ SINGLE PROJECT PAGE
   z-index: 50;
   top: 49px;
   left: 30vw;
+  transition: all var(--fast-transition);
+}
+
+.page-header-hide {
+  opacity: 0;
+  transition: all var(--fast-transition);
 }
 
 .project-header-type {
@@ -695,7 +722,7 @@ SINGLE PROJECT PAGE
 }
 
 .project-table-button:hover {
-  box-shadow: 0px 0px 3px 0px;
+  opacity: var(--less-opacity);
   transition: all var(--fast-transition);
 }
 
@@ -899,6 +926,10 @@ PROJECTS PAGE
   background: var(--background);
 }
 
+.show-shadow {
+  box-shadow: 0px 1px 10px -4px var(--color);
+}
+
 .page-header-bottom {
   position: fixed;
   top: 100px;
@@ -920,6 +951,11 @@ PROJECTS PAGE
   text-align: left;
 }
 
+.project-options-button:hover,
+.project-options-button-top:hover {
+  opacity: 1;
+}
+
 .project-view-options {
   display: flex;
   gap: var(--spacing-sm);
@@ -934,7 +970,8 @@ PROJECTS PAGE
 
 .filter-menu {
   position: fixed;
-  top: 145px;
+  top: 0;
+  left: 0;
   width: 100%;
   background: var(--background);
   color: var(--color);
@@ -942,10 +979,14 @@ PROJECTS PAGE
   display: flex;
   align-items: stretch;
   gap: var(--spacing-md);
+  padding-top: 145px;
   padding-bottom: 20px;
-  padding-left: 10vw;
-  z-index: 0;
+  padding-left: calc(10vw + 40px);
+  z-index: 10;
   transition: transform 1ms, opacity var(--fast-transition) 2ms;
+  box-shadow: 0px 1px 10px -4px var(--color);
+  max-height: 100vh;
+  overflow-y: scroll;
 }
 
 .hide-filter {
@@ -1638,7 +1679,7 @@ About Page
   margin-bottom: 10%;
 }
 
-.about-featured a:nth-of-type(2n) {
+.about-featured-link:nth-of-type(2n) {
   align-self: flex-end;
 }
 

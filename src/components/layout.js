@@ -9,6 +9,7 @@ import * as React from "react"
 import { useState } from "react"
 import Header from "./header"
 import Footer from "./footer"
+import { motion, AnimatePresence } from "framer-motion"
 
 const Layout = ({ children, location }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -19,12 +20,16 @@ const Layout = ({ children, location }) => {
 
   return (
     <>
-      <Header
-        location={location}
-        isOpen={isOpen}
-        toggleMenu={toggleMenu}
-      />
-      <main>{children}</main>
+      <Header location={location} isOpen={isOpen} toggleMenu={toggleMenu} />
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <main>{children}</main>
+        </motion.div>
+      </AnimatePresence>
       <Footer></Footer>
     </>
   )
