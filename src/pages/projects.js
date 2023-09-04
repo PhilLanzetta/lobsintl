@@ -302,8 +302,137 @@ const Projects = ({ data, location }) => {
             Map
           </button>
         </div>
+        {!isDisabled && (
+          <div className="current-filter-container">
+            {featuredFilter && (
+              <button
+                className="current-filter-button"
+                onClick={() => setFeaturedFilter(false)}
+              >
+                <GrFormClose></GrFormClose>Featured Projects
+              </button>
+            )}
+            {recent && (
+              <button
+                className="current-filter-button"
+                onClick={() => setRecent(false)}
+              >
+                <GrFormClose></GrFormClose>Recently Completed
+              </button>
+            )}
+            {progressFilter && (
+              <button
+                className="current-filter-button"
+                onClick={() => setProgressFilter(false)}
+              >
+                <GrFormClose></GrFormClose>In Progress
+              </button>
+            )}
+            {typologyFilter.length > 0 && (
+              <>
+                {typologyFilter.map((item, index) => (
+                  <button
+                    key={index}
+                    className="current-filter-button"
+                    onClick={() => handleTypeFilter(item)}
+                  >
+                    <GrFormClose></GrFormClose>
+                    {item}
+                  </button>
+                ))}
+              </>
+            )}
+            {regionFilter.length > 0 && (
+              <>
+                {regionFilter.map((item, index) => (
+                  <button
+                    key={index}
+                    className="current-filter-button"
+                    onClick={() => handleLocaleFilter(item)}
+                  >
+                    <GrFormClose></GrFormClose>
+                    {item}
+                  </button>
+                ))}
+              </>
+            )}
+            {city && (
+              <button
+                className="current-filter-button"
+                onClick={() => setCity("")}
+              >
+                <GrFormClose></GrFormClose>
+                {city}
+              </button>
+            )}
+            {year && (
+              <button
+                className="current-filter-button"
+                onClick={() => setYear("")}
+              >
+                <GrFormClose></GrFormClose>
+                Year: {year}
+              </button>
+            )}
+            {architect && (
+              <button
+                className="current-filter-button"
+                onClick={() => setArchitect("")}
+              >
+                <GrFormClose></GrFormClose>
+                {architect}
+              </button>
+            )}
+            {interiorDesigner && (
+              <button
+                className="current-filter-button"
+                onClick={() => setInteriorDesigner("")}
+              >
+                <GrFormClose></GrFormClose>
+                {interiorDesigner}
+              </button>
+            )}
+            {country && (
+              <button
+                className="current-filter-button"
+                onClick={() => setCountry("")}
+              >
+                <GrFormClose></GrFormClose>
+                {country}
+              </button>
+            )}
+            {network && (
+              <button
+                className="current-filter-button"
+                onClick={() => setNetwork("")}
+              >
+                <GrFormClose></GrFormClose>
+                {network.split(": ")[1]}
+              </button>
+            )}
+            {client && (
+              <button
+                className="current-filter-button"
+                onClick={() => setClient("")}
+              >
+                <GrFormClose></GrFormClose>
+                {client}
+              </button>
+            )}
+            <button
+              className="current-filter-button"
+              onClick={() => handleClearAll()}
+            >
+              <AiOutlineLine></AiOutlineLine>Clear all
+            </button>
+          </div>
+        )}
       </div>
-      <div className={`filter-menu ${filterOpen ? "" : "hide-filter"}`}>
+      <div
+        className={`filter-menu ${filterOpen ? "" : "hide-filter"} ${
+          isDisabled ? "" : "more-padding"
+        }`}
+      >
         <div className="filter-column">
           <button
             className="project-options-button"
@@ -393,131 +522,6 @@ const Projects = ({ data, location }) => {
           </div>
         </div>
       </div>
-      {!isDisabled && (
-        <div className="current-filter-container">
-          {featuredFilter && (
-            <button
-              className="current-filter-button"
-              onClick={() => setFeaturedFilter(false)}
-            >
-              <GrFormClose></GrFormClose>Featured Projects
-            </button>
-          )}
-          {recent && (
-            <button
-              className="current-filter-button"
-              onClick={() => setRecent(false)}
-            >
-              <GrFormClose></GrFormClose>Recently Completed
-            </button>
-          )}
-          {progressFilter && (
-            <button
-              className="current-filter-button"
-              onClick={() => setProgressFilter(false)}
-            >
-              <GrFormClose></GrFormClose>In Progress
-            </button>
-          )}
-          {typologyFilter.length > 0 && (
-            <>
-              {typologyFilter.map((item, index) => (
-                <button
-                  key={index}
-                  className="current-filter-button"
-                  onClick={() => handleTypeFilter(item)}
-                >
-                  <GrFormClose></GrFormClose>
-                  {item}
-                </button>
-              ))}
-            </>
-          )}
-          {regionFilter.length > 0 && (
-            <>
-              {regionFilter.map((item, index) => (
-                <button
-                  key={index}
-                  className="current-filter-button"
-                  onClick={() => handleLocaleFilter(item)}
-                >
-                  <GrFormClose></GrFormClose>
-                  {item}
-                </button>
-              ))}
-            </>
-          )}
-          {city && (
-            <button
-              className="current-filter-button"
-              onClick={() => setCity("")}
-            >
-              <GrFormClose></GrFormClose>
-              {city}
-            </button>
-          )}
-          {year && (
-            <button
-              className="current-filter-button"
-              onClick={() => setYear("")}
-            >
-              <GrFormClose></GrFormClose>
-              Year: {year}
-            </button>
-          )}
-          {architect && (
-            <button
-              className="current-filter-button"
-              onClick={() => setArchitect("")}
-            >
-              <GrFormClose></GrFormClose>
-              {architect}
-            </button>
-          )}
-          {interiorDesigner && (
-            <button
-              className="current-filter-button"
-              onClick={() => setInteriorDesigner("")}
-            >
-              <GrFormClose></GrFormClose>
-              {interiorDesigner}
-            </button>
-          )}
-          {country && (
-            <button
-              className="current-filter-button"
-              onClick={() => setCountry("")}
-            >
-              <GrFormClose></GrFormClose>
-              {country}
-            </button>
-          )}
-          {network && (
-            <button
-              className="current-filter-button"
-              onClick={() => setNetwork("")}
-            >
-              <GrFormClose></GrFormClose>
-              {network.split(": ")[1]}
-            </button>
-          )}
-          {client && (
-            <button
-              className="current-filter-button"
-              onClick={() => setClient("")}
-            >
-              <GrFormClose></GrFormClose>
-              {client}
-            </button>
-          )}
-          <button
-            className="current-filter-button"
-            onClick={() => handleClearAll()}
-          >
-            <AiOutlineLine></AiOutlineLine>Clear all
-          </button>
-        </div>
-      )}
       {view === "grid" && (
         <>
           <div style={{ height: "140px" }}></div>

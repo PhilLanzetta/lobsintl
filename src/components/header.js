@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import useWindowSize from "../utils/useWindowSize"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
@@ -11,6 +11,10 @@ const Header = ({ isOpen, toggleMenu, location }) => {
   const [newsOpen, setNewsOpen] = useState(false)
   const { width } = useWindowSize()
   const mobile = width < 601
+  const isHome = location !== undefined
+  const [logoHeight, setLogoHeight] = useState(mobile ? 60 : 80)
+  const [logoWidth, setLogoWidth] = useState(mobile ? 100 : 120)
+  const [scrollPosition, setScrollPosition] = useState(0)
 
   const handleClose = () => {
     setAboutOpen(false)
@@ -19,40 +23,109 @@ const Header = ({ isOpen, toggleMenu, location }) => {
     toggleMenu()
   }
 
+  const style = {
+    position: "fixed",
+    zIndex: "500",
+    left: mobile ? "20px" : "40px",
+    top: mobile ? "20px" : "40px",
+    mixBlendMode: "difference",
+    fill: "#fff",
+  }
+
+  const handleScroll = () => {
+    const currentScrollPos = window.scrollY
+    if (mobile) {
+      setLogoHeight(60 - currentScrollPos * 0.075)
+      setLogoWidth(100 - currentScrollPos * 0.125)
+    } else {
+      setLogoHeight(80 - currentScrollPos * 0.1)
+      setLogoWidth(120 - currentScrollPos * 0.15)
+    }
+    setScrollPosition(currentScrollPos)
+  }
+
+  useEffect(() => {
+    if (scrollPosition < 397) {
+      window.addEventListener("scroll", handleScroll)
+      return () => window.removeEventListener("scroll", handleScroll)
+    } else {
+      return
+    }
+  }, [scrollPosition])
+
   return (
     <header>
-      <Link to="/" className="header-logo-link">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 69.764 44.94"
-          className="header-logo"
-        >
-          <g
-            id="Group_373"
-            data-name="Group 373"
-            transform="translate(-263.75 -369)"
+      {isHome ? (
+        <Link to="/" className="header-logo-link" key={logoHeight}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 69.764 44.94"
+            style={{
+              height: `${logoHeight}px`,
+              width: `${logoWidth}px`,
+              ...style,
+            }}
           >
-            <path
-              id="Path_1"
-              data-name="Path 1"
-              d="M288.544,413.94H263.75V369h1.124v43.983h23.671Z"
-              transform="translate(0 0)"
-            />
-            <path
-              id="Path_2"
-              data-name="Path 2"
-              d="M338.517,391.475a22.47,22.47,0,1,1-22.472-22.469,22.47,22.47,0,0,1,22.472,22.469"
-              transform="translate(-5.003 -0.001)"
-            />
-            <path
-              id="Path_3"
-              data-name="Path 3"
-              d="M291.763,373.494A4.494,4.494,0,1,1,287.269,369a4.494,4.494,0,0,1,4.494,4.494"
-              transform="translate(-3.191 0)"
-            />
-          </g>
-        </svg>
-      </Link>
+            <g
+              id="Group_373"
+              data-name="Group 373"
+              transform="translate(-263.75 -369)"
+            >
+              <path
+                id="Path_1"
+                data-name="Path 1"
+                d="M288.544,413.94H263.75V369h1.124v43.983h23.671Z"
+                transform="translate(0 0)"
+              />
+              <path
+                id="Path_2"
+                data-name="Path 2"
+                d="M338.517,391.475a22.47,22.47,0,1,1-22.472-22.469,22.47,22.47,0,0,1,22.472,22.469"
+                transform="translate(-5.003 -0.001)"
+              />
+              <path
+                id="Path_3"
+                data-name="Path 3"
+                d="M291.763,373.494A4.494,4.494,0,1,1,287.269,369a4.494,4.494,0,0,1,4.494,4.494"
+                transform="translate(-3.191 0)"
+              />
+            </g>
+          </svg>
+        </Link>
+      ) : (
+        <Link to="/" className="header-logo-link">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 69.764 44.94"
+            className="header-logo"
+          >
+            <g
+              id="Group_373"
+              data-name="Group 373"
+              transform="translate(-263.75 -369)"
+            >
+              <path
+                id="Path_1"
+                data-name="Path 1"
+                d="M288.544,413.94H263.75V369h1.124v43.983h23.671Z"
+                transform="translate(0 0)"
+              />
+              <path
+                id="Path_2"
+                data-name="Path 2"
+                d="M338.517,391.475a22.47,22.47,0,1,1-22.472-22.469,22.47,22.47,0,0,1,22.472,22.469"
+                transform="translate(-5.003 -0.001)"
+              />
+              <path
+                id="Path_3"
+                data-name="Path 3"
+                d="M291.763,373.494A4.494,4.494,0,1,1,287.269,369a4.494,4.494,0,0,1,4.494,4.494"
+                transform="translate(-3.191 0)"
+              />
+            </g>
+          </svg>
+        </Link>
+      )}
       <button
         className="header-menu-btn"
         onClick={isOpen ? handleClose : toggleMenu}
