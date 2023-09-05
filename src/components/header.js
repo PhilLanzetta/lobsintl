@@ -12,12 +12,8 @@ const Header = ({ isOpen, toggleMenu, location }) => {
   const { width } = useWindowSize()
   const mobile = width < 601
   const isHome = location !== undefined
-  const [logoHeight, setLogoHeight] = useState(
-    window?.scrollY < 397 ? (mobile ? 60 : 80) : mobile ? 30 : 40
-  )
-  const [logoWidth, setLogoWidth] = useState(
-    window?.scrollY < 397 ? (mobile ? 100 : 120) : mobile ? 50 : 60
-  )
+  const [logoHeight, setLogoHeight] = useState(mobile ? 60 : 80)
+  const [logoWidth, setLogoWidth] = useState(mobile ? 100 : 120)
 
   const handleClose = () => {
     setAboutOpen(false)
