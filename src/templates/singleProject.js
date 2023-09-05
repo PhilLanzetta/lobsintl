@@ -11,7 +11,7 @@ import HideOnScroll from "../components/hideOnScroll"
 const SingleProject = ({ data }) => {
   const {
     projectName,
-    architect,
+    designTeam,
     awards,
     year,
     typology,
@@ -22,14 +22,12 @@ const SingleProject = ({ data }) => {
     images,
     headlineText,
     geographicRegion,
-    interiorDesigner,
     dateCompleted,
     city,
     country,
     bodyText,
     team,
     client,
-    furtherNetworkLinks,
     photoCredit,
     press,
     principal,
@@ -64,8 +62,7 @@ const SingleProject = ({ data }) => {
         region={geographicRegion}
       ></ProjectIntro>
       <ProjectTable
-        architect={architect}
-        interiorDesigner={interiorDesigner}
+        designTeam={designTeam}
         awards={awards}
         status={status}
         size={size}
@@ -74,7 +71,6 @@ const SingleProject = ({ data }) => {
         principal={principal}
         projectLeader={projectLeader}
         client={client}
-        network={furtherNetworkLinks}
         photoCredit={photoCredit}
         press={press}
       ></ProjectTable>
@@ -91,13 +87,16 @@ const SingleProject = ({ data }) => {
 export const query = graphql`
   query getSingleProject($slug: String) {
     contentfulProject(slug: { eq: $slug }) {
-      architect
-      interiorDesigner
       year
       typology
       status
       size
       projectName
+      designTeam {
+        id
+        name
+        role
+      }
       awards {
         id
         awardName
@@ -161,7 +160,6 @@ export const query = graphql`
         primaryOffice
         id
       }
-      furtherNetworkLinks
       press {
         id
         link

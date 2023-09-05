@@ -3,69 +3,36 @@ import React from "react"
 import { Fade } from "react-awesome-reveal"
 
 const ProjectTable = ({
-  architect,
   size,
+  designTeam,
   status,
   dateCompleted,
   awards,
   team,
   client,
-  network,
   photoCredit,
   press,
   principal,
   projectLeader,
-  interiorDesigner,
 }) => {
   return (
     <div className="project-table-container">
       <div className="project-table-max-width">
         <Fade triggerOnce={true}>
-          {architect && (
-            <div>
-              <hr className="faded-line"></hr>
-              <div className="project-table-row">
-                <p>Architect</p>
-                <Link
-                  to="/projects"
-                  className="project-table-button"
-                  state={{ architect: architect }}
-                >
-                  {architect}
-                </Link>
-              </div>
-            </div>
-          )}
-          {interiorDesigner && (
-            <div>
-              <hr className="faded-line"></hr>
-              <div className="project-table-row">
-                <p>Interior Designer</p>
-                <Link
-                  to="/projects"
-                  className="project-table-button"
-                  state={{ interiorDesigner: interiorDesigner }}
-                >
-                  {interiorDesigner}
-                </Link>
-              </div>
-            </div>
-          )}
-          {network && (
+          {designTeam && (
             <>
-              {network.map((networkLink, index) => {
-                const linkArray = networkLink.split(": ")
+              {designTeam.map(item => {
                 return (
-                  <div key={index}>
+                  <div key={item.id}>
                     <hr className="faded-line"></hr>
                     <div className="project-table-row">
-                      <p>{linkArray[0]}</p>
+                      <p>{item.role}</p>
                       <Link
                         to="/projects"
                         className="project-table-button"
-                        state={{ network: networkLink }}
+                        state={{ network: item.name }}
                       >
-                        {linkArray[1]}
+                        {item.name}
                       </Link>
                     </div>
                   </div>

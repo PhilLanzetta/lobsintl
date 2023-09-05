@@ -8,36 +8,12 @@ const Network = ({ data }) => {
   function onlyUnique(value, index, array) {
     return array.indexOf(value) === index
   }
-  const architects = data.allContentfulProject.nodes
-    .map(item => item.architect)
-    .filter(item => item !== null)
+
+  const allData = data.allContentfulDesignMember.nodes
+    .map(member => member.name)
     .filter(onlyUnique)
-    .map(item => ({ type: "architect", name: item }))
 
-  const networkNames = data.allContentfulProject.nodes
-    .map(item => item.furtherNetworkLinks)
-    .filter(item => item !== null)
-    .reduce((a, b) => a.concat(b), [])
-    .filter(onlyUnique)
-    .map(item => ({ type: item.split(": ")[0], name: item.split(": ")[1] }))
-
-  const allData = architects.concat(networkNames).sort((a, b) => {
-    const nameA = a.name.toLowerCase()
-    const nameB = b.name.toLowerCase()
-    if (nameA < nameB) {
-      return -1
-    }
-    if (nameA > nameB) {
-      return 1
-    }
-
-    // names must be equal
-    return 0
-  })
-
-  const alphabetHeaders = allData
-    .map(item => item.name.charAt(0))
-    .filter(onlyUnique)
+  const alphabetHeaders = allData.map(item => item.charAt(0)).filter(onlyUnique)
 
   return (
     <Layout>
@@ -53,19 +29,12 @@ const Network = ({ data }) => {
               </Fade>
               <ul>
                 {allData.map((item, index) => {
-                  if (item.name.charAt(0) === letter) {
+                  if (item.charAt(0) === letter) {
                     return (
                       <li className="listing-list-item" key={index}>
                         <Fade triggerOnce={true}>
-                          <Link
-                            to="/projects"
-                            state={
-                              item.type === "architect"
-                                ? { architect: item.name }
-                                : { network: [item.type, item.name].join(": ") }
-                            }
-                          >
-                            {item.name}
+                          <Link to="/projects" state={{ network: item }}>
+                            {item}
                           </Link>
                         </Fade>
                       </li>
@@ -85,10 +54,10 @@ const Network = ({ data }) => {
 
 export const query = graphql`
   query {
-    allContentfulProject {
+    allContentfulDesignMember(sort: { name: ASC }) {
       nodes {
-        architect
-        furtherNetworkLinks
+        id
+        name
       }
     }
   }

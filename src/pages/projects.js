@@ -29,10 +29,6 @@ const Projects = ({ data, location }) => {
   )
   const [city, setCity] = useState(location.state?.city || "")
   const [year, setYear] = useState(location.state?.year || null)
-  const [architect, setArchitect] = useState(location.state?.architect || "")
-  const [interiorDesigner, setInteriorDesigner] = useState(
-    location.state?.interiorDesigner || ""
-  )
   const [country, setCountry] = useState(location.state?.country || "")
   const [network, setNetwork] = useState(location.state?.network || "")
   const [client, setClient] = useState(location.state?.client || "")
@@ -45,8 +41,6 @@ const Projects = ({ data, location }) => {
     !regionFilter.length &&
     !city &&
     !year &&
-    !architect &&
-    !interiorDesigner &&
     !country &&
     !network &&
     !client
@@ -89,20 +83,15 @@ const Projects = ({ data, location }) => {
     return array.filter(item => item.year === year)
   }
 
-  const filterByArchitect = array => {
-    return array.filter(item => item.architect === architect)
-  }
-
-  const filterByInteriorDesigner = array => {
-    return array.filter(item => item.interiorDesigner === interiorDesigner)
-  }
-
   const filterByCountry = array => {
     return array.filter(item => item.country === country)
   }
 
   const filterByNetwork = array => {
-    return array.filter(item => item.furtherNetworkLinks?.includes(network))
+    console.log(array)
+    return array.filter(item =>
+      item.designTeam?.some(member => member.name === network)
+    )
   }
 
   const filterByClient = array => {
@@ -176,14 +165,6 @@ const Projects = ({ data, location }) => {
       result = filterByYear(result)
       result = result.reduce((a, b) => a.concat(b), []).filter(onlyUnique)
     }
-    if (architect) {
-      result = filterByArchitect(result)
-      result = result.reduce((a, b) => a.concat(b), []).filter(onlyUnique)
-    }
-    if (interiorDesigner) {
-      result = filterByInteriorDesigner(result)
-      result = result.reduce((a, b) => a.concat(b), []).filter(onlyUnique)
-    }
     if (country) {
       result = filterByCountry(result)
       result = result.reduce((a, b) => a.concat(b), []).filter(onlyUnique)
@@ -207,8 +188,6 @@ const Projects = ({ data, location }) => {
     setRegionFilter([])
     setCity("")
     setYear(null)
-    setArchitect("")
-    setInteriorDesigner("")
     setCountry("")
     setNetwork("")
     setClient("")
@@ -243,8 +222,6 @@ const Projects = ({ data, location }) => {
     recent,
     featuredFilter,
     year,
-    architect,
-    interiorDesigner,
     country,
     network,
     client,
@@ -374,24 +351,6 @@ const Projects = ({ data, location }) => {
                 Year: {year}
               </button>
             )}
-            {architect && (
-              <button
-                className="current-filter-button"
-                onClick={() => setArchitect("")}
-              >
-                <GrFormClose></GrFormClose>
-                {architect}
-              </button>
-            )}
-            {interiorDesigner && (
-              <button
-                className="current-filter-button"
-                onClick={() => setInteriorDesigner("")}
-              >
-                <GrFormClose></GrFormClose>
-                {interiorDesigner}
-              </button>
-            )}
             {country && (
               <button
                 className="current-filter-button"
@@ -407,7 +366,7 @@ const Projects = ({ data, location }) => {
                 onClick={() => setNetwork("")}
               >
                 <GrFormClose></GrFormClose>
-                {network.split(": ")[1]}
+                {network}
               </button>
             )}
             {client && (
@@ -571,10 +530,7 @@ export const query = graphql`
   query {
     allContentfulProject(sort: { year: DESC }) {
       nodes {
-        architect
-        interiorDesigner
         client
-        furtherNetworkLinks
         geographicRegion
         city
         country
@@ -585,6 +541,11 @@ export const query = graphql`
         year
         featured
         status
+        designTeam {
+          id
+          name
+          role
+        }
         heroImage {
           description
           gatsbyImageData(width: 400)
