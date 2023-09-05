@@ -57,7 +57,7 @@ const NewsCarousel = ({ news }) => {
       <Slider {...settings} ref={sliderRef}>
         {news.map(newsItem => (
           <div key={newsItem.id}>
-            <Link to={newsItem.slug} className="news-carousel-item">
+            <Link to={`/news/${newsItem.slug}`} className="news-carousel-item">
               <GatsbyImage
                 image={newsItem.heroImage.gatsbyImageData}
                 alt={newsItem.heroImage.description}
