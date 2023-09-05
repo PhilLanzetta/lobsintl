@@ -12,9 +12,12 @@ const Header = ({ isOpen, toggleMenu, location }) => {
   const { width } = useWindowSize()
   const mobile = width < 601
   const isHome = location !== undefined
-  const [logoHeight, setLogoHeight] = useState(mobile ? 60 : 80)
-  const [logoWidth, setLogoWidth] = useState(mobile ? 100 : 120)
-  const [scrollPosition, setScrollPosition] = useState(0)
+  const [logoHeight, setLogoHeight] = useState(
+    window.scrollY < 397 ? (mobile ? 60 : 80) : mobile ? 30 : 40
+  )
+  const [logoWidth, setLogoWidth] = useState(
+    window.scrollY < 397 ? (mobile ? 100 : 120) : mobile ? 50 : 60
+  )
 
   const handleClose = () => {
     setAboutOpen(false)
@@ -35,23 +38,28 @@ const Header = ({ isOpen, toggleMenu, location }) => {
   const handleScroll = () => {
     const currentScrollPos = window.scrollY
     if (mobile) {
-      setLogoHeight(60 - currentScrollPos * 0.075)
-      setLogoWidth(100 - currentScrollPos * 0.125)
+      if (window.scrollY < 397) {
+        setLogoHeight(60 - currentScrollPos * 0.075)
+        setLogoWidth(100 - currentScrollPos * 0.125)
+      } else {
+        setLogoHeight(30)
+        setLogoWidth(50)
+      }
     } else {
-      setLogoHeight(80 - currentScrollPos * 0.1)
-      setLogoWidth(120 - currentScrollPos * 0.15)
+      if (window.scrollY < 397) {
+        setLogoHeight(80 - currentScrollPos * 0.1)
+        setLogoWidth(120 - currentScrollPos * 0.15)
+      } else {
+        setLogoHeight(40)
+        setLogoWidth(60)
+      }
     }
-    setScrollPosition(currentScrollPos)
   }
 
   useEffect(() => {
-    if (scrollPosition < 397) {
-      window.addEventListener("scroll", handleScroll)
-      return () => window.removeEventListener("scroll", handleScroll)
-    } else {
-      return
-    }
-  }, [scrollPosition])
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [window.scrollY])
 
   return (
     <header>

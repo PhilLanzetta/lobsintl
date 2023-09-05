@@ -62,6 +62,7 @@ export const query = graphql`
       headline
       heroImage {
         gatsbyImageData
+        description
       }
       moduleContent {
         ... on ContentfulNewsLongText {
