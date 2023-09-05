@@ -6,6 +6,7 @@ import ProjectIntro from "../components/projectIntro"
 import ProjectTable from "../components/projectTable"
 import ModuleContent from "../components/moduleContent"
 import Related from "../components/related"
+import HideOnScroll from "../components/hideOnScroll"
 
 const SingleProject = ({ data }) => {
   const {
@@ -37,7 +38,7 @@ const SingleProject = ({ data }) => {
 
   return (
     <Layout>
-      <div className="page-header">
+      <HideOnScroll>
         <Link to="/projects">Projects</Link> |{" "}
         <div className="project-header-type">
           {typology?.map((type, index) => (
@@ -50,7 +51,7 @@ const SingleProject = ({ data }) => {
         <Link to="/projects" state={{ regionFilter: [geographicRegion] }}>
           {geographicRegion}
         </Link>
-      </div>
+      </HideOnScroll>
       <HeroSlider images={images}></HeroSlider>
       <ProjectIntro
         headline={headlineText?.headlineText}
@@ -78,7 +79,9 @@ const SingleProject = ({ data }) => {
         press={press}
       ></ProjectTable>
       {moduleContent && (
-        <ModuleContent moduleContent={moduleContent}></ModuleContent>
+        <div className="project-module-container">
+          <ModuleContent moduleContent={moduleContent}></ModuleContent>
+        </div>
       )}
       <Related></Related>
     </Layout>
@@ -104,6 +107,7 @@ export const query = graphql`
       moduleContent {
         ... on ContentfulSingleColumnImage {
           singleId: id
+          margin
           image {
             caption
             image {
@@ -114,6 +118,7 @@ export const query = graphql`
         }
         ... on ContentfulTwoColumnImage {
           twoColId: id
+          margin
           images {
             caption
             image {
@@ -125,6 +130,7 @@ export const query = graphql`
         ... on ContentfulVideoModule {
           videoId: id
           caption
+          margin
           vimeoLink
           coverImage {
             description

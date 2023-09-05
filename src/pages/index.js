@@ -8,6 +8,7 @@ import { marked } from "marked"
 import { BsArrowRight } from "react-icons/bs"
 import WorksInProgress from "../components/worksInProgress"
 import { Fade } from "react-awesome-reveal"
+import NewsCarousel from "../components/newsCarousel"
 
 const IndexPage = ({ location, data }) => {
   const homeImages = data.allContentfulProject.nodes
@@ -24,6 +25,7 @@ const IndexPage = ({ location, data }) => {
   const careers = data.allContentfulCareerPosting.nodes
 
   const worksInProgress = data.WIP.nodes
+  const newsItems = data.news.nodes
 
   return (
     <Layout location={location}>
@@ -61,6 +63,9 @@ const IndexPage = ({ location, data }) => {
             </Link>
           </div>
         </div>
+      </Fade>
+      <Fade triggerOnce={true}>
+        <NewsCarousel news={newsItems}></NewsCarousel>
       </Fade>
       <Fade triggerOnce={true} fraction={0.25}>
         <div className="home-container">
@@ -157,6 +162,18 @@ export const query = graphql`
         city
         country
         typology
+        slug
+      }
+    }
+    news: allContentfulNewsEntry(sort: { date: DESC }, limit: 10) {
+      nodes {
+        id
+        heroImage {
+          description
+          gatsbyImageData
+        }
+        title
+        date
         slug
       }
     }

@@ -4,12 +4,18 @@ import ReactPlayer from "react-player"
 
 const ModuleContent = ({ moduleContent }) => {
   const [isPlaying, setIsPlaying] = useState(false)
+  console.log(moduleContent)
   return (
     <div className="module-content-container">
       {moduleContent.map(item => {
         if (item.singleId) {
           return (
-            <div key={item.singleId} className="module-image-container">
+            <div
+              key={item.singleId}
+              className={`module-image-container ${
+                item.margin === "In-text" ? "module-in-text" : ""
+              }`}
+            >
               <figure className="single-col-image">
                 <GatsbyImage
                   image={item.image.image.gatsbyImageData}
@@ -22,7 +28,12 @@ const ModuleContent = ({ moduleContent }) => {
           )
         } else if (item.twoColId) {
           return (
-            <div key={item.twoColId} className="module-image-container">
+            <div
+              key={item.twoColId}
+              className={`module-image-container ${
+                item.margin === "In-text" ? "module-in-text" : ""
+              }`}
+            >
               {item.images.map((image, index) => (
                 <figure key={index} className="two-col-image">
                   <GatsbyImage
@@ -37,7 +48,12 @@ const ModuleContent = ({ moduleContent }) => {
           )
         } else if (item.videoId) {
           return (
-            <div key={item.videoId} className="module-video-container">
+            <div
+              key={item.videoId}
+              className={`module-video-container ${
+                item.margin === "In-text" ? "module-in-text" : ""
+              }`}
+            >
               <ReactPlayer
                 url={item.vimeoLink}
                 width={"100%"}
@@ -102,9 +118,10 @@ const ModuleContent = ({ moduleContent }) => {
               dangerouslySetInnerHTML={{
                 __html: item.text.childMarkdownRemark.html,
               }}
+              className="module-text"
             ></div>
           )
-        }
+        } else return null
       })}
     </div>
   )

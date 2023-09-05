@@ -260,10 +260,18 @@ const Header = ({ isOpen, toggleMenu, location }) => {
                   newsOpen ? "" : "hide-drop-down"
                 }`}
               >
-                <Link to="news">Projects</Link>
-                <Link to="news">Articles</Link>
-                <Link to="news">Awards</Link>
-                <Link to="news">People</Link>
+                <Link to="/news" state={{ category: "Project" }}>
+                  Projects
+                </Link>
+                <Link to="/news" state={{ category: "Article" }}>
+                  Articles
+                </Link>
+                <Link to="/news" state={{ category: "Award" }}>
+                  Awards
+                </Link>
+                <Link to="/news" state={{ category: "Person" }}>
+                  People
+                </Link>
               </aside>
             </section>
           ) : (
@@ -276,10 +284,18 @@ const Header = ({ isOpen, toggleMenu, location }) => {
               {newsOpen && (
                 <div className="header-page-sub-menu">
                   <Fade cascade damping={0.05}>
-                    <Link to="news">Projects</Link>
-                    <Link to="news">Articles</Link>
-                    <Link to="news">Awards</Link>
-                    <Link to="news">People</Link>
+                    <Link to="/news" state={{ category: "Project" }}>
+                      Projects
+                    </Link>
+                    <Link to="/news" state={{ category: "Article" }}>
+                      Articles
+                    </Link>
+                    <Link to="/news" state={{ category: "Award" }}>
+                      Awards
+                    </Link>
+                    <Link to="/news" state={{ category: "Person" }}>
+                      People
+                    </Link>
                   </Fade>
                 </div>
               )}

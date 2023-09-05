@@ -51,14 +51,14 @@ const About = ({ data }) => {
               key={index}
               className="about-featured-link"
             >
-              <Link to={item.slug}>
+              <div>
                 <GatsbyImage
                   image={item.heroImage.gatsbyImageData}
                   alt={item.heroImage.description}
                   className="about-featured-image"
                 ></GatsbyImage>
                 <p>{item.projectName}</p>
-              </Link>
+              </div>
             </Fade>
           ))}
         </div>
@@ -101,14 +101,14 @@ const About = ({ data }) => {
               className="about-featured-link"
               key={index}
             >
-              <Link to={item.slug}>
+              <div>
                 <GatsbyImage
                   image={item.heroImage.gatsbyImageData}
                   alt={item.heroImage.description}
                   className="about-featured-image"
                 ></GatsbyImage>
                 <p>{item.projectName}</p>
-              </Link>
+              </div>
             </Fade>
           ))}
         </div>

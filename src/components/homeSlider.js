@@ -70,10 +70,31 @@ const HomeSlider = ({ images }) => {
   const [initialHeight, setInitialHeight] = useState(800)
   const { height, width } = useWindowSize()
   const mobile = width < 601
+  const shuffleData = array => {
+    let currentIndex = array.length,
+      randomIndex
+
+    // While there remain elements to shuffle.
+    while (currentIndex !== 0) {
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex)
+      currentIndex--
+
+      // And swap it with the current element.
+      ;[array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ]
+    }
+
+    return array
+  }
 
   useEffect(() => {
     setInitialHeight(height)
   }, [])
+
+  const randomizeImages = shuffleData(images)
 
   const settings = {
     slidesToShow: 1,
@@ -95,7 +116,7 @@ const HomeSlider = ({ images }) => {
         className="home-slider"
         style={{ height: `${mobile ? initialHeight + "px" : height + "px"}` }}
       >
-        {images?.map((image, index) => (
+        {randomizeImages?.map((image, index) => (
           <div className="home-slide-container" key={index}>
             <GatsbyImage
               image={image?.heroImage?.gatsbyImageData}
