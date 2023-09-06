@@ -4,9 +4,7 @@ import { HiArrowUpRight } from "react-icons/hi2"
 
 const Footer = () => {
   return (
-    <footer
-      className={`footer`}
-    >
+    <footer className={`footer`}>
       <div className="footer-column-logo">
         <Link to="/">
           <svg
@@ -89,16 +87,42 @@ const Footer = () => {
       <div className="footer-column-links">
         <div>
           <p className="upper">Careers</p>
-          <Link to="/about" className="careers-link">
+          <Link to="/team/#careers" className="careers-link">
             Join us <HiArrowUpRight></HiArrowUpRight>
           </Link>
         </div>
         <div className="footer-social">
-          <a>Instagram</a>
-          <a>Facebook</a>
-          <a>Twitter</a>
-          <a>Linkedin</a>
-          <a>Vimeo</a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.instagram.com/lobservatoire_intl/"
+          >
+            Instagram
+          </a>
+          <a
+            href="https://www.facebook.com/lobservatoireinternational/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Facebook
+          </a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://twitter.com/LOBSINTL"
+          >
+            Twitter
+          </a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.linkedin.com/in/hdescottes"
+          >
+            Linkedin
+          </a>
+          <a target="_blank" rel="noreferrer" href="https://vimeo.com/lobsintl">
+            Vimeo
+          </a>
           <p className="footer-credit-mobile">
             Website Designed and Developed by{" "}
             <a

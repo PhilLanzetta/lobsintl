@@ -15,6 +15,16 @@ const ProjectTable = ({
   principal,
   projectLeader,
 }) => {
+  const sortedPrincipal = principal?.sort((a, b) =>
+    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+  )
+  const sortedLeaders = projectLeader?.sort((a, b) =>
+    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+  )
+  const sortedTeam = team?.sort((a, b) =>
+    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+  )
+
   return (
     <div className="project-table-container">
       <div className="project-table-max-width">
@@ -137,13 +147,13 @@ const ProjectTable = ({
               </div>
             </div>
           )}
-          {principal && (
+          {sortedPrincipal && (
             <div>
               <hr className="faded-line"></hr>
               <div className="project-table-row">
                 <p>Principal</p>
                 <div className="project-table-team">
-                  {principal.map(member => {
+                  {sortedPrincipal.map(member => {
                     if (member.primaryOffice !== "No Longer Employed") {
                       return (
                         <Link
@@ -158,7 +168,7 @@ const ProjectTable = ({
                       return null
                     }
                   })}
-                  {principal.map(member => {
+                  {sortedPrincipal.map(member => {
                     if (member.primaryOffice === "No Longer Employed") {
                       return <p key={member.id}>{member.name}</p>
                     } else {
@@ -169,13 +179,13 @@ const ProjectTable = ({
               </div>
             </div>
           )}
-          {projectLeader && (
+          {sortedLeaders && (
             <div>
               <hr className="faded-line"></hr>
               <div className="project-table-row">
                 <p>Project Leader</p>
                 <div className="project-table-team">
-                  {projectLeader.map(member => {
+                  {sortedLeaders.map(member => {
                     if (member.primaryOffice !== "No Longer Employed") {
                       return (
                         <Link
@@ -190,7 +200,7 @@ const ProjectTable = ({
                       return null
                     }
                   })}
-                  {projectLeader.map(member => {
+                  {sortedLeaders.map(member => {
                     if (member.primaryOffice === "No Longer Employed") {
                       return <p key={member.id}>{member.name}</p>
                     } else {
@@ -201,13 +211,13 @@ const ProjectTable = ({
               </div>
             </div>
           )}
-          {team && (
+          {sortedTeam && (
             <div>
               <hr className="faded-line"></hr>
               <div className="project-table-row">
                 <p>Team</p>
                 <div className="project-table-team">
-                  {team.map(member => {
+                  {sortedTeam.map(member => {
                     if (member.primaryOffice !== "No Longer Employed") {
                       return (
                         <Link
@@ -222,7 +232,7 @@ const ProjectTable = ({
                       return null
                     }
                   })}
-                  {team.map(member => {
+                  {sortedTeam.map(member => {
                     if (member.primaryOffice === "No Longer Employed") {
                       return <p key={member.id}>{member.name}</p>
                     } else {

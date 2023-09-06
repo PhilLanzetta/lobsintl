@@ -743,6 +743,7 @@ SINGLE PROJECT PAGE
 
 .project-table-team {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: var(--spacing-xs);
   width: 55%;
@@ -892,7 +893,6 @@ PROJECTS PAGE
 .projects-grid-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 2%;
   padding: 40px;
 }
@@ -2074,7 +2074,6 @@ News Page
   padding-top: 120px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .news-item {

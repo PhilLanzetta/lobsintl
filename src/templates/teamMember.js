@@ -50,14 +50,16 @@ const TeamMember = ({ data }) => {
             )}
           </div>
         </div>
-        {orderedProjects.length > 0 && (
-          <div className="team-member-project-container">
-            <p className="upper team-member-project-preface">{`${name}${
-              endsInS ? "'" : "'s"
-            } projects`}</p>
-            <ProjectGrid projects={orderedProjects} team></ProjectGrid>
-          </div>
-        )}
+        {name === "Hervé Descottes"
+          ? ""
+          : orderedProjects?.length > 0 && (
+              <div className="team-member-project-container">
+                <p className="upper team-member-project-preface">{`${name}${
+                  endsInS ? "'" : "'s"
+                } projects`}</p>
+                <ProjectGrid projects={orderedProjects} team></ProjectGrid>
+              </div>
+            )}
       </div>
     </Layout>
   )

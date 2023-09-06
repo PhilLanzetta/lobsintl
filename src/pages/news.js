@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import Layout from "../components/layout"
 import { Link, graphql } from "gatsby"
 import HideOnScroll from "../components/hideOnScroll"
@@ -51,6 +51,7 @@ const News = ({ data, location }) => {
                     {new Intl.DateTimeFormat("en-us", {
                       month: "long",
                       day: "numeric",
+                      year: "numeric",
                     }).format(new Date(item.date))}
                   </p>
                   <h2 className="news-headline">{item.headline}</h2>

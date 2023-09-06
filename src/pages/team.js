@@ -11,16 +11,14 @@ import { Fade } from "react-awesome-reveal"
 const Team = ({ data }) => {
   const teamInfo = data.contentfulTeamPage
   const herve = data.herve
-  console.log(herve)
-  const teamMembers = data.allContentfulTeamMember.nodes
   const bioShortened =
     herve.teamMemberBiography.childMarkdownRemark.html.split(
       "<p>BIBLIOGRAPHY"
     )[0]
-  const herveTeam = data.allContentfulTeamMember.nodes.filter(
-    member => member.name === "Hervé Descottes"
-  )[0]
   const careers = data.allContentfulCareerPosting.nodes
+  const nyTeam = data.contentfulTeamPage.nyTeam
+  const parisTeam = data.contentfulTeamPage.parisTeam
+  const seoulTeam = data.contentfulTeamPage.seoulTeam
 
   return (
     <Layout>
@@ -62,102 +60,68 @@ const Team = ({ data }) => {
             <div className="team-location-container">
               <p className="home-preface-link">New York</p>
               <div className="head-shot-container">
-                <Link to={`/team/${herveTeam.slug}`} className="head-shot">
-                  <Fade triggerOnce={true}>
-                    <GatsbyImage
-                      image={herveTeam.headShot.gatsbyImageData}
-                      alt={herveTeam.headShot.description}
-                    ></GatsbyImage>
-                    <div>
-                      <p>{herveTeam.name}</p>
-                      <p className="faded">{herveTeam.title}</p>
-                    </div>
-                  </Fade>
-                </Link>
-                {teamMembers.map(member => {
-                  if (
-                    member.primaryOffice === "New York" &&
-                    member.headShot &&
-                    member.name !== "Hervé Descottes"
-                  ) {
-                    return (
-                      <Link
-                        to={`/team/${member.slug}`}
-                        key={member.id}
-                        className="head-shot"
-                      >
-                        <Fade triggerOnce={true}>
-                          <GatsbyImage
-                            image={member.headShot.gatsbyImageData}
-                            alt={member.headShot.description}
-                          ></GatsbyImage>
-                          <div>
-                            <p>{member.name}</p>
-                            <p className="faded">{member.title}</p>
-                          </div>
-                        </Fade>
-                      </Link>
-                    )
-                  } else {
-                    return null
-                  }
-                })}
+                {nyTeam.map(member => (
+                  <Link
+                    to={`/team/${member.slug}`}
+                    key={member.id}
+                    className="head-shot"
+                  >
+                    <Fade triggerOnce={true}>
+                      <GatsbyImage
+                        image={member.headShot.gatsbyImageData}
+                        alt={member.headShot.description}
+                      ></GatsbyImage>
+                      <div>
+                        <p>{member.name}</p>
+                        <p className="faded">{member.title}</p>
+                      </div>
+                    </Fade>
+                  </Link>
+                ))}
               </div>
             </div>
             <Fade triggerOnce={true}>
               <div className="team-location-container">
                 <p className="home-preface-link">Paris</p>
                 <div className="head-shot-container">
-                  {teamMembers.map(member => {
-                    if (member.primaryOffice === "Paris" && member.headShot) {
-                      return (
-                        <Link
-                          to={`/team/${member.slug}`}
-                          key={member.id}
-                          className="head-shot"
-                        >
-                          <Fade triggerOnce={true}>
-                            <GatsbyImage
-                              image={member.headShot.gatsbyImageData}
-                              alt={member.headShot.description}
-                            ></GatsbyImage>
-                            <p>{member.name}</p>
-                            <p>{member.title}</p>
-                          </Fade>
-                        </Link>
-                      )
-                    } else {
-                      return null
-                    }
-                  })}
+                  {parisTeam.map(member => (
+                    <Link
+                      to={`/team/${member.slug}`}
+                      key={member.id}
+                      className="head-shot"
+                    >
+                      <Fade triggerOnce={true}>
+                        <GatsbyImage
+                          image={member.headShot.gatsbyImageData}
+                          alt={member.headShot.description}
+                        ></GatsbyImage>
+                        <p>{member.name}</p>
+                        <p>{member.title}</p>
+                      </Fade>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </Fade>
             <div className="team-location-container">
               <p className="home-preface-link">Seoul</p>
               <div className="head-shot-container">
-                {teamMembers.map(member => {
-                  if (member.primaryOffice === "Seoul" && member.headShot) {
-                    return (
-                      <Link
-                        to={`/team/${member.slug}`}
-                        key={member.id}
-                        className="head-shot"
-                      >
-                        <Fade triggerOnce={true}>
-                          <GatsbyImage
-                            image={member.headShot.gatsbyImageData}
-                            alt={member.headShot.description}
-                          ></GatsbyImage>
-                          <p>{member.name}</p>
-                          <p>{member.title}</p>
-                        </Fade>
-                      </Link>
-                    )
-                  } else {
-                    return null
-                  }
-                })}
+                {seoulTeam.map(member => (
+                  <Link
+                    to={`/team/${member.slug}`}
+                    key={member.id}
+                    className="head-shot"
+                  >
+                    <Fade triggerOnce={true}>
+                      <GatsbyImage
+                        image={member.headShot.gatsbyImageData}
+                        alt={member.headShot.description}
+                      ></GatsbyImage>
+                      <p>{member.name}</p>
+                      <p>{member.title}</p>
+                    </Fade>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -210,6 +174,36 @@ export const query = graphql`
         gatsbyImageData
         description
       }
+      nyTeam {
+        id
+        headShot {
+          description
+          gatsbyImageData
+        }
+        name
+        slug
+        title
+      }
+      parisTeam {
+        id
+        headShot {
+          description
+          gatsbyImageData
+        }
+        name
+        slug
+        title
+      }
+      seoulTeam {
+        id
+        headShot {
+          description
+          gatsbyImageData
+        }
+        name
+        slug
+        title
+      }
     }
     herve: contentfulTeamMember(slug: { eq: "herve-descottes" }) {
       slug
@@ -217,21 +211,6 @@ export const query = graphql`
         childMarkdownRemark {
           html
         }
-      }
-    }
-    allContentfulTeamMember(
-      filter: { primaryOffice: { ne: "No Longer Employed" } }
-    ) {
-      nodes {
-        headShot {
-          description
-          gatsbyImageData
-        }
-        id
-        name
-        slug
-        title
-        primaryOffice
       }
     }
     allContentfulCareerPosting(sort: { postingDate: DESC }) {
