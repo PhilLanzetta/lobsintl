@@ -4,17 +4,17 @@ const pageQuery = `{
   pages: allContentfulProject {
     edges {
       node {
-        architect
         awards {
           awardName
+        }
+        designTeam {
+          name
         }
         city
         client
         country
-        furtherNetworkLinks
         geographicRegion
         id
-        interiorDesigner
         metadata {
           tags {
             id
