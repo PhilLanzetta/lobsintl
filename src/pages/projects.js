@@ -15,7 +15,7 @@ const Projects = ({ data, location }) => {
   const thisYear = new Date().getFullYear()
   const [filterOpen, setFilterOpen] = useState(false)
   const [projects, setProjects] = useState(allProjects)
-  const [view, setView] = useState("grid")
+  const [view, setView] = useState(localStorage.getItem("view") || "grid")
   const [recent, setRecent] = useState(false)
   const [featuredFilter, setFeaturedFilter] = useState(false)
   const [progressFilter, setProgressFilter] = useState(
@@ -255,7 +255,10 @@ const Projects = ({ data, location }) => {
             className={`project-options-button-top ${
               view === "grid" ? "" : "faded"
             }`}
-            onClick={() => setView("grid")}
+            onClick={() => {
+              localStorage.setItem("view", "grid")
+              setView("grid")
+            }}
           >
             <RiLayoutGridFill></RiLayoutGridFill>
             Grid
@@ -264,7 +267,10 @@ const Projects = ({ data, location }) => {
             className={`project-options-button-top ${
               view === "list" ? "" : "faded"
             }`}
-            onClick={() => setView("list")}
+            onClick={() => {
+              localStorage.setItem("view", "list")
+              setView("list")
+            }}
           >
             <PiListBold></PiListBold>
             List
@@ -273,7 +279,10 @@ const Projects = ({ data, location }) => {
             className={`project-options-button-top ${
               view === "map" ? "" : "faded"
             }`}
-            onClick={() => setView("map")}
+            onClick={() => {
+              localStorage.setItem("view", "map")
+              setView("map")
+            }}
           >
             <BsCircleFill></BsCircleFill>
             Map
@@ -505,6 +514,7 @@ const Projects = ({ data, location }) => {
             setCountry={setCountry}
             handleFilter={handleFilter}
             setYear={setYear}
+            setProjects={setProjects}
           ></ProjectList>
         </>
       )}
