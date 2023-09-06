@@ -15,7 +15,7 @@ const Projects = ({ data, location }) => {
   const thisYear = new Date().getFullYear()
   const [filterOpen, setFilterOpen] = useState(false)
   const [projects, setProjects] = useState(allProjects)
-  const [view, setView] = useState(localStorage.getItem("view") || "grid")
+  const [view, setView] = useState(typeof window !== undefined && localStorage.getItem("view") || "grid")
   const [recent, setRecent] = useState(false)
   const [featuredFilter, setFeaturedFilter] = useState(false)
   const [progressFilter, setProgressFilter] = useState(
