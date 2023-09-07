@@ -834,6 +834,8 @@ SINGLE PROJECT PAGE
 
 .related-container {
   padding: 40px;
+  padding-bottom: 0;
+  padding-top: 60px;
 }
 
 .module-text {

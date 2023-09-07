@@ -32,7 +32,12 @@ const SingleProject = ({ data }) => {
     press,
     principal,
     projectLeader,
+    slug,
+    metadata,
   } = data.contentfulProject
+
+  const relatedCategory = typology?.length > 0 ? typology : ["no category"]
+  const relatedTags = metadata?.tags?.length > 0 ? metadata.tags : ["no tags"]
 
   return (
     <Layout>
@@ -79,7 +84,11 @@ const SingleProject = ({ data }) => {
           <ModuleContent moduleContent={moduleContent}></ModuleContent>
         </div>
       )}
-      <Related></Related>
+      <Related
+        currentProjectSlug={slug}
+        category={relatedCategory}
+        tags={relatedTags}
+      ></Related>
     </Layout>
   )
 }
@@ -87,6 +96,7 @@ const SingleProject = ({ data }) => {
 export const query = graphql`
   query getSingleProject($slug: String) {
     contentfulProject(slug: { eq: $slug }) {
+      slug
       year
       typology
       status
@@ -178,6 +188,11 @@ export const query = graphql`
         slug
         primaryOffice
         id
+      }
+      metadata {
+        tags {
+          name
+        }
       }
     }
   }
