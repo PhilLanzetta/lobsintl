@@ -79,11 +79,13 @@ export class RelatedProjectsFactory {
       const tagPoint = 2
       const slug = getSlug(project)
 
-      project.metadata.tags.forEach(aTag => {
-        if (includes(tags, aTag)) {
-          identityMap[slug].points += tagPoint
-        }
-      })
+      project.metadata.tags
+        .map(tag => tag.name)
+        .forEach(aTag => {
+          if (includes(tags, aTag)) {
+            identityMap[slug].points += tagPoint
+          }
+        })
     }
 
     function getIdentityMapAsArray() {

@@ -37,7 +37,10 @@ const SingleProject = ({ data }) => {
   } = data.contentfulProject
 
   const relatedCategory = typology?.length > 0 ? typology : ["no category"]
-  const relatedTags = metadata?.tags?.length > 0 ? metadata.tags : ["no tags"]
+  const relatedTags =
+    metadata?.tags?.length > 0
+      ? metadata.tags.map(tag => tag.name)
+      : ["no tags"]
 
   return (
     <Layout>

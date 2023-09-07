@@ -39,6 +39,8 @@ const Related = ({ currentProjectSlug, tags, category }) => {
     .setTags(tags)
     .getProjects()
 
+  console.log(relatedProjectsArray)
+
   const relatedProjects = relatedProjectsArray.map(item => item.project)
 
   return (
