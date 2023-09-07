@@ -1,7 +1,7 @@
 const indexName = `Pages`
 
 const pageQuery = `{
-  pages: allContentfulProject {
+  pages: allContentfulProject(sort: { year: DESC }) {
     edges {
       node {
         awards {
