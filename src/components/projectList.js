@@ -176,7 +176,7 @@ const ProjectList = ({
                 <div key={project.id} className="project-list-row">
                   <Fade triggerOnce={true}>
                     <Link
-                      to={`projects/${project.slug}`}
+                      to={`/projects/${project.slug}`}
                       className="list-button"
                     >
                       {project.projectName}
@@ -235,7 +235,7 @@ const ProjectList = ({
                 <Fade triggerOnce={true}>
                   <div className="project-list-row-mobile-top">
                     <Link
-                      to={`projects/${project.slug}`}
+                      to={`/projects/${project.slug}`}
                       className="mobile-project-list-title"
                     >
                       {project.projectName}
