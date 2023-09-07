@@ -122,6 +122,16 @@ h2 {
   margin-bottom: var(--spacing-md);
 }
 
+.anchor-margin {
+  height: 50px;
+  margin-top: -50px;
+}
+
+.anchor-margin-big {
+  height: 150px;
+  margin-top: -150px;
+}
+
 /*
 ==========
 HEADER

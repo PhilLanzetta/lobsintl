@@ -34,7 +34,8 @@ const Team = ({ data }) => {
           alt={teamInfo.teamPhoto.description}
         ></GatsbyImage>
         <Fade triggerOnce={true} fraction={0.25}>
-          <div id="herve" className="home-container">
+          <div className="anchor-margin" id="herve"></div>
+          <div className="home-container">
             <Link to="/team/herve-descottes" className="home-preface-link">
               Hervé Descottes
             </Link>
@@ -55,7 +56,8 @@ const Team = ({ data }) => {
           </div>
         </Fade>
         <Fade triggerOnce={true}>
-          <div className="team-members-container" id="teamMembers">
+          <div className="anchor-margin-big" id="teamMembers"></div>
+          <div className="team-members-container">
             <p className="home-preface-link">Team Members</p>
             <div className="team-location-container">
               <p className="home-preface-link">New York</p>
@@ -127,7 +129,8 @@ const Team = ({ data }) => {
           </div>
         </Fade>
         <Fade triggerOnce={true}>
-          <div className="home-container" id="careers">
+          <div className="anchor-margin" id="careers"></div>
+          <div className="home-container">
             <p className="home-preface-link">Careers</p>
             <div className="team-right">
               <div className="careers-container">

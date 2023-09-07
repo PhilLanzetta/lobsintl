@@ -40,8 +40,8 @@ const About = ({ data }) => {
             dangerouslySetInnerHTML={{
               __html: marked.parse(headline.headline),
             }}
-            id="top"
             className="about-page-headline"
+            id="top"
           ></div>
         </Fade>
         <div className="about-featured">
@@ -63,13 +63,13 @@ const About = ({ data }) => {
           ))}
         </div>
         <Fade triggerOnce={true} fraction={0.25}>
+          <div className="anchor-margin" id="who"></div>
           <div className="home-container about-section">
             <p className="home-preface-link">Who We Are</p>
             <div
               dangerouslySetInnerHTML={{
                 __html: marked.parse(whoWeAre.whoWeAre),
               }}
-              id="who"
               className="home-right about-text"
             ></div>
           </div>
@@ -83,13 +83,13 @@ const About = ({ data }) => {
           </div>
         </Fade>
         <Fade triggerOnce={true} fraction={0.25}>
+          <div className="anchor-margin" id="philosophy"></div>
           <div className="home-container about-section">
             <p className="home-preface-link">Our Philosophy</p>
             <div
               dangerouslySetInnerHTML={{
                 __html: marked.parse(philosophy.philosophy),
               }}
-              id="philosophy"
               className="home-right about-text"
             ></div>
           </div>
@@ -113,22 +113,23 @@ const About = ({ data }) => {
           ))}
         </div>
         <Fade triggerOnce={true} fraction={0.25}>
+          <div className="anchor-margin" id="approach"></div>
           <div className="home-container about-section">
             <p className="home-preface-link">Our Design Approach</p>
             <div
               dangerouslySetInnerHTML={{
                 __html: marked.parse(designApproach.designApproach),
               }}
-              id="approach"
               className="home-right about-text"
             ></div>
           </div>
         </Fade>
         <Fade triggerOnce={true} fraction={0.25}>
+          <div className="anchor-margin" id="awards"></div>
           <div className="home-container about-section">
             <p className="home-preface-link">Awards</p>
             <div className="home-right about-awards">
-              <h2 id="awards">Our most recent awards</h2>
+              <h2>Our most recent awards</h2>
               <div className="about-awards-container">
                 {awards.map(award => (
                   <div key={award.id}>
@@ -151,9 +152,10 @@ const About = ({ data }) => {
           </div>
         </Fade>
         <Fade triggerOnce={true} fraction={0.25}>
+          <div className="anchor-margin" id="books"></div>
           <div className="home-container about-section">
             <p className="home-preface-link">Books</p>
-            <div className="home-right about-books" id="books">
+            <div className="home-right about-books">
               {books.map(book => (
                 <div key={book.id} className="about-book-container">
                   <GatsbyImage

@@ -5,7 +5,7 @@ import useWindowSize from "../utils/useWindowSize"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import { Fade } from "react-awesome-reveal"
 
-const Header = ({ isOpen, toggleMenu, location }) => {
+const Header = ({ location }) => {
   const [aboutOpen, setAboutOpen] = useState(false)
   const [teamOpen, setTeamOpen] = useState(false)
   const [newsOpen, setNewsOpen] = useState(false)
@@ -14,6 +14,11 @@ const Header = ({ isOpen, toggleMenu, location }) => {
   const isHome = location !== undefined
   const [logoHeight, setLogoHeight] = useState(mobile ? 60 : 80)
   const [logoWidth, setLogoWidth] = useState(mobile ? 100 : 120)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen)
+  }
 
   const handleClose = () => {
     setAboutOpen(false)
@@ -60,7 +65,12 @@ const Header = ({ isOpen, toggleMenu, location }) => {
   return (
     <header>
       {isHome ? (
-        <Link to="/" className="header-logo-link" key={logoHeight}>
+        <Link
+          to="/"
+          className="header-logo-link"
+          key={logoHeight}
+          onClick={() => setIsOpen(false)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 69.764 44.94"
@@ -97,7 +107,11 @@ const Header = ({ isOpen, toggleMenu, location }) => {
           </svg>
         </Link>
       ) : (
-        <Link to="/" className="header-logo-link">
+        <Link
+          to="/"
+          className="header-logo-link"
+          onClick={() => setIsOpen(false)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 69.764 44.94"
@@ -138,12 +152,19 @@ const Header = ({ isOpen, toggleMenu, location }) => {
       </button>
       <section className={`secondary-menu ${isOpen ? "show" : "hide"}`}>
         <div className="secondary-link-container">
-          <Link to="/projects">Projects</Link>
+          <Link to="/projects" onClick={() => setIsOpen(false)}>
+            Projects
+          </Link>
           {mobile ? (
             <section>
               <aside>
-                <Link to="/about">About</Link>
-                <button onClick={() => setAboutOpen(!aboutOpen)}>
+                <Link to="/about" onClick={() => setIsOpen(false)}>
+                  About
+                </Link>
+                <button
+                  onClick={() => setAboutOpen(!aboutOpen)}
+                  aria-label="click to open about subcategories"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 15.23 6.566"
@@ -164,11 +185,21 @@ const Header = ({ isOpen, toggleMenu, location }) => {
                   aboutOpen ? "" : "hide-drop-down"
                 }`}
               >
-                <Link to="/about/#who">Who we are</Link>
-                <Link to="/about/#philosophy">Our philosophy</Link>
-                <Link to="/about/#approach">Our design approach</Link>
-                <Link to="/about/#awards">Awards</Link>
-                <Link to="/about/#books">Books</Link>
+                <Link to="/about/#who" onClick={() => setIsOpen(false)}>
+                  Who we are
+                </Link>
+                <Link to="/about/#philosophy" onClick={() => setIsOpen(false)}>
+                  Our philosophy
+                </Link>
+                <Link to="/about/#approach" onClick={() => setIsOpen(false)}>
+                  Our design approach
+                </Link>
+                <Link to="/about/#awards" onClick={() => setIsOpen(false)}>
+                  Awards
+                </Link>
+                <Link to="/about/#books" onClick={() => setIsOpen(false)}>
+                  Books
+                </Link>
               </aside>
             </section>
           ) : (
@@ -177,15 +208,33 @@ const Header = ({ isOpen, toggleMenu, location }) => {
               onMouseLeave={() => setAboutOpen(false)}
               className="header-page-sub-menu-container"
             >
-              <Link to="/about">About</Link>
+              <Link to="/about" onClick={() => setIsOpen(false)}>
+                About
+              </Link>
               {aboutOpen && (
                 <div className="header-page-sub-menu">
                   <Fade cascade damping={0.05}>
-                    <Link to="/about/#who">Who we are</Link>
-                    <Link to="/about/#philosophy">Our philosophy</Link>
-                    <Link to="/about/#approach">Our design approach</Link>
-                    <Link to="/about/#awards">Awards</Link>
-                    <Link to="/about/#books">Books</Link>
+                    <Link to="/about/#who" onClick={() => setIsOpen(false)}>
+                      Who we are
+                    </Link>
+                    <Link
+                      to="/about/#philosophy"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Our philosophy
+                    </Link>
+                    <Link
+                      to="/about/#approach"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Our design approach
+                    </Link>
+                    <Link to="/about/#awards" onClick={() => setIsOpen(false)}>
+                      Awards
+                    </Link>
+                    <Link to="/about/#books" onClick={() => setIsOpen(false)}>
+                      Books
+                    </Link>
                   </Fade>
                 </div>
               )}
@@ -194,8 +243,13 @@ const Header = ({ isOpen, toggleMenu, location }) => {
           {mobile ? (
             <section>
               <aside>
-                <Link to="/team">Team</Link>
-                <button onClick={() => setTeamOpen(!teamOpen)}>
+                <Link to="/team" onClick={() => setIsOpen(false)}>
+                  Team
+                </Link>
+                <button
+                  onClick={() => setTeamOpen(!teamOpen)}
+                  aria-label="click to open team subcategories"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 15.23 6.566"
@@ -216,9 +270,15 @@ const Header = ({ isOpen, toggleMenu, location }) => {
                   teamOpen ? "" : "hide-drop-down"
                 }`}
               >
-                <Link to="/team/#herve">Hervé Descottes</Link>
-                <Link to="/team/#teamMembers">Team Members</Link>
-                <Link to="/team/#careers">Careers</Link>
+                <Link to="/team/#herve" onClick={() => setIsOpen(false)}>
+                  Hervé Descottes
+                </Link>
+                <Link to="/team/#teamMembers" onClick={() => setIsOpen(false)}>
+                  Team Members
+                </Link>
+                <Link to="/team/#careers" onClick={() => setIsOpen(false)}>
+                  Careers
+                </Link>
               </aside>
             </section>
           ) : (
@@ -227,13 +287,24 @@ const Header = ({ isOpen, toggleMenu, location }) => {
               onMouseLeave={() => setTeamOpen(false)}
               className="header-page-sub-menu-container"
             >
-              <Link to="/team">Team</Link>
+              <Link to="/team" onClick={() => setIsOpen(false)}>
+                Team
+              </Link>
               {teamOpen && (
                 <div className="header-page-sub-menu">
                   <Fade cascade damping={0.05}>
-                    <Link to="/team/#herve">Hervé Descottes</Link>
-                    <Link to="/team/#teamMembers">Team Members</Link>
-                    <Link to="/team/#careers">Careers</Link>
+                    <Link to="/team/#herve" onClick={() => setIsOpen(false)}>
+                      Hervé Descottes
+                    </Link>
+                    <Link
+                      to="/team/#teamMembers"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Team Members
+                    </Link>
+                    <Link to="/team/#careers" onClick={() => setIsOpen(false)}>
+                      Careers
+                    </Link>
                   </Fade>
                 </div>
               )}
@@ -242,8 +313,13 @@ const Header = ({ isOpen, toggleMenu, location }) => {
           {mobile ? (
             <section>
               <aside>
-                <Link to="/news">News</Link>
-                <button onClick={() => setNewsOpen(!newsOpen)}>
+                <Link to="/news" onClick={() => setIsOpen(false)}>
+                  News
+                </Link>
+                <button
+                  onClick={() => setNewsOpen(!newsOpen)}
+                  aria-label="click to open news subcategories"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 15.23 6.566"
@@ -264,16 +340,32 @@ const Header = ({ isOpen, toggleMenu, location }) => {
                   newsOpen ? "" : "hide-drop-down"
                 }`}
               >
-                <Link to="/news" state={{ category: "Project" }}>
+                <Link
+                  to="/news"
+                  state={{ category: "Project" }}
+                  onClick={() => setIsOpen(false)}
+                >
                   Projects
                 </Link>
-                <Link to="/news" state={{ category: "Article" }}>
+                <Link
+                  to="/news"
+                  state={{ category: "Article" }}
+                  onClick={() => setIsOpen(false)}
+                >
                   Articles
                 </Link>
-                <Link to="/news" state={{ category: "Award" }}>
+                <Link
+                  to="/news"
+                  state={{ category: "Award" }}
+                  onClick={() => setIsOpen(false)}
+                >
                   Awards
                 </Link>
-                <Link to="/news" state={{ category: "Person" }}>
+                <Link
+                  to="/news"
+                  state={{ category: "Person" }}
+                  onClick={() => setIsOpen(false)}
+                >
                   People
                 </Link>
               </aside>
@@ -284,20 +376,38 @@ const Header = ({ isOpen, toggleMenu, location }) => {
               onMouseLeave={() => setNewsOpen(false)}
               className="header-page-sub-menu-container"
             >
-              <Link to="/news">News</Link>
+              <Link to="/news" onClick={() => setIsOpen(false)}>
+                News
+              </Link>
               {newsOpen && (
                 <div className="header-page-sub-menu">
                   <Fade cascade damping={0.05}>
-                    <Link to="/news" state={{ category: "Project" }}>
+                    <Link
+                      to="/news"
+                      state={{ category: "Project" }}
+                      onClick={() => setIsOpen(false)}
+                    >
                       Projects
                     </Link>
-                    <Link to="/news" state={{ category: "Article" }}>
+                    <Link
+                      to="/news"
+                      state={{ category: "Article" }}
+                      onClick={() => setIsOpen(false)}
+                    >
                       Articles
                     </Link>
-                    <Link to="/news" state={{ category: "Award" }}>
+                    <Link
+                      to="/news"
+                      state={{ category: "Award" }}
+                      onClick={() => setIsOpen(false)}
+                    >
                       Awards
                     </Link>
-                    <Link to="/news" state={{ category: "Person" }}>
+                    <Link
+                      to="/news"
+                      state={{ category: "Person" }}
+                      onClick={() => setIsOpen(false)}
+                    >
                       People
                     </Link>
                   </Fade>
@@ -305,12 +415,18 @@ const Header = ({ isOpen, toggleMenu, location }) => {
               )}
             </div>
           )}
-          <Link to="/clients">Clients</Link>
+          <Link to="/clients" onClick={() => setIsOpen(false)}>
+            Clients
+          </Link>
         </div>
         <div className="secondary-link-container-right">
           <div className="contact-search-link-container">
-            <Link to="/contact">Contact</Link>
-            <Link to="/search">Search</Link>
+            <Link to="/contact" onClick={() => setIsOpen(false)}>
+              Contact
+            </Link>
+            <Link to="/search" onClick={() => setIsOpen(false)}>
+              Search
+            </Link>
           </div>
           <div className="theme-toggle-container">
             <ThemeToggler>
