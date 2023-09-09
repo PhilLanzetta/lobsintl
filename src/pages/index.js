@@ -11,7 +11,7 @@ import { Fade } from "react-awesome-reveal"
 import NewsCarousel from "../components/newsCarousel"
 
 const IndexPage = ({ location, data }) => {
-  const homeImages = data.contentfulHomePageCarousel
+  const homeImages = data.contentfulHomePageCarousel.projectSlides
   const aboutHeadline =
     data.contentfulAboutLObservatoireHeadlineTextNode.headline
 
