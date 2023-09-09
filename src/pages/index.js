@@ -11,7 +11,7 @@ import { Fade } from "react-awesome-reveal"
 import NewsCarousel from "../components/newsCarousel"
 
 const IndexPage = ({ location, data }) => {
-  const homeImages = data.allContentfulProject.nodes
+  const homeImages = data.contentfulHomePageCarousel
   const aboutHeadline =
     data.contentfulAboutLObservatoireHeadlineTextNode.headline
 
@@ -112,23 +112,20 @@ const IndexPage = ({ location, data }) => {
 
 export const query = graphql`
   query {
-    allContentfulProject(
-      filter: { featured: { eq: true } }
-      sort: { year: DESC }
-    ) {
-      nodes {
-        geographicRegion
-        id
-        projectName
-        slug
-        heroImage {
-          gatsbyImageData
-          description
-        }
-        typology
-        shortExcerpt
+    contentfulHomePageCarousel {
+      projectSlides {
         city
         country
+        id
+        geographicRegion
+        heroImage {
+          description
+          gatsbyImageData
+        }
+        projectName
+        slug
+        typology
+        shortExcerpt
       }
     }
     contentfulAboutLObservatoireHeadlineTextNode {
