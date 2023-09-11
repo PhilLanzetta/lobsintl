@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useLayoutEffect } from "react"
 import { Link } from "gatsby"
 import useWindowSize from "../utils/useWindowSize"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
@@ -12,8 +12,8 @@ const Header = ({ location }) => {
   const { width } = useWindowSize()
   const mobile = width < 601
   const isHome = location !== undefined
-  const [logoHeight, setLogoHeight] = useState(mobile ? 60 : 80)
-  const [logoWidth, setLogoWidth] = useState(mobile ? 100 : 120)
+  const [logoHeight, setLogoHeight] = useState(mobile ? 30 : 40)
+  const [logoWidth, setLogoWidth] = useState(mobile ? 50 : 60)
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleMenu = () => {
@@ -62,13 +62,32 @@ const Header = ({ location }) => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useLayoutEffect(() => {
+    if (mobile) {
+      if (window.scrollY < 397) {
+        setLogoHeight(60 - window.scrollY * 0.075)
+        setLogoWidth(100 - window.scrollY * 0.125)
+      } else {
+        setLogoHeight(30)
+        setLogoWidth(50)
+      }
+    } else {
+      if (window.scrollY < 397) {
+        setLogoHeight(80 - window.scrollY * 0.1)
+        setLogoWidth(120 - window.scrollY * 0.15)
+      } else {
+        setLogoHeight(40)
+        setLogoWidth(60)
+      }
+    }
+  }, [])
+
   return (
     <header>
       {isHome ? (
         <Link
           to="/"
           className="header-logo-link"
-          key={logoHeight}
           onClick={() => setIsOpen(false)}
         >
           <svg

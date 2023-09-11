@@ -537,6 +537,7 @@ const Projects = ({ data, location }) => {
             setRegion={handleLocaleFilter}
             setYear={setYear}
             setProjects={setProjects}
+            projectPage={true}
           ></ProjectMap>
         </>
       )}

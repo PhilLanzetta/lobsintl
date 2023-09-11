@@ -10,13 +10,20 @@ import { Tooltip } from "react-tooltip"
 import { Link } from "gatsby"
 import ProjectTile from "./projectTile"
 
-const ProjectMap = ({ projects }) => {
+const ProjectMap = ({
+  projects,
+  projectPage,
+  setCity,
+  setCountry,
+  handleTypeFilter,
+  setRegion,
+}) => {
   const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 })
   const [scaleFactor, setScaleFactor] = useState(1)
   const cleanedData = projects.filter(project => project.exactLocation !== null)
 
   function handleZoomIn() {
-    if (position.zoom >= 8) return
+    if (position.zoom >= 100) return
     setPosition(pos => ({ ...pos, zoom: pos.zoom * 1.2 }))
     setScaleFactor(scale => scale * 1.2)
   }
@@ -90,7 +97,15 @@ const ProjectMap = ({ projects }) => {
           clickable
           className="map-tooltip"
         >
-          <ProjectTile project={project}></ProjectTile>
+          <ProjectTile
+            key={project.id}
+            project={project}
+            setCity={setCity}
+            setCountry={setCountry}
+            handleTypeFilter={handleTypeFilter}
+            setRegion={setRegion}
+            projectPage={projectPage}
+          ></ProjectTile>
         </Tooltip>
       ))}
     </div>
