@@ -68,6 +68,7 @@ function PrevArrow(props) {
 
 const HomeSlider = ({ images }) => {
   const [initialHeight, setInitialHeight] = useState(800)
+  const [randomizeImages, setRandomizeImages] = useState([])
   const { height, width } = useWindowSize()
   const mobile = width < 601
   const shuffleData = array => {
@@ -92,9 +93,8 @@ const HomeSlider = ({ images }) => {
 
   useEffect(() => {
     setInitialHeight(height)
+    setRandomizeImages(shuffleData(images))
   }, [])
-
-  const randomizeImages = shuffleData(images)
 
   const settings = {
     slidesToShow: 1,

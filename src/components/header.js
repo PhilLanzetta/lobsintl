@@ -16,9 +16,6 @@ const Header = ({ location }) => {
   const [logoWidth, setLogoWidth] = useState(0)
   const [isOpen, setIsOpen] = useState(false)
 
-  console.log(logoHeight)
-  console.log(logoWidth)
-
   const toggleMenu = () => {
     setIsOpen(!isOpen)
   }
