@@ -35,7 +35,7 @@ const Hit = ({ hit }) => {
                 <p className="tile-tag-btn">{geographicRegion}</p>
               ) : (
                 <p className="tile-tag-btn">
-                  {city}, {country}
+                  {city && `${city},`} {country}
                 </p>
               )}
             </div>

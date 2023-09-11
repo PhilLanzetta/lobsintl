@@ -5,7 +5,7 @@ import {
   InstantSearch,
   SearchBox,
   Hits,
-  Pagination,
+  Index,
   useInstantSearch,
 } from "react-instantsearch-hooks-web"
 import Hit from "../components/searchResult"
@@ -62,7 +62,11 @@ const Search = () => {
   return (
     <Layout>
       <div className="search-page">
-        <InstantSearch searchClient={searchClient} indexName="Pages">
+        <InstantSearch
+          searchClient={searchClient}
+          indexName="Pages"
+          routing={true}
+        >
           <SearchBox
             placeholder="Search"
             searchAsYouType={false}
@@ -78,10 +82,12 @@ const Search = () => {
           />
           <EmptyQueryBoundary fallback={null}>
             <NoResultsBoundary fallback={<NoResults />}>
-              <Hits
-                hitComponent={Hit}
-                classNames={{ root: "hits-container" }}
-              />
+              <Index indexName="Projects">
+                <Hits
+                  hitComponent={Hit}
+                  classNames={{ root: "hits-container" }}
+                />
+              </Index>
             </NoResultsBoundary>
           </EmptyQueryBoundary>
         </InstantSearch>

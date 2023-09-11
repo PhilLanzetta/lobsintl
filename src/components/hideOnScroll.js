@@ -8,9 +8,7 @@ const HideOnScroll = ({ children }) => {
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY
-
     setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 80)
-
     setPrevScrollPos(currentScrollPos)
   }
 
