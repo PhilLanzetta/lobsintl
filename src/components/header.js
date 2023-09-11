@@ -12,26 +12,12 @@ const Header = ({ location }) => {
   const { width } = useWindowSize()
   const mobile = width < 601
   const isHome = location !== undefined
-  const isSSR = typeof window !== "undefined"
-  const [logoHeight, setLogoHeight] = useState(
-    mobile
-      ? isSSR
-        ? 60 - window.scrollY * 0.075
-        : 30
-      : isSSR
-      ? 80 - window.scrollY * 0.1
-      : 40
-  )
-  const [logoWidth, setLogoWidth] = useState(
-    mobile
-      ? isSSR
-        ? 100 - window.scrollY * 0.125
-        : 50
-      : isSSR
-      ? 120 - window.scrollY * 0.15
-      : 60
-  )
+  const [logoHeight, setLogoHeight] = useState(0)
+  const [logoWidth, setLogoWidth] = useState(0)
   const [isOpen, setIsOpen] = useState(false)
+
+  console.log(logoHeight)
+  console.log(logoWidth)
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -54,32 +40,6 @@ const Header = ({ location }) => {
   }
 
   const handleScroll = () => {
-    const currentScrollPos = window.scrollY
-    if (mobile) {
-      if (window.scrollY < 397) {
-        setLogoHeight(60 - currentScrollPos * 0.075)
-        setLogoWidth(100 - currentScrollPos * 0.125)
-      } else {
-        setLogoHeight(30)
-        setLogoWidth(50)
-      }
-    } else {
-      if (window.scrollY < 397) {
-        setLogoHeight(80 - currentScrollPos * 0.1)
-        setLogoWidth(120 - currentScrollPos * 0.15)
-      } else {
-        setLogoHeight(40)
-        setLogoWidth(60)
-      }
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  useLayoutEffect(() => {
     if (mobile) {
       if (window.scrollY < 397) {
         setLogoHeight(60 - window.scrollY * 0.075)
@@ -97,7 +57,14 @@ const Header = ({ location }) => {
         setLogoWidth(60)
       }
     }
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  useEffect(() => handleScroll(), [])
 
   return (
     <header>
