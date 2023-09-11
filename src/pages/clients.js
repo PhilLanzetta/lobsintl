@@ -27,6 +27,13 @@ const Clients = ({ data }) => {
         <Link to="/clients">Clients</Link>
       </HideOnScroll>
       <div className="listing-page-container">
+        <div
+          dangerouslySetInnerHTML={{
+            __html:
+              data.contentfulClientPageHeading.heading.childMarkdownRemark.html,
+          }}
+          className="client-page-headline"
+        ></div>
         <div className="listing-column-container">
           {alphabetHeaders.map((letter, index) => (
             <div key={index} className="listing-column-element">
@@ -63,6 +70,13 @@ export const query = graphql`
     allContentfulProject {
       nodes {
         client
+      }
+    }
+    contentfulClientPageHeading {
+      heading {
+        childMarkdownRemark {
+          html
+        }
       }
     }
   }

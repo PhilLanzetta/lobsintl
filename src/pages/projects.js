@@ -498,49 +498,51 @@ const Projects = ({ data, location }) => {
           </div>
         </div>
       </div>
-      {view === "grid" && (
-        <>
-          <div style={{ height: "140px" }}></div>
-          <ProjectGrid
-            projects={projects}
-            handleTypeFilter={handleTypeFilter}
-            setCity={setCity}
-            setCountry={setCountry}
-            handleFilter={handleFilter}
-            setRegion={handleLocaleFilter}
-            projectPage={true}
-          ></ProjectGrid>
-        </>
-      )}
-      {view === "list" && (
-        <>
-          <div style={{ height: "140px" }}></div>
-          <ProjectList
-            projects={projects}
-            handleTypeFilter={handleTypeFilter}
-            setCity={setCity}
-            setCountry={setCountry}
-            handleFilter={handleFilter}
-            setYear={setYear}
-            setProjects={setProjects}
-          ></ProjectList>
-        </>
-      )}
-      {view === "map" && (
-        <>
-          <ProjectMap
-            projects={projects}
-            handleTypeFilter={handleTypeFilter}
-            setCity={setCity}
-            setCountry={setCountry}
-            handleFilter={handleFilter}
-            setRegion={handleLocaleFilter}
-            setYear={setYear}
-            setProjects={setProjects}
-            projectPage={true}
-          ></ProjectMap>
-        </>
-      )}
+      <div className="project-view-container">
+        {view === "grid" && (
+          <>
+            <div style={{ height: "140px" }}></div>
+            <ProjectGrid
+              projects={projects}
+              handleTypeFilter={handleTypeFilter}
+              setCity={setCity}
+              setCountry={setCountry}
+              handleFilter={handleFilter}
+              setRegion={handleLocaleFilter}
+              projectPage={true}
+            ></ProjectGrid>
+          </>
+        )}
+        {view === "list" && (
+          <>
+            <div style={{ height: "140px" }}></div>
+            <ProjectList
+              projects={projects}
+              handleTypeFilter={handleTypeFilter}
+              setCity={setCity}
+              setCountry={setCountry}
+              handleFilter={handleFilter}
+              setYear={setYear}
+              setProjects={setProjects}
+            ></ProjectList>
+          </>
+        )}
+        {view === "map" && (
+          <>
+            <ProjectMap
+              projects={projects}
+              handleTypeFilter={handleTypeFilter}
+              setCity={setCity}
+              setCountry={setCountry}
+              handleFilter={handleFilter}
+              setRegion={handleLocaleFilter}
+              setYear={setYear}
+              setProjects={setProjects}
+              projectPage={true}
+            ></ProjectMap>
+          </>
+        )}
+      </div>
     </Layout>
   )
 }

@@ -98,7 +98,6 @@ const ProjectMap = ({
           className="map-tooltip"
         >
           <ProjectTile
-            key={project.id}
             project={project}
             setCity={setCity}
             setCountry={setCountry}

@@ -1264,6 +1264,11 @@ PROJECTS PAGE
   font-size: 100% !important;
 }
 
+.project-view-container {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
 @media screen and (max-width: 1250px) {
   .project-tile {
     width: 49%;
@@ -1704,7 +1709,12 @@ About Page
   align-items: center;
 }
 
-.about-page-headline p {
+.client-page-headline {
+  margin-bottom: var(--spacing-big);
+}
+
+.about-page-headline p,
+.client-page-headline h2 {
   font-size: var(--font-lg-resp);
   font-weight: var(--thin-weight);
   line-height: var(--lofty-line-height);
@@ -1773,7 +1783,8 @@ About Page
 }
 
 @media screen and (max-width: 600px) {
-  .about-page-headline p {
+  .about-page-headline p,
+  .client-page-headline h2 {
     width: 100%;
   }
 
