@@ -660,6 +660,11 @@ SINGLE PROJECT PAGE
   max-width: var(--body-max-width);
 }
 
+.project-intro-headline a,
+.project-intro-body a {
+  text-decoration: underline;
+}
+
 .project-intro-top {
   display: flex;
   width: 100%;
@@ -851,6 +856,10 @@ SINGLE PROJECT PAGE
 .module-text {
   width: var(--body-max-width);
   margin: var(--spacing-sm) auto;
+}
+
+.module-text a {
+  text-decoration: underline;
 }
 
 .module-text p {
@@ -1255,13 +1264,13 @@ PROJECTS PAGE
   font-size: 12px;
 }
 
-.map-tooltip {
-  background: var(--background) !important;
-  color: var(--color) !important;
-  border: 1px solid var(--lightColor) !important;
-  opacity: 1 !important;
-  width: clamp(250px, 20vw, 500px) !important;
-  font-size: 100% !important;
+.projects-map-container .map-tooltip {
+  background: var(--background);
+  color: var(--color);
+  border: 1px solid var(--lightColor);
+  opacity: 1;
+  width: clamp(250px, 20vw, 500px);
+  font-size: 100%;
 }
 
 .project-view-container {
@@ -1563,6 +1572,10 @@ TEAM MEMBER
 .team-member-bio p {
   margin-bottom: var(--spacing-md);
   line-height: var(--lofty-line-height);
+}
+
+.team-member-bio a {
+  text-decoration: underline;
 }
 
 .team-member-bio ul {

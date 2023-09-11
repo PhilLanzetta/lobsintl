@@ -34,6 +34,7 @@ const SingleProject = ({ data }) => {
     projectLeader,
     slug,
     metadata,
+    hervIsPrincipal,
   } = data.contentfulProject
 
   const relatedCategory = typology?.length > 0 ? typology : ["no category"]
@@ -76,7 +77,7 @@ const SingleProject = ({ data }) => {
         size={size}
         dateCompleted={dateCompleted}
         team={team}
-        principal={principal}
+        principal={hervIsPrincipal}
         projectLeader={projectLeader}
         client={client}
         photoCredit={photoCredit}
@@ -102,6 +103,7 @@ export const query = graphql`
       slug
       year
       typology
+      hervIsPrincipal
       status
       size
       projectName

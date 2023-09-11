@@ -12,8 +12,25 @@ const Header = ({ location }) => {
   const { width } = useWindowSize()
   const mobile = width < 601
   const isHome = location !== undefined
-  const [logoHeight, setLogoHeight] = useState(mobile ? 30 : 40)
-  const [logoWidth, setLogoWidth] = useState(mobile ? 50 : 60)
+  const isSSR = typeof window !== "undefined"
+  const [logoHeight, setLogoHeight] = useState(
+    mobile
+      ? isSSR
+        ? 60 - window.scrollY * 0.075
+        : 30
+      : isSSR
+      ? 80 - window.scrollY * 0.1
+      : 40
+  )
+  const [logoWidth, setLogoWidth] = useState(
+    mobile
+      ? isSSR
+        ? 100 - window.scrollY * 0.125
+        : 50
+      : isSSR
+      ? 120 - window.scrollY * 0.15
+      : 60
+  )
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleMenu = () => {

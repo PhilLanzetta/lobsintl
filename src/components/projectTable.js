@@ -15,9 +15,6 @@ const ProjectTable = ({
   principal,
   projectLeader,
 }) => {
-  const sortedPrincipal = principal?.sort((a, b) =>
-    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-  )
   const sortedLeaders = projectLeader?.sort((a, b) =>
     a.name > b.name ? 1 : b.name > a.name ? -1 : 0
   )
@@ -147,34 +144,18 @@ const ProjectTable = ({
               </div>
             </div>
           )}
-          {sortedPrincipal && (
+          {principal && (
             <div>
               <hr className="faded-line"></hr>
               <div className="project-table-row">
                 <p>Principal</p>
                 <div className="project-table-team">
-                  {sortedPrincipal.map(member => {
-                    if (member.primaryOffice !== "No Longer Employed") {
-                      return (
-                        <Link
-                          key={member.id}
-                          to={`/team/${member.slug}`}
-                          className="project-table-button"
-                        >
-                          {member.name}
-                        </Link>
-                      )
-                    } else {
-                      return null
-                    }
-                  })}
-                  {sortedPrincipal.map(member => {
-                    if (member.primaryOffice === "No Longer Employed") {
-                      return <p key={member.id}>{member.name}</p>
-                    } else {
-                      return null
-                    }
-                  })}
+                  <Link
+                    to="/team/herve-descottes"
+                    className="project-table-button"
+                  >
+                    Hervé Descottes
+                  </Link>
                 </div>
               </div>
             </div>
