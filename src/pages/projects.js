@@ -645,6 +645,7 @@ const Projects = ({ data, location }) => {
               handleFilter={handleFilter}
               setYear={setYear}
               setProjects={setProjects}
+              paddingTop={paddingTop}
             ></ProjectList>
           </>
         )}

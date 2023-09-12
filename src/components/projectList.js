@@ -12,6 +12,7 @@ const ProjectList = ({
   setYear,
   setRegion,
   setProjects,
+  paddingTop,
 }) => {
   const { width } = useWindowSize()
   const isMobile = width < 601
@@ -25,17 +26,17 @@ const ProjectList = ({
     let orderedProjects
     if (projectToggle === false) {
       orderedProjects = projects.sort((a, b) =>
-        a.projectName > b.projectName
+        a.projectName.toLowerCase() > b.projectName.toLowerCase()
           ? 1
-          : b.projectName > a.projectName
+          : b.projectName.toLowerCase() > a.projectName.toLowerCase()
           ? -1
           : 0
       )
     } else {
       orderedProjects = projects.sort((a, b) =>
-        b.projectName > a.projectName
+        b.projectName.toLowerCase() > a.projectName.toLowerCase()
           ? 1
-          : a.projectName > b.projectName
+          : a.projectName.toLowerCase() > b.projectName.toLowerCase()
           ? -1
           : 0
       )
@@ -135,7 +136,10 @@ const ProjectList = ({
     <div className="project-list-container">
       {!isMobile && (
         <>
-          <div className="project-list-header">
+          <div
+            className="project-list-header"
+            style={{ paddingTop: `${paddingTop + 10}px` }}
+          >
             <button onClick={orderByProject} className="list-button">
               Project{" "}
               {activeSort === "project" && (
