@@ -9,6 +9,8 @@ import { AiOutlineLine } from "react-icons/ai"
 import ProjectGrid from "../components/projectGrid"
 import ProjectList from "../components/projectList"
 import ProjectMap from "../components/projectMap"
+import useWindowSize from "../utils/useWindowSize"
+import HideOnScroll from "../components/hideOnScroll"
 
 const Projects = ({ data, location }) => {
   const allProjects = data.allContentfulProject.nodes
@@ -17,6 +19,7 @@ const Projects = ({ data, location }) => {
   const [projects, setProjects] = useState(allProjects)
   const [view, setView] = useState()
   const [recent, setRecent] = useState(false)
+  const [paddingTop, setPaddingTop] = useState(145)
   const [featuredFilter, setFeaturedFilter] = useState(false)
   const [progressFilter, setProgressFilter] = useState(
     location.state?.progressFilter || false
@@ -32,6 +35,15 @@ const Projects = ({ data, location }) => {
   const [country, setCountry] = useState(location.state?.country || "")
   const [network, setNetwork] = useState(location.state?.network || "")
   const [client, setClient] = useState(location.state?.client || "")
+  const { width } = useWindowSize()
+
+  const isMobile = width < 941
+  const projectOptionsRef = useRef()
+
+  useEffect(() => {
+    const { bottom } = projectOptionsRef.current.getBoundingClientRect()
+    setPaddingTop(bottom)
+  })
 
   const isDisabled =
     !recent &&
@@ -237,10 +249,13 @@ const Projects = ({ data, location }) => {
 
   return (
     <Layout>
-      <div className="project-header">
+      <HideOnScroll>
         <Link to="/projects">Projects</Link>
-      </div>
-      <div className={`project-options-bar ${filterOpen ? "" : "show-shadow"}`}>
+      </HideOnScroll>
+      <div
+        ref={projectOptionsRef}
+        className={`project-options-bar ${filterOpen ? "" : "show-shadow"}`}
+      >
         {filterOpen ? (
           <button
             className="project-options-button-top"
@@ -257,6 +272,113 @@ const Projects = ({ data, location }) => {
             <BsFilterLeft className="filter-icon"></BsFilterLeft>
             Filter
           </button>
+        )}
+        {!isDisabled && !isMobile && (
+          <div className="current-filter-container">
+            {featuredFilter && (
+              <button
+                className="current-filter-button"
+                onClick={() => setFeaturedFilter(false)}
+              >
+                <GrFormClose></GrFormClose>Featured Projects
+              </button>
+            )}
+            {recent && (
+              <button
+                className="current-filter-button"
+                onClick={() => setRecent(false)}
+              >
+                <GrFormClose></GrFormClose>Recently Completed
+              </button>
+            )}
+            {progressFilter && (
+              <button
+                className="current-filter-button"
+                onClick={() => setProgressFilter(false)}
+              >
+                <GrFormClose></GrFormClose>In Progress
+              </button>
+            )}
+            {typologyFilter.length > 0 && (
+              <>
+                {typologyFilter.map((item, index) => (
+                  <button
+                    key={index}
+                    className="current-filter-button"
+                    onClick={() => handleTypeFilter(item)}
+                  >
+                    <GrFormClose></GrFormClose>
+                    {item}
+                  </button>
+                ))}
+              </>
+            )}
+            {regionFilter.length > 0 && (
+              <>
+                {regionFilter.map((item, index) => (
+                  <button
+                    key={index}
+                    className="current-filter-button"
+                    onClick={() => handleLocaleFilter(item)}
+                  >
+                    <GrFormClose></GrFormClose>
+                    {item}
+                  </button>
+                ))}
+              </>
+            )}
+            {city && (
+              <button
+                className="current-filter-button"
+                onClick={() => setCity("")}
+              >
+                <GrFormClose></GrFormClose>
+                {city}
+              </button>
+            )}
+            {year && (
+              <button
+                className="current-filter-button"
+                onClick={() => setYear("")}
+              >
+                <GrFormClose></GrFormClose>
+                Year: {year}
+              </button>
+            )}
+            {country && (
+              <button
+                className="current-filter-button"
+                onClick={() => setCountry("")}
+              >
+                <GrFormClose></GrFormClose>
+                {country}
+              </button>
+            )}
+            {network && (
+              <button
+                className="current-filter-button"
+                onClick={() => setNetwork("")}
+              >
+                <GrFormClose></GrFormClose>
+                {network}
+              </button>
+            )}
+            {client && (
+              <button
+                className="current-filter-button"
+                onClick={() => setClient("")}
+              >
+                <GrFormClose></GrFormClose>
+                {client}
+              </button>
+            )}
+            <button
+              className="current-filter-button"
+              onClick={() => handleClearAll()}
+            >
+              <AiOutlineLine></AiOutlineLine>Clear all
+            </button>
+          </div>
         )}
         <div className="project-view-options">
           <button
@@ -296,7 +418,7 @@ const Projects = ({ data, location }) => {
             Map
           </button>
         </div>
-        {!isDisabled && (
+        {!isDisabled && isMobile && (
           <div className="current-filter-container">
             {featuredFilter && (
               <button
@@ -405,9 +527,8 @@ const Projects = ({ data, location }) => {
         )}
       </div>
       <div
-        className={`filter-menu ${filterOpen ? "" : "hide-filter"} ${
-          isDisabled ? "" : "more-padding"
-        }`}
+        className={`filter-menu ${filterOpen ? "" : "hide-filter"}`}
+        style={{ paddingTop: `${paddingTop}px` }}
       >
         <div className="filter-column">
           <button
@@ -501,7 +622,7 @@ const Projects = ({ data, location }) => {
       <div className="project-view-container">
         {view === "grid" && (
           <>
-            <div style={{ height: "140px" }}></div>
+            <div style={{ height: `${paddingTop}px` }}></div>
             <ProjectGrid
               projects={projects}
               handleTypeFilter={handleTypeFilter}
@@ -515,7 +636,7 @@ const Projects = ({ data, location }) => {
         )}
         {view === "list" && (
           <>
-            <div style={{ height: "140px" }}></div>
+            <div style={{ height: `${paddingTop}px` }}></div>
             <ProjectList
               projects={projects}
               handleTypeFilter={handleTypeFilter}

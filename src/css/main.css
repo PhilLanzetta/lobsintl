@@ -517,7 +517,7 @@ SINGLE PROJECT PAGE
   position: fixed;
   mix-blend-mode: difference;
   color: #fff;
-  z-index: 50;
+  z-index: 2000;
   top: 49px;
   width: 100%;
   text-align: center;
@@ -955,7 +955,12 @@ PROJECTS PAGE
   width: 40px;
   height: 25px;
   border-radius: 100px;
+  transition: all var(--fast-transition);
+}
+
+.filter-icon:hover {
   opacity: var(--less-opacity);
+  transition: all var(--fast-transition);
 }
 
 .filter-icon path {
@@ -965,11 +970,12 @@ PROJECTS PAGE
 .project-options-bar {
   position: fixed;
   display: flex;
-  flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
   top: 0px;
-  padding: 10px 40px;
+  padding: 10px 40px 20px 40px;
   padding-top: 110px;
   z-index: 100;
   background: var(--background);
@@ -1028,7 +1034,6 @@ PROJECTS PAGE
   display: flex;
   align-items: stretch;
   gap: var(--spacing-md);
-  padding-top: 145px;
   padding-bottom: 20px;
   padding-left: calc(10vw + 40px);
   z-index: 10;
@@ -1120,18 +1125,20 @@ PROJECTS PAGE
 
 .current-filter-container {
   width: 100%;
-  padding: 20px 0 0 0;
   display: flex;
-  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
 }
 
 .current-filter-button {
   display: flex;
   align-items: center;
   border: solid 1px var(--color);
-  padding: 3px 8px;
+  padding: 2px var(--spacing-sm);
   border-radius: 100px;
   text-transform: capitalize;
+  font-size: var(--font-xs-resp);
+  height: 25px;
 }
 
 .current-filter-button path {
@@ -1139,7 +1146,7 @@ PROJECTS PAGE
 }
 
 .project-list-container {
-  padding: 40px 0;
+  padding-bottom: 40px;
   position: relative;
   font-size: var(--font-sm-resp);
 }
@@ -1292,6 +1299,11 @@ PROJECTS PAGE
 }
 
 @media screen and (max-width: 940px) {
+  .project-options-bar {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
   .filter-menu {
     font-size: var(--font-xs-resp);
   }
@@ -1350,14 +1362,12 @@ PROJECTS PAGE
   .filter-menu {
     font-size: var(--font-sm);
     left: 0;
-    top: 110px;
     padding: 20px;
   }
 
   .current-filter-container {
     top: 115px;
     width: 100%;
-    padding: 10px 20px;
     flex-wrap: wrap;
     font-size: var(--font-sm-resp);
   }
