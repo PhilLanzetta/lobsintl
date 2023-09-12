@@ -24,17 +24,12 @@ const projectQuery = `{
           publication
           title
         }
-        principal {
-          id
-          name
-          title
-        }
         projectLeader {
           id
           name
           title
         }
-        projectName
+        title: projectName
         slug
         typology
         year
@@ -56,7 +51,7 @@ const newsQuery = `
     edges {
       node {
         category
-        date
+        year: date
         headline
         id
         moduleContent {
@@ -87,14 +82,14 @@ const teamQuery = `{
     edges {
       node {
         id
-        headShot {
+        heroImage: headShot {
           description
           gatsbyImageData(width: 400)
         }
-        name
+        title: name
         primaryOffice
         slug
-        title
+        position: title
         teamMemberBiography {
           teamMemberBiography
         }
@@ -109,6 +104,24 @@ const teamQuery = `{
 function pageToAlgoliaRecord({ node: { id, ...rest } }) {
   return {
     objectID: id,
+    searchCategory: "Project",
+    principal: "Hervé Descottes",
+    ...rest,
+  }
+}
+
+function newsToAlgoliaRecord({ node: { id, ...rest } }) {
+  return {
+    objectID: id,
+    searchCategory: "News",
+    ...rest,
+  }
+}
+
+function personToAlgoliaRecord({ node: { id, ...rest } }) {
+  return {
+    objectID: id,
+    searchCategory: "Person",
     ...rest,
   }
 }
@@ -121,13 +134,13 @@ const queries = [
   },
   {
     query: newsQuery,
-    transformer: ({ data }) => data.news.edges.map(pageToAlgoliaRecord),
+    transformer: ({ data }) => data.news.edges.map(newsToAlgoliaRecord),
     indexName: "News",
   },
 
   {
     query: teamQuery,
-    transformer: ({ data }) => data.team.edges.map(pageToAlgoliaRecord),
+    transformer: ({ data }) => data.team.edges.map(personToAlgoliaRecord),
     indexName: "People",
   },
 ]

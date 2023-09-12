@@ -88,6 +88,18 @@ const Search = () => {
                   classNames={{ root: "hits-container" }}
                 />
               </Index>
+              <Index indexName="News">
+                <Hits
+                  hitComponent={Hit}
+                  classNames={{ root: "hits-container" }}
+                />
+              </Index>
+              <Index indexName="People">
+                <Hits
+                  hitComponent={Hit}
+                  classNames={{ root: "hits-container" }}
+                />
+              </Index>
             </NoResultsBoundary>
           </EmptyQueryBoundary>
         </InstantSearch>
