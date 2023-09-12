@@ -30,7 +30,6 @@ const SingleProject = ({ data }) => {
     client,
     photoCredit,
     press,
-    principal,
     projectLeader,
     slug,
     metadata,
@@ -182,12 +181,6 @@ export const query = graphql`
         publicationDate
       }
       photoCredit
-      principal {
-        name
-        slug
-        primaryOffice
-        id
-      }
       projectLeader {
         name
         slug

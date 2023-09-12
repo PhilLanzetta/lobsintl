@@ -90,9 +90,6 @@ const teamQuery = `{
         headShot {
           description
           gatsbyImageData(width: 400)
-          internal {
-            contentDigest
-          }
         }
         name
         primaryOffice
@@ -101,6 +98,9 @@ const teamQuery = `{
         teamMemberBiography {
           teamMemberBiography
         }
+        internal {
+            contentDigest
+          }
       }
     }
   }
