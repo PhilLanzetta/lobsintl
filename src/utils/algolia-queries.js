@@ -78,7 +78,7 @@ const newsQuery = `
 }`
 
 const teamQuery = `{
-  team: allContentfulTeamMember {
+  people: allContentfulTeamMember {
     edges {
       node {
         id
@@ -101,7 +101,8 @@ const teamQuery = `{
   }
 }`
 
-function pageToAlgoliaRecord({ node: { id, ...rest } }) {
+const projectToAlgoliaRecord = edge => {
+  const { id, ...rest } = edge.node
   return {
     objectID: id,
     searchCategory: "Project",
@@ -110,7 +111,8 @@ function pageToAlgoliaRecord({ node: { id, ...rest } }) {
   }
 }
 
-function newsToAlgoliaRecord({ node: { id, ...rest } }) {
+const newsToAlgoliaRecord = edge => {
+  const { id, ...rest } = edge.node
   return {
     objectID: id,
     searchCategory: "News",
@@ -118,7 +120,8 @@ function newsToAlgoliaRecord({ node: { id, ...rest } }) {
   }
 }
 
-function personToAlgoliaRecord({ node: { id, ...rest } }) {
+const personToAlgoliaRecord = edge => {
+  const { id, ...rest } = edge.node
   return {
     objectID: id,
     searchCategory: "Person",
@@ -129,18 +132,21 @@ function personToAlgoliaRecord({ node: { id, ...rest } }) {
 const queries = [
   {
     query: projectQuery,
-    transformer: ({ data }) => data.projects.edges.map(pageToAlgoliaRecord),
+    transformer: ({ data }) =>
+      data.projects.edges.map(edge => projectToAlgoliaRecord(edge)),
     indexName: "Projects",
   },
   {
     query: newsQuery,
-    transformer: ({ data }) => data.news.edges.map(newsToAlgoliaRecord),
+    transformer: ({ data }) =>
+      data.news.edges.map(edge => newsToAlgoliaRecord(edge)),
     indexName: "News",
   },
 
   {
     query: teamQuery,
-    transformer: ({ data }) => data.team.edges.map(personToAlgoliaRecord),
+    transformer: ({ data }) =>
+      data.people.edges.map(edge => personToAlgoliaRecord(edge)),
     indexName: "People",
   },
 ]

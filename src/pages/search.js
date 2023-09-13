@@ -64,7 +64,7 @@ const Search = () => {
       <div className="search-page">
         <InstantSearch
           searchClient={searchClient}
-          indexName="Pages"
+          indexName="Projects"
           routing={true}
         >
           <SearchBox
