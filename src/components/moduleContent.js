@@ -4,7 +4,7 @@ import ReactPlayer from "react-player"
 
 const ModuleContent = ({ moduleContent }) => {
   const [isPlaying, setIsPlaying] = useState(false)
-  console.log(moduleContent)
+
   return (
     <div className="module-content-container">
       {moduleContent.map(item => {

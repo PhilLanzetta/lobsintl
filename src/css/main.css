@@ -1951,11 +1951,6 @@ Search Page
   stroke: var(--background);
 }
 
-.hits-container {
-  margin: var(--spacing-md) 0;
-  margin-top: 200px;
-}
-
 .hits-container ol {
   list-style: none;
 }
@@ -1972,11 +1967,15 @@ Search Page
 }
 
 .search-result-image-container {
-  width: clamp(200px, 50%, 400px);
+  width: clamp(100px, 50%, 400px);
   margin-right: var(--spacing-sm);
 }
 .search-result-image {
   aspect-ratio: 3 / 2;
+}
+
+.search-person {
+  aspect-ratio: 2 / 3;
 }
 
 .search-result-title {

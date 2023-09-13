@@ -6,85 +6,141 @@ import { AiOutlinePlus } from "react-icons/ai"
 const Hit = ({ hit }) => {
   const {
     heroImage,
-    projectName,
+    title,
     typology,
     city,
     country,
     geographicRegion,
     slug,
     searchCategory,
-    ...rest
+    year,
+    position,
+    date,
   } = hit
-  console.log(hit)
+
   return (
-    <div className="search-result-item">
-      {searchCategory === "Project" && (
-        <>
-          <p className="upper search-result-category">Project</p>
-          <div className="search-info-container">
-            <Link
-              to={`/projects/${slug}`}
-              className="search-result-image-container"
-            >
-              <GatsbyImage
-                image={heroImage.gatsbyImageData}
-                alt={heroImage.description}
-                className="search-result-image"
-              ></GatsbyImage>
-            </Link>
-            <div className="search-info-text">
-              <div>
-                <Link to={`/projects/${slug}`}>
-                  <p className="search-result-title">{projectName}</p>
+    <>
+      {searchCategory && (
+        <div className="search-result-item">
+          {searchCategory === "Project" && (
+            <>
+              <p className="upper search-result-category">Project</p>
+              <div className="search-info-container">
+                <Link
+                  to={`/projects/${slug}`}
+                  className="search-result-image-container"
+                >
+                  <GatsbyImage
+                    image={heroImage.gatsbyImageData}
+                    alt={heroImage.description}
+                    className="search-result-image"
+                  ></GatsbyImage>
                 </Link>
-                <div className="tile-tag-container">
-                  {typology.map((type, index) => (
-                    <Link
-                      state={{ typeFilter: type }}
-                      key={index}
-                      className="tile-tag-btn"
-                      to="/projects"
-                    >
-                      {type}
+                <div className="search-info-text">
+                  <div>
+                    <Link to={`/projects/${slug}`}>
+                      <p className="search-result-title">{title}</p>
                     </Link>
-                  ))}
-                  {geographicRegion === "Worldwide" ? (
-                    <Link
-                      className="tile-tag-btn"
-                      to="/projects"
-                      state={{ regionFilter: [geographicRegion] }}
-                    >
-                      {geographicRegion}
-                    </Link>
-                  ) : (
-                    <Link
-                      className="tile-tag-btn"
-                      to="/projects"
-                      state={{ city: city, country: country }}
-                    >
-                      {city && `${city},`} {country}
-                    </Link>
-                  )}
+                    <div className="tile-tag-container">
+                      {typology.map((type, index) => (
+                        <Link
+                          state={{ typeFilter: type }}
+                          key={index}
+                          className="tile-tag-btn"
+                          to="/projects"
+                        >
+                          {type}
+                        </Link>
+                      ))}
+                      {geographicRegion === "Worldwide" ? (
+                        <Link
+                          className="tile-tag-btn"
+                          to="/projects"
+                          state={{ regionFilter: [geographicRegion] }}
+                        >
+                          {geographicRegion}
+                        </Link>
+                      ) : (
+                        <Link
+                          className="tile-tag-btn"
+                          to="/projects"
+                          state={{ city: city, country: country }}
+                        >
+                          {city && `${city},`} {country}
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                  <Link to={`/projects/${slug}`} className="search-learn-more">
+                    <AiOutlinePlus></AiOutlinePlus> Learn More
+                  </Link>
                 </div>
               </div>
-              <Link to={`/projects/${slug}`} className="search-learn-more">
-                <AiOutlinePlus></AiOutlinePlus> Learn More
-              </Link>
-            </div>
-          </div>
-        </>
-      )}{" "}
-      {searchCategory === "News" && (
-        <>
-          <p className="upper search-result-category">News</p>
-        </>
+            </>
+          )}{" "}
+          {searchCategory === "News" && (
+            <>
+              <p className="upper search-result-category">News</p>
+              <div className="search-info-container">
+                <Link
+                  to={`/news/${slug}`}
+                  className="search-result-image-container"
+                >
+                  <GatsbyImage
+                    image={heroImage.gatsbyImageData}
+                    alt={heroImage.description}
+                    className="search-result-image"
+                  ></GatsbyImage>
+                </Link>
+                <div className="search-info-text">
+                  <Link to={`/news/${slug}`}>
+                    <p className="search-result-title">{title}</p>
+                    <p className="faded">
+                      {new Intl.DateTimeFormat("en-us", {
+                        month: "long",
+                        day: "numeric",
+                        year: "numeric",
+                      }).format(new Date(date))}
+                    </p>
+                  </Link>
+                  <Link to={`/news/${slug}`} className="search-learn-more">
+                    <AiOutlinePlus></AiOutlinePlus> Learn More
+                  </Link>
+                </div>
+              </div>
+            </>
+          )}
+          {searchCategory === "Person" && (
+            <>
+              <p className="upper search-result-category">Person</p>
+              <div className="search-info-container">
+                <Link
+                  to={`/team/${slug}`}
+                  className="search-result-image-container"
+                >
+                  {heroImage && (
+                    <GatsbyImage
+                      image={heroImage.gatsbyImageData}
+                      alt={heroImage.description}
+                      className="search-result-image search-person"
+                    ></GatsbyImage>
+                  )}
+                </Link>
+                <div className="search-info-text">
+                  <Link to={`/team/${slug}`}>
+                    <p className="search-result-title">{title}</p>
+                    <p className="faded">{position}</p>
+                  </Link>
+                  <Link to={`/team/${slug}`} className="search-learn-more">
+                    <AiOutlinePlus></AiOutlinePlus> Learn More
+                  </Link>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
       )}
-      {searchCategory === "Person" && (
-        <>
-          <p className="upper search-result-category">Person</p>
-        </>
-      )}
-    </div>
+    </>
   )
 }
 
