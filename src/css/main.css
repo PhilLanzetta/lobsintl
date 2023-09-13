@@ -517,7 +517,7 @@ SINGLE PROJECT PAGE
   position: fixed;
   mix-blend-mode: difference;
   color: #fff;
-  z-index: 2000;
+  z-index: 20;
   top: 49px;
   width: 100%;
   text-align: center;
