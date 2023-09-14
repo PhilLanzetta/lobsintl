@@ -104,7 +104,7 @@ export const query = graphql`
 export const Head = ({ data }) => (
   <Seo
     title={data.contentfulTeamMember.name}
-    image={data.contentfulTeamMember.headShot.file.url}
+    image={data.contentfulTeamMember.headShot?.file.url}
     keywords={`${data.contentfulTeamMember.name}, ${data.contentfulTeamMember.title}`}
   />
 )

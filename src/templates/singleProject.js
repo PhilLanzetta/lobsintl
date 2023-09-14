@@ -203,7 +203,7 @@ export const query = graphql`
 export const Head = ({ data }) => (
   <Seo
     title={data.contentfulProject.projectName}
-    image={data.contentfulProject.images[0].file.url}
+    image={data.contentfulProject.images[0]?.file.url}
   />
 )
 

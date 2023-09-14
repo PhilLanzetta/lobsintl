@@ -114,6 +114,24 @@ const Search = () => {
                     Filter
                   </button>
                 )}
+                <div
+                  className={`search-filter-menu ${
+                    filterOpen ? "" : "hide-filter"
+                  }`}
+                >
+                  <div className="filter-column">
+                    <p className="upper">Type</p>
+                    <button className="project-options-button">
+                      <div className="check-box"></div> Featured Projects
+                    </button>
+                  </div>
+                  <div className="filter-column">
+                    <p className="upper">Sort</p>
+                    <button className="project-options-button">
+                      <div className="check-box"></div> Featured Projects
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <Hits

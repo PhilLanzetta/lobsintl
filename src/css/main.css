@@ -2033,7 +2033,13 @@ Search Page
 }
 
 .search-options-bar {
+  margin-top: var(--spacing-sm);
   padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--fadedColor);
+}
+
+.search-filter-menu {
+  transition: var(--fast-transition);
 }
 
 @media screen and (max-width: 600px) {
