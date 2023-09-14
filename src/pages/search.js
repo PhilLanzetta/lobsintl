@@ -142,7 +142,7 @@ const Search = () => {
                 {filterOpen && (
                   <Fade triggerOnce={true}>
                     <div className="search-filter-menu">
-                      <div className="filter-column">
+                      <div className="filter-column search-column">
                         <p className="upper">Type</p>
                         <RefinementList
                           attribute="searchCategory"
