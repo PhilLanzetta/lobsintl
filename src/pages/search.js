@@ -1,4 +1,4 @@
-import React, { useMemo } from "react"
+import React, { useMemo, useState } from "react"
 import Layout from "../components/layout"
 import algoliasearch from "algoliasearch/lite"
 import {
@@ -12,7 +12,8 @@ import {
 } from "react-instantsearch-hooks-web"
 import Hit from "../components/searchResult"
 import Seo from "../components/seo"
-import { BsArrowRight, BsArrowLeft } from "react-icons/bs"
+import { BsArrowRight, BsArrowLeft, BsFilterLeft } from "react-icons/bs"
+import { GrFormClose } from "react-icons/gr"
 
 function NoResultsBoundary({ children, fallback }) {
   const { results } = useInstantSearch()
@@ -68,6 +69,7 @@ const Search = () => {
       ),
     []
   )
+  const [filterOpen, setFilterOpen] = useState(false)
 
   return (
     <Layout>
@@ -94,6 +96,26 @@ const Search = () => {
           <EmptyQueryBoundary fallback={null}>
             <NoResultsBoundary fallback={<NoResults />}>
               <CustomStats />
+              <div className="search-options-bar">
+                {filterOpen ? (
+                  <button
+                    className="project-options-button-top"
+                    onClick={() => setFilterOpen(!filterOpen)}
+                  >
+                    <GrFormClose className="filter-icon"></GrFormClose>
+                    Filter
+                  </button>
+                ) : (
+                  <button
+                    className="project-options-button-top"
+                    onClick={() => setFilterOpen(!filterOpen)}
+                  >
+                    <BsFilterLeft className="filter-icon"></BsFilterLeft>
+                    Filter
+                  </button>
+                )}
+              </div>
+
               <Hits
                 hitComponent={Hit}
                 classNames={{ root: "hits-container" }}

@@ -2032,6 +2032,10 @@ Search Page
   right: 150px;
 }
 
+.search-options-bar {
+  padding: var(--spacing-sm) 0;
+}
+
 @media screen and (max-width: 600px) {
   .search-page {
     padding: 20px;
