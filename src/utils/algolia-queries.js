@@ -99,7 +99,7 @@ const pageToAlgoliaRecord = edge => {
   if (project) {
     return {
       objectID: id,
-      searchCategory: "Project",
+      searchCategory: "Projects",
       principal: "Hervé Descottes",
       ...rest,
     }
@@ -112,7 +112,7 @@ const pageToAlgoliaRecord = edge => {
   } else if (team) {
     return {
       objectID: id,
-      searchCategory: "Person",
+      searchCategory: "People",
       ...rest,
     }
   } else {

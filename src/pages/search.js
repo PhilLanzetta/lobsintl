@@ -9,11 +9,13 @@ import {
   useInstantSearch,
   Configure,
   useStats,
+  RefinementList,
 } from "react-instantsearch-hooks-web"
 import Hit from "../components/searchResult"
 import Seo from "../components/seo"
 import { BsArrowRight, BsArrowLeft, BsFilterLeft } from "react-icons/bs"
 import { GrFormClose } from "react-icons/gr"
+import { Fade } from "react-awesome-reveal"
 
 function NoResultsBoundary({ children, fallback }) {
   const { results } = useInstantSearch()
@@ -70,6 +72,8 @@ const Search = () => {
     []
   )
   const [filterOpen, setFilterOpen] = useState(false)
+  const [category, setCategory] = useState("all")
+  const [sort, setSort] = useState("date-desc")
 
   return (
     <Layout>
@@ -114,24 +118,31 @@ const Search = () => {
                     Filter
                   </button>
                 )}
-                <div
-                  className={`search-filter-menu ${
-                    filterOpen ? "" : "hide-filter"
-                  }`}
-                >
-                  <div className="filter-column">
-                    <p className="upper">Type</p>
-                    <button className="project-options-button">
-                      <div className="check-box"></div> Featured Projects
-                    </button>
-                  </div>
-                  <div className="filter-column">
-                    <p className="upper">Sort</p>
-                    <button className="project-options-button">
-                      <div className="check-box"></div> Featured Projects
-                    </button>
-                  </div>
-                </div>
+                {filterOpen && (
+                  <Fade triggerOnce={true}>
+                    <div className="search-filter-menu">
+                      <div className="filter-column">
+                        <p className="upper">Type</p>
+                        <RefinementList attribute="searchCategory" />
+                      </div>
+                      <div className="filter-column">
+                        <p className="upper">Sort</p>
+                        <button className="project-options-button">
+                          <div className="check-box"></div> Newest to oldest
+                        </button>
+                        <button className="project-options-button">
+                          <div className="check-box"></div> Oldest to newest
+                        </button>
+                        <button className="project-options-button">
+                          <div className="check-box"></div> Alphabetical (A-Z)
+                        </button>
+                        <button className="project-options-button">
+                          <div className="check-box"></div> Alphabetical (Z-A)
+                        </button>
+                      </div>
+                    </div>
+                  </Fade>
+                )}
               </div>
 
               <Hits

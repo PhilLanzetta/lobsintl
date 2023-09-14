@@ -2036,10 +2036,14 @@ Search Page
   margin-top: var(--spacing-sm);
   padding: var(--spacing-sm) 0;
   border-bottom: 1px solid var(--fadedColor);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
 }
 
 .search-filter-menu {
-  transition: var(--fast-transition);
+  display: flex;
+  gap: var(--spacing-md);
 }
 
 @media screen and (max-width: 600px) {

@@ -24,7 +24,7 @@ const Hit = ({ hit }) => {
     <Fade triggerOnce={true}>
       {searchCategory && (
         <div className="search-result-item">
-          {searchCategory === "Project" && (
+          {searchCategory === "Projects" && (
             <>
               <p className="upper search-result-category">Project</p>
               <div className="search-info-container">
@@ -151,7 +151,7 @@ const Hit = ({ hit }) => {
               </div>
             </>
           )}
-          {searchCategory === "Person" && (
+          {searchCategory === "People" && (
             <>
               <p className="upper search-result-category">Person</p>
               <div className="search-info-container">
