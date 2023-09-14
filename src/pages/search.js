@@ -7,9 +7,12 @@ import {
   Hits,
   Pagination,
   useInstantSearch,
+  Configure,
+  useStats,
 } from "react-instantsearch-hooks-web"
 import Hit from "../components/searchResult"
 import Seo from "../components/seo"
+import { BsArrowRight, BsArrowLeft } from "react-icons/bs"
 
 function NoResultsBoundary({ children, fallback }) {
   const { results } = useInstantSearch()
@@ -50,6 +53,12 @@ function EmptyQueryBoundary({ children, fallback }) {
   return children
 }
 
+function CustomStats() {
+  const { nbHits } = useStats()
+
+  return <span>All results &#40;{nbHits.toLocaleString()}&#41;</span>
+}
+
 const Search = () => {
   const searchClient = useMemo(
     () =>
@@ -70,6 +79,7 @@ const Search = () => {
         >
           <SearchBox
             placeholder="Search"
+            id="search-box"
             searchAsYouType={false}
             classNames={{
               root: "search-box",
@@ -83,13 +93,48 @@ const Search = () => {
           />
           <EmptyQueryBoundary fallback={null}>
             <NoResultsBoundary fallback={<NoResults />}>
+              <CustomStats />
               <Hits
                 hitComponent={Hit}
                 classNames={{ root: "hits-container" }}
               />
+              <Configure hitsPerPage={10}></Configure>
+              <Pagination
+                padding={2}
+                showFirst={false}
+                showPrevious={true}
+                showNext={true}
+                showLast={false}
+                translations={{
+                  previousPageItemText: (
+                    <button
+                      className="search-prev"
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      <BsArrowLeft></BsArrowLeft> Previous page
+                    </button>
+                  ),
+                  nextPageItemText: (
+                    <button
+                      onClick={() => window.scrollTo(0, 0)}
+                      className="search-next"
+                    >
+                      Next page <BsArrowRight></BsArrowRight>
+                    </button>
+                  ),
+                  previousPageItemAriaLabel: "Go to previous page",
+                  nextPageItemAriaLabel: "Go to next page",
+                }}
+                classNames={{
+                  root: "pagination-root",
+                  list: "pagination-list",
+                  pageItem: "pagination-page",
+                  disabledItem: "pagination-disabled",
+                  selectedItem: "pagination-selected",
+                }}
+              ></Pagination>
             </NoResultsBoundary>
           </EmptyQueryBoundary>
-          <Pagination></Pagination>
         </InstantSearch>
       </div>
     </Layout>

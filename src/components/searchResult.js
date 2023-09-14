@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { AiOutlinePlus } from "react-icons/ai"
+import { Fade } from "react-awesome-reveal"
 
 const Hit = ({ hit }) => {
   const {
@@ -19,7 +20,7 @@ const Hit = ({ hit }) => {
   } = hit
 
   return (
-    <>
+    <Fade triggerOnce={true}>
       {searchCategory && (
         <div className="search-result-item">
           {searchCategory === "Project" && (
@@ -140,7 +141,7 @@ const Hit = ({ hit }) => {
           )}
         </div>
       )}
-    </>
+    </Fade>
   )
 }
 

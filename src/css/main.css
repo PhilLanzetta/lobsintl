@@ -1962,6 +1962,11 @@ Search Page
   padding-top: var(--spacing-md);
 }
 
+.hits-container > ol > li:first-of-type div {
+  margin-top: 0;
+  border-top: none;
+}
+
 .search-result-category {
   width: 25%;
 }
@@ -2008,6 +2013,51 @@ Search Page
   transition: all var(--fast-transition);
 }
 
+.pagination-list {
+  display: flex;
+  position: relative;
+  font-size: var(--font-sm-resp);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--fadedColor);
+}
+
+.pagination-list li {
+  list-style: none;
+}
+
+.pagination-page,
+.pagination-disabled {
+  opacity: var(--less-opacity);
+}
+
+.pagination-page {
+  margin-right: var(--spacing-xs);
+}
+
+.pagination-disabled {
+  cursor: default;
+}
+
+.pagination-selected {
+  opacity: 1;
+}
+
+.search-prev,
+.search-next {
+  display: flex;
+  gap: var(--spacing-xs);
+  align-items: center;
+  position: absolute;
+}
+
+.search-next {
+  right: 0;
+}
+
+.search-prev {
+  right: 150px;
+}
+
 @media screen and (max-width: 600px) {
   .search-page {
     padding: 20px;
@@ -2027,6 +2077,10 @@ Search Page
   .search-info-container {
     width: 100%;
   }
+
+  .search-prev {
+  right: 110px;
+}
 }
 
 /*
