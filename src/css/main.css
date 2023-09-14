@@ -2147,6 +2147,11 @@ Search Page
   .search-options-bar {
     flex-direction: column;
   }
+
+  .search-filter-menu {
+    font-size: var(--font-xs-resp);
+    gap: var(--spacing-sm);
+  }
 }
 
 /*
