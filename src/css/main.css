@@ -1509,6 +1509,9 @@ HOME
 .news-carousel-date {
   font-size: var(--font-xs-resp);
   margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
 }
 
 @media screen and (max-width: 600px) {
@@ -2079,8 +2082,8 @@ Search Page
   }
 
   .search-prev {
-  right: 110px;
-}
+    right: 110px;
+  }
 }
 
 /*

@@ -79,6 +79,7 @@ const pagesQuery = `{
         }
         slug
         title
+        externalLink
         internal {
           contentDigest
         }

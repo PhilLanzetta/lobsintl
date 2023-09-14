@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs"
 import useWindowSize from "../utils/useWindowSize"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { HiArrowUpRight } from "react-icons/hi2"
 
 const NewsCarousel = ({ news }) => {
   const sliderRef = useRef()
@@ -57,20 +58,41 @@ const NewsCarousel = ({ news }) => {
       <Slider {...settings} ref={sliderRef}>
         {news.map(newsItem => (
           <div key={newsItem.id}>
-            <Link to={`/news/${newsItem.slug}`} className="news-carousel-item">
-              <GatsbyImage
-                image={newsItem.heroImage.gatsbyImageData}
-                alt={newsItem.heroImage.description}
-                className="news-carousel-image"
-              ></GatsbyImage>
-              <p>{newsItem.title}</p>
-              <p className="news-carousel-date">
-                {new Intl.DateTimeFormat("en-us", {
-                  month: "long",
-                  day: "numeric",
-                }).format(new Date(newsItem.date))}
-              </p>
-            </Link>
+            {newsItem.externalLink ? (
+              <a href={newsItem.externalLink} className="news-carousel-item">
+                <GatsbyImage
+                  image={newsItem.heroImage.gatsbyImageData}
+                  alt={newsItem.heroImage.description}
+                  className="news-carousel-image"
+                ></GatsbyImage>
+                <p>{newsItem.title}</p>
+                <p className="news-carousel-date">
+                  {new Intl.DateTimeFormat("en-us", {
+                    month: "long",
+                    day: "numeric",
+                  }).format(new Date(newsItem.date))}{" "}
+                  <HiArrowUpRight></HiArrowUpRight>
+                </p>
+              </a>
+            ) : (
+              <Link
+                to={`/news/${newsItem.slug}`}
+                className="news-carousel-item"
+              >
+                <GatsbyImage
+                  image={newsItem.heroImage.gatsbyImageData}
+                  alt={newsItem.heroImage.description}
+                  className="news-carousel-image"
+                ></GatsbyImage>
+                <p>{newsItem.title}</p>
+                <p className="news-carousel-date">
+                  {new Intl.DateTimeFormat("en-us", {
+                    month: "long",
+                    day: "numeric",
+                  }).format(new Date(newsItem.date))}
+                </p>
+              </Link>
+            )}
           </div>
         ))}
       </Slider>

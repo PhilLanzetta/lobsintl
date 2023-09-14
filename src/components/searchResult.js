@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { AiOutlinePlus } from "react-icons/ai"
+import { HiArrowUpRight } from "react-icons/hi2"
 import { Fade } from "react-awesome-reveal"
 
 const Hit = ({ hit }) => {
@@ -14,9 +15,9 @@ const Hit = ({ hit }) => {
     geographicRegion,
     slug,
     searchCategory,
-    year,
     position,
     date,
+    externalLink,
   } = hit
 
   return (
@@ -83,31 +84,70 @@ const Hit = ({ hit }) => {
             <>
               <p className="upper search-result-category">News</p>
               <div className="search-info-container">
-                <Link
-                  to={`/news/${slug}`}
-                  className="search-result-image-container"
-                >
-                  <GatsbyImage
-                    image={heroImage.gatsbyImageData}
-                    alt={heroImage.description}
-                    className="search-result-image"
-                  ></GatsbyImage>
-                </Link>
-                <div className="search-info-text">
-                  <Link to={`/news/${slug}`}>
-                    <p className="search-result-title">{title}</p>
-                    <p className="faded">
-                      {new Intl.DateTimeFormat("en-us", {
-                        month: "long",
-                        day: "numeric",
-                        year: "numeric",
-                      }).format(new Date(date))}
-                    </p>
-                  </Link>
-                  <Link to={`/news/${slug}`} className="search-learn-more">
-                    <AiOutlinePlus></AiOutlinePlus> Learn More
-                  </Link>
-                </div>
+                {externalLink ? (
+                  <>
+                    <a
+                      href={externalLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="search-result-image-container"
+                    >
+                      <GatsbyImage
+                        image={heroImage.gatsbyImageData}
+                        alt={heroImage.description}
+                        className="search-result-image"
+                      ></GatsbyImage>
+                    </a>
+                    <div className="search-info-text">
+                      <a href={externalLink} target="_blank" rel="noreferrer">
+                        <p className="search-result-title">{title}</p>
+                        <p className="faded">
+                          {new Intl.DateTimeFormat("en-us", {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          }).format(new Date(date))}
+                        </p>
+                      </a>
+                      <a
+                        href={externalLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="search-learn-more"
+                      >
+                        <HiArrowUpRight></HiArrowUpRight> Learn More
+                      </a>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to={`/news/${slug}`}
+                      className="search-result-image-container"
+                    >
+                      <GatsbyImage
+                        image={heroImage.gatsbyImageData}
+                        alt={heroImage.description}
+                        className="search-result-image"
+                      ></GatsbyImage>
+                    </Link>
+                    <div className="search-info-text">
+                      <Link to={`/news/${slug}`}>
+                        <p className="search-result-title">{title}</p>
+                        <p className="faded">
+                          {new Intl.DateTimeFormat("en-us", {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          }).format(new Date(date))}
+                        </p>
+                      </Link>
+                      <Link to={`/news/${slug}`} className="search-learn-more">
+                        <AiOutlinePlus></AiOutlinePlus> Learn More
+                      </Link>
+                    </div>
+                  </>
+                )}
               </div>
             </>
           )}
