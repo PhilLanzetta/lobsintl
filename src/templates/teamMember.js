@@ -5,6 +5,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import ProjectGrid from "../components/projectGrid"
 import { Fade } from "react-awesome-reveal"
 import HideOnScroll from "../components/hideOnScroll"
+import Seo from "../components/seo"
 
 const TeamMember = ({ data }) => {
   const { name, title, headShot, project, bio } = data.contentfulTeamMember
@@ -71,6 +72,9 @@ export const query = graphql`
       headShot {
         gatsbyImageData
         description
+        file {
+          url
+        }
       }
       project {
         id
@@ -96,5 +100,13 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = ({ data }) => (
+  <Seo
+    title={data.contentfulTeamMember.name}
+    image={data.contentfulTeamMember.headShot.file.url}
+    keywords={`${data.contentfulTeamMember.name}, ${data.contentfulTeamMember.title}`}
+  />
+)
 
 export default TeamMember

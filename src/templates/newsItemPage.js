@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import HideOnScroll from "../components/hideOnScroll"
 import { GatsbyImage } from "gatsby-plugin-image"
 import ModuleContent from "../components/moduleContent"
+import Seo from "../components/seo"
 
 const NewsItemPage = ({ data }) => {
   const {
@@ -63,6 +64,9 @@ export const query = graphql`
       heroImage {
         gatsbyImageData
         description
+        file {
+          url
+        }
       }
       moduleContent {
         ... on ContentfulNewsLongText {
@@ -102,5 +106,13 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = ({ data }) => (
+  <Seo
+    title={data.conentfulNewsEntry.title}
+    image={data.contentfulNewsEntry.heroImage.file.url}
+    description={data.contentfulNewsEntry.headline}
+  />
+)
 
 export default NewsItemPage

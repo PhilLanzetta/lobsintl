@@ -5,6 +5,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { marked } from "marked"
 import { Fade } from "react-awesome-reveal"
 import HideOnScroll from "../components/hideOnScroll"
+import Seo from "../components/seo"
 
 const CareerPosting = ({ data }) => {
   const { jobTitle, postingDate, jobDescription, image } =
@@ -58,9 +59,20 @@ export const query = graphql`
       image {
         description
         gatsbyImageData
+        file {
+          url
+        }
       }
     }
   }
 `
+
+export const Head = ({ data }) => (
+  <Seo
+    title={data.contentfulCareerPosting.jobTitle}
+    image={data.contentfulCareerPosting.image.file.url}
+    keywords={`${data.contentfulCareerPosting.jobTitle}`}
+  />
+)
 
 export default CareerPosting

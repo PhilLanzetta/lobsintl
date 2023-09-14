@@ -11,6 +11,7 @@ import ProjectList from "../components/projectList"
 import ProjectMap from "../components/projectMap"
 import useWindowSize from "../utils/useWindowSize"
 import HideOnScroll from "../components/hideOnScroll"
+import Seo from "../components/seo"
 
 const Projects = ({ data, location }) => {
   const allProjects = data.allContentfulProject.nodes
@@ -701,5 +702,7 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = () => <Seo title="Projects" />
 
 export default Projects

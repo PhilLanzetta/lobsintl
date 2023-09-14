@@ -9,6 +9,7 @@ import {
   useInstantSearch,
 } from "react-instantsearch-hooks-web"
 import Hit from "../components/searchResult"
+import Seo from "../components/seo"
 
 function NoResultsBoundary({ children, fallback }) {
   const { results } = useInstantSearch()
@@ -94,5 +95,7 @@ const Search = () => {
     </Layout>
   )
 }
+
+export const Head = () => <Seo title="Search" />
 
 export default Search

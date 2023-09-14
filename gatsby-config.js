@@ -4,10 +4,11 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `L'Observatoire`,
-    description: `Lighting designer`,
+    title: `L'Observatoire International`,
+    description: `L'Observatoire International is a lighting design firm established by Hervé Descottes in 1993 in New York City. The firm works within a range of different spatial expressions including architecture, landscape, urban, and fine art projects.`,
     author: `@pacific`,
-    siteUrl: `https://lobservatoire.com/`,
+    siteUrl: `https://lobsintl.com/`,
+    keywords: `Light, lighting design, Hervé Descottes, New York City, architecture, landscape, urban, fine art projects`,
   },
   plugins: [
     `gatsby-plugin-image`,

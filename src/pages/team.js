@@ -7,6 +7,7 @@ import { Link } from "gatsby"
 import { BsArrowRight } from "react-icons/bs"
 import HideOnScroll from "../components/hideOnScroll"
 import { Fade } from "react-awesome-reveal"
+import Seo from "../components/seo"
 
 const Team = ({ data }) => {
   const teamInfo = data.contentfulTeamPage
@@ -176,6 +177,9 @@ export const query = graphql`
       teamPhoto {
         gatsbyImageData
         description
+        file {
+          url
+        }
       }
       nyTeam {
         id
@@ -225,5 +229,9 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = ({ data }) => (
+  <Seo title="Team" image={data.contentfulTeamPage.teamPhoto.file.url} />
+)
 
 export default Team

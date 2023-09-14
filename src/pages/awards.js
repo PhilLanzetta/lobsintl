@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import { Link, graphql } from "gatsby"
 import HideOnScroll from "../components/hideOnScroll"
 import { Fade } from "react-awesome-reveal"
+import Seo from "../components/seo"
 
 const Awards = ({ data }) => {
   function onlyUnique(value, index, array) {
@@ -61,5 +62,6 @@ export const query = graphql`
     }
   }
 `
+export const Head = () => <Seo title="Awards" />
 
 export default Awards

@@ -6,6 +6,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { BsArrowRight } from "react-icons/bs"
 import { HiArrowUpRight } from "react-icons/hi2"
 import { Fade } from "react-awesome-reveal"
+import Seo from "../components/seo"
 
 const News = ({ data, location }) => {
   const allNews = data.allContentfulNewsEntry.nodes
@@ -98,5 +99,6 @@ export const query = graphql`
     }
   }
 `
+export const Head = () => <Seo title="News" />
 
 export default News

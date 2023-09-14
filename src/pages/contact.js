@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import { Link } from "gatsby"
 import useWindowSize from "../utils/useWindowSize"
 import HideOnScroll from "../components/hideOnScroll"
+import Seo from "../components/seo"
 
 const Contact = () => {
   const { width } = useWindowSize()
@@ -71,5 +72,7 @@ const Contact = () => {
     </Layout>
   )
 }
+
+export const Head = () => <Seo title="Contact" />
 
 export default Contact

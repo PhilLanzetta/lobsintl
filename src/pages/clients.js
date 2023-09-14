@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import HideOnScroll from "../components/hideOnScroll"
 import { Fade } from "react-awesome-reveal"
+import Seo from "../components/seo"
 
 const Clients = ({ data }) => {
   function onlyUnique(value, index, array) {
@@ -81,5 +82,6 @@ export const query = graphql`
     }
   }
 `
+export const Head = () => <Seo title="Clients" />
 
 export default Clients

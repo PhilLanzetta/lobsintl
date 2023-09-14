@@ -7,6 +7,7 @@ import ProjectTable from "../components/projectTable"
 import ModuleContent from "../components/moduleContent"
 import Related from "../components/related"
 import HideOnScroll from "../components/hideOnScroll"
+import Seo from "../components/seo"
 
 const SingleProject = ({ data }) => {
   const {
@@ -155,6 +156,9 @@ export const query = graphql`
         description
         gatsbyImageData
         id
+        file {
+          url
+        }
       }
       headlineText {
         headlineText
@@ -195,5 +199,12 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = ({ data }) => (
+  <Seo
+    title={data.contentfulProject.projectName}
+    image={data.contentfulProject.images[0].file.url}
+  />
+)
 
 export default SingleProject
