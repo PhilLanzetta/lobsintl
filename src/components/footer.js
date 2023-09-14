@@ -1,8 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
 import { HiArrowUpRight } from "react-icons/hi2"
+import useWindowSize from "../utils/useWindowSize"
+import { ThemeToggler } from "gatsby-plugin-dark-mode"
+import { BsSun, BsMoon } from "react-icons/bs"
+import { Fade } from "react-awesome-reveal"
 
 const Footer = () => {
+  const { width } = useWindowSize()
   return (
     <footer className={`footer`}>
       <div className="footer-column-logo">
@@ -82,6 +87,33 @@ const Footer = () => {
             <p className="upper">New Business</p>
             <a href="mailto:bd@lobsintl.com">bd@lobsintl.com</a>
           </div>
+          {width < 901 && (
+            <div className="theme-toggle-container-mobile">
+              <ThemeToggler>
+                {({ theme, toggleTheme }) => (
+                  <>
+                    <button
+                      onClick={() =>
+                        toggleTheme(theme === "light" ? "dark" : "light")
+                      }
+                      className="theme-toggle-btn"
+                      aria-label="change display mode"
+                    >
+                      {theme === "light" ? (
+                        <Fade triggerOnce={true}>
+                          <BsMoon></BsMoon>
+                        </Fade>
+                      ) : (
+                        <Fade triggerOnce={true}>
+                          <BsSun></BsSun>
+                        </Fade>
+                      )}
+                    </button>
+                  </>
+                )}
+              </ThemeToggler>
+            </div>
+          )}
         </div>
       </div>
       <div className="footer-column-links">
@@ -134,6 +166,33 @@ const Footer = () => {
             </a>
           </p>
         </div>
+        {width > 900 && (
+          <div className="theme-toggle-container">
+            <ThemeToggler>
+              {({ theme, toggleTheme }) => (
+                <>
+                  <button
+                    onClick={() =>
+                      toggleTheme(theme === "light" ? "dark" : "light")
+                    }
+                    className="theme-toggle-btn"
+                    aria-label="change display mode"
+                  >
+                    {theme === "light" ? (
+                      <Fade triggerOnce={true}>
+                        <BsMoon></BsMoon>
+                      </Fade>
+                    ) : (
+                      <Fade triggerOnce={true}>
+                        <BsSun></BsSun>
+                      </Fade>
+                    )}
+                  </button>
+                </>
+              )}
+            </ThemeToggler>
+          </div>
+        )}
       </div>
     </footer>
   )

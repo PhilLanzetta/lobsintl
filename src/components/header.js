@@ -428,27 +428,6 @@ const Header = ({ location }) => {
               Search
             </Link>
           </div>
-          <div className="theme-toggle-container">
-            <ThemeToggler>
-              {({ theme, toggleTheme }) => (
-                <>
-                  <span>{theme === "light" ? "Night mode" : "Day mode"}</span>
-                  <button
-                    onClick={() =>
-                      toggleTheme(theme === "light" ? "dark" : "light")
-                    }
-                    className="theme-toggle-btn"
-                  >
-                    <div
-                      className={`toggle-btn ${
-                        theme === "light" ? "" : "toggle-light"
-                      }`}
-                    ></div>
-                  </button>
-                </>
-              )}
-            </ThemeToggler>
-          </div>
         </div>
       </section>
     </header>
