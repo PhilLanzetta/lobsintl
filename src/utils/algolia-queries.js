@@ -35,6 +35,11 @@ const pagesQuery = `{
             name
             title
           }
+          projectTeam: team {
+            id
+            name
+            title
+          }
           title: projectName
           slug
           typology

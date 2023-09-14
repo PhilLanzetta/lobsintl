@@ -10,6 +10,7 @@ import {
   Configure,
   useStats,
   RefinementList,
+  useSortBy,
 } from "react-instantsearch-hooks-web"
 import Hit from "../components/searchResult"
 import Seo from "../components/seo"
@@ -62,6 +63,28 @@ function CustomStats() {
   return <span>All results &#40;{nbHits.toLocaleString()}&#41;</span>
 }
 
+function CustomSortBy(props) {
+  const { currentRefinement, options, refine } = useSortBy(props)
+
+  return (
+    <>
+      {options.map(option => (
+        <label key={option.value} className="sort-button-container">
+          <input
+            type="radio"
+            name="sort"
+            value={option.value}
+            onClick={event => refine(event.target.value)}
+            className="sort-button"
+            checked={option.value === currentRefinement}
+          />
+          {option.label}
+        </label>
+      ))}
+    </>
+  )
+}
+
 const Search = () => {
   const searchClient = useMemo(
     () =>
@@ -72,8 +95,6 @@ const Search = () => {
     []
   )
   const [filterOpen, setFilterOpen] = useState(false)
-  const [category, setCategory] = useState("all")
-  const [sort, setSort] = useState("date-desc")
 
   return (
     <Layout>
@@ -123,22 +144,38 @@ const Search = () => {
                     <div className="search-filter-menu">
                       <div className="filter-column">
                         <p className="upper">Type</p>
-                        <RefinementList attribute="searchCategory" />
+                        <RefinementList
+                          attribute="searchCategory"
+                          classNames={{
+                            checkbox: "refinement-check",
+                            list: "refinement-list",
+                            item: "refinement-item",
+                            count: "refinement-count",
+                          }}
+                        />
                       </div>
                       <div className="filter-column">
                         <p className="upper">Sort</p>
-                        <button className="project-options-button">
-                          <div className="check-box"></div> Newest to oldest
-                        </button>
-                        <button className="project-options-button">
-                          <div className="check-box"></div> Oldest to newest
-                        </button>
-                        <button className="project-options-button">
-                          <div className="check-box"></div> Alphabetical (A-Z)
-                        </button>
-                        <button className="project-options-button">
-                          <div className="check-box"></div> Alphabetical (Z-A)
-                        </button>
+                        <CustomSortBy
+                          items={[
+                            {
+                              label: "Newest to oldest",
+                              value: "Pages",
+                            },
+                            {
+                              label: "Oldest to newest",
+                              value: "Pages_Date_ASC",
+                            },
+                            {
+                              label: "Alphabetical (A-Z)",
+                              value: "Pages_Alpha_ASC",
+                            },
+                            {
+                              label: "Alphabetical (Z-A)",
+                              value: "Pages_Alpha_DESC",
+                            },
+                          ]}
+                        />
                       </div>
                     </div>
                   </Fade>
