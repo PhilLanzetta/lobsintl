@@ -154,34 +154,35 @@ const Search = () => {
                           }}
                         />
                       </div>
-                      <div className="filter-column">
-                        <p className="upper">Sort</p>
-                        <CustomSortBy
-                          items={[
-                            {
-                              label: "Newest to oldest",
-                              value: "Pages",
-                            },
-                            {
-                              label: "Oldest to newest",
-                              value: "Pages_Date_ASC",
-                            },
-                            {
-                              label: "Alphabetical (A-Z)",
-                              value: "Pages_Alpha_ASC",
-                            },
-                            {
-                              label: "Alphabetical (Z-A)",
-                              value: "Pages_Alpha_DESC",
-                            },
-                          ]}
-                        />
+                      <div>
+                        <div className="filter-column search-column">
+                          <p className="upper">Sort</p>
+                          <CustomSortBy
+                            items={[
+                              {
+                                label: "Newest to oldest",
+                                value: "Pages",
+                              },
+                              {
+                                label: "Oldest to newest",
+                                value: "Pages_Date_ASC",
+                              },
+                              {
+                                label: "Alphabetical (A-Z)",
+                                value: "Pages_Alpha_ASC",
+                              },
+                              {
+                                label: "Alphabetical (Z-A)",
+                                value: "Pages_Alpha_DESC",
+                              },
+                            ]}
+                          />
+                        </div>
                       </div>
                     </div>
                   </Fade>
                 )}
               </div>
-
               <Hits
                 hitComponent={Hit}
                 classNames={{ root: "hits-container" }}

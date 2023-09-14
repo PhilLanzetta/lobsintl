@@ -1288,6 +1288,10 @@ PROJECTS PAGE
     flex-wrap: wrap;
   }
 
+  .search-column {
+    flex-direction: column;
+  }
+
   .filter-column p {
     width: 100%;
   }
@@ -2039,11 +2043,15 @@ Search Page
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-md);
+  position: relative;
 }
 
 .search-filter-menu {
   display: flex;
+  align-items: flex-start;
   gap: var(--spacing-md);
+  opacity: 1;
+  transition: all var(--md-transition);
 }
 
 .refinement-list {
@@ -2134,6 +2142,10 @@ Search Page
 
   .search-prev {
     right: 110px;
+  }
+
+  .search-options-bar {
+    flex-direction: column;
   }
 }
 
