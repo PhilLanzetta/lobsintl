@@ -79,23 +79,20 @@ export const query = graphql`
         }
         ... on ContentfulSingleColumnImage {
           singleId: id
+          title
+          showCaption
           image {
-            caption
-            image {
-              gatsbyImageData
-              description
-            }
+            gatsbyImageData
+            description
           }
           margin
         }
         ... on ContentfulTwoColumnImage {
           twoColId: id
+          imageCaptions
           images {
-            caption
-            image {
-              description
-              gatsbyImageData
-            }
+            description
+            gatsbyImageData
           }
           margin
         }

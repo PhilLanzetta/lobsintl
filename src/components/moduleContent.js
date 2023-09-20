@@ -18,11 +18,11 @@ const ModuleContent = ({ moduleContent }) => {
             >
               <figure className="single-col-image">
                 <GatsbyImage
-                  image={item.image.image.gatsbyImageData}
-                  alt={item.image.image.description}
+                  image={item.image.gatsbyImageData}
+                  alt={item.image.description}
                   className="image"
                 ></GatsbyImage>
-                <figcaption>{item.image.caption}</figcaption>
+                {item.showCaption && <figcaption>{item.title}</figcaption>}
               </figure>
             </div>
           )
@@ -37,11 +37,13 @@ const ModuleContent = ({ moduleContent }) => {
               {item.images.map((image, index) => (
                 <figure key={index} className="two-col-image">
                   <GatsbyImage
-                    image={image.image.gatsbyImageData}
-                    alt={image.image.description}
+                    image={image.gatsbyImageData}
+                    alt={image.description}
                     className="image"
                   ></GatsbyImage>
-                  <figcaption>{image.caption}</figcaption>
+                  {item.imageCaptions?.length && (
+                    <figcaption>{item.imageCaptions[index]}</figcaption>
+                  )}
                 </figure>
               ))}
             </div>

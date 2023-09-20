@@ -122,23 +122,11 @@ export const query = graphql`
         ... on ContentfulSingleColumnImage {
           singleId: id
           margin
+          title
+          showCaption
           image {
-            caption
-            image {
-              description
-              gatsbyImageData
-            }
-          }
-        }
-        ... on ContentfulTwoColumnImage {
-          twoColId: id
-          margin
-          images {
-            caption
-            image {
-              description
-              gatsbyImageData
-            }
+            description
+            gatsbyImageData
           }
         }
         ... on ContentfulVideoModule {
