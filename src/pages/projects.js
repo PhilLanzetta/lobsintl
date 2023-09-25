@@ -101,7 +101,6 @@ const Projects = ({ data, location }) => {
   }
 
   const filterByNetwork = array => {
-    console.log(array)
     return array.filter(item =>
       item.designTeam?.some(member => member.name === network)
     )

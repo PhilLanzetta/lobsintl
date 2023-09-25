@@ -67,10 +67,12 @@ const NewsCarousel = ({ news }) => {
                 ></GatsbyImage>
                 <p>{newsItem.title}</p>
                 <p className="news-carousel-date">
-                  {new Intl.DateTimeFormat("en-us", {
+                  {new Date(
+                    newsItem.date.replace(/-/g, "/").replace(/T.+/, "")
+                  ).toLocaleDateString("en-us", {
                     month: "long",
                     day: "numeric",
-                  }).format(new Date(newsItem.date))}{" "}
+                  })}{" "}
                   <HiArrowUpRight></HiArrowUpRight>
                 </p>
               </a>

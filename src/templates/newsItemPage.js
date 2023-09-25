@@ -38,11 +38,13 @@ const NewsItemPage = ({ data }) => {
         )}
         <div className="single-news-date-credit">
           <p>
-            {new Intl.DateTimeFormat("en-US", {
+            {new Date(
+              date.replace(/-/g, "/").replace(/T.+/, "")
+            ).toLocaleDateString("en-us", {
               month: "long",
               day: "numeric",
               year: "numeric",
-            }).format(new Date(date))}
+            })}
           </p>
           <p>{creditText}</p>
         </div>

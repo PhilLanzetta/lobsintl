@@ -49,11 +49,13 @@ const News = ({ data, location }) => {
               <div className="news-item-text">
                 <Fade triggerOnce={true}>
                   <p className="news-date">
-                    {new Intl.DateTimeFormat("en-us", {
+                    {new Date(
+                      item.date.replace(/-/g, "/").replace(/T.+/, "")
+                    ).toLocaleDateString("en-us", {
                       month: "long",
                       day: "numeric",
                       year: "numeric",
-                    }).format(new Date(item.date))}
+                    })}
                   </p>
                   <h2 className="news-headline">{item.headline}</h2>
                   {isExternal ? (
