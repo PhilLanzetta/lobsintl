@@ -140,7 +140,7 @@ const Projects = ({ data, location }) => {
 
   const handleFilter = () => {
     let result = allProjects
-    if (featuredFilter || statusFilter) {
+    if (featuredFilter || statusFilter.length) {
       result = filterSelectedStatus(result)
       result = filterByFeatured(result)
       result = result
