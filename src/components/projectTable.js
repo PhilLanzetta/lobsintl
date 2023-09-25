@@ -64,7 +64,13 @@ const ProjectTable = ({
               <hr className="faded-line"></hr>
               <div className="project-table-row">
                 <p>Status</p>
-                <p>{status}</p>
+                <Link
+                  className="project-table-button"
+                  to="/projects"
+                  state={{ statusFilter: [status] }}
+                >
+                  {status}
+                </Link>
               </div>
             </div>
           )}

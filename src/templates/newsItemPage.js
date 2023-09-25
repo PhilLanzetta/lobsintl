@@ -8,8 +8,6 @@ import Seo from "../components/seo"
 
 const NewsItemPage = ({ data }) => {
   const {
-    title,
-    slug,
     showHeroImageInEntry,
     moduleContent,
     heroImage,
@@ -24,8 +22,7 @@ const NewsItemPage = ({ data }) => {
         <Link to="/news">News</Link> |{" "}
         <Link to="/news" state={{ category: category }}>
           {category}
-        </Link>{" "}
-        | <Link to={`/news${slug}`}>{title}</Link>
+        </Link>
       </HideOnScroll>
       <div className="single-news-page">
         <h2>{headline}</h2>

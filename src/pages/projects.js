@@ -15,15 +15,13 @@ import Seo from "../components/seo"
 
 const Projects = ({ data, location }) => {
   const allProjects = data.allContentfulProject.nodes
-  const thisYear = new Date().getFullYear()
   const [filterOpen, setFilterOpen] = useState(false)
   const [projects, setProjects] = useState(allProjects)
   const [view, setView] = useState()
-  const [recent, setRecent] = useState(false)
   const [paddingTop, setPaddingTop] = useState(145)
   const [featuredFilter, setFeaturedFilter] = useState(false)
-  const [progressFilter, setProgressFilter] = useState(
-    location.state?.progressFilter || false
+  const [statusFilter, setStatusFilter] = useState(
+    location.state?.statusFilter || []
   )
   const [typologyFilter, setTypologyFilter] = useState(
     location.state?.typologyFilter || []
@@ -47,9 +45,8 @@ const Projects = ({ data, location }) => {
   })
 
   const isDisabled =
-    !recent &&
     !featuredFilter &&
-    !progressFilter &&
+    !statusFilter.length &&
     !typologyFilter.length &&
     !regionFilter.length &&
     !city &&
@@ -63,23 +60,12 @@ const Projects = ({ data, location }) => {
   }
 
   const filterSelectedStatus = array => {
-    if (progressFilter) {
-      return [
-        ...array,
-        allProjects.filter(item => item.status.includes("In Progress")),
-      ]
-    } else return array
-  }
-
-  const filterRecentlyCompleted = array => {
-    if (recent) {
-      return [
-        ...array,
-        allProjects.filter(
-          item => item.status.includes("Completed") && thisYear - item.year <= 2
-        ),
-      ]
-    } else return array
+    return [
+      ...array,
+      statusFilter
+        .map(term => array.filter(item => item.status === term))
+        .reduce((a, b) => a.concat(b), []),
+    ]
   }
 
   const filterByFeatured = array => {
@@ -136,6 +122,14 @@ const Projects = ({ data, location }) => {
     }
   }
 
+  const handleStatusFilter = status => {
+    if (statusFilter.includes(status)) {
+      setStatusFilter(statusFilter.filter(item => item !== status))
+    } else {
+      setStatusFilter([...statusFilter, status])
+    }
+  }
+
   const handleLocaleFilter = locale => {
     if (regionFilter.includes(locale)) {
       setRegionFilter(regionFilter.filter(item => item !== locale))
@@ -146,9 +140,8 @@ const Projects = ({ data, location }) => {
 
   const handleFilter = () => {
     let result = allProjects
-    if (featuredFilter || recent || progressFilter) {
+    if (featuredFilter || statusFilter) {
       result = filterSelectedStatus(result)
-      result = filterRecentlyCompleted(result)
       result = filterByFeatured(result)
       result = result
         .filter(item => item.length)
@@ -194,8 +187,7 @@ const Projects = ({ data, location }) => {
 
   const handleClearAll = () => {
     setFeaturedFilter(false)
-    setProgressFilter(false)
-    setRecent(false)
+    setStatusFilter([])
     setTypologyFilter([])
     setRegionFilter([])
     setCity("")
@@ -230,8 +222,7 @@ const Projects = ({ data, location }) => {
     typologyFilter,
     regionFilter,
     year,
-    progressFilter,
-    recent,
+    statusFilter,
     featuredFilter,
     year,
     country,
@@ -283,21 +274,19 @@ const Projects = ({ data, location }) => {
                 <GrFormClose></GrFormClose>Featured Projects
               </button>
             )}
-            {recent && (
-              <button
-                className="current-filter-button"
-                onClick={() => setRecent(false)}
-              >
-                <GrFormClose></GrFormClose>Recently Completed
-              </button>
-            )}
-            {progressFilter && (
-              <button
-                className="current-filter-button"
-                onClick={() => setProgressFilter(false)}
-              >
-                <GrFormClose></GrFormClose>In Progress
-              </button>
+            {statusFilter.length > 0 && (
+              <>
+                {statusFilter.map((item, index) => (
+                  <button
+                    key={index}
+                    className="current-filter-button"
+                    onClick={() => handleStatusFilter(item)}
+                  >
+                    <GrFormClose></GrFormClose>
+                    {item}
+                  </button>
+                ))}
+              </>
             )}
             {typologyFilter.length > 0 && (
               <>
@@ -428,21 +417,19 @@ const Projects = ({ data, location }) => {
                 <GrFormClose></GrFormClose>Featured Projects
               </button>
             )}
-            {recent && (
-              <button
-                className="current-filter-button"
-                onClick={() => setRecent(false)}
-              >
-                <GrFormClose></GrFormClose>Recently Completed
-              </button>
-            )}
-            {progressFilter && (
-              <button
-                className="current-filter-button"
-                onClick={() => setProgressFilter(false)}
-              >
-                <GrFormClose></GrFormClose>In Progress
-              </button>
+            {statusFilter.length > 0 && (
+              <>
+                {statusFilter.map((item, index) => (
+                  <button
+                    key={index}
+                    className="current-filter-button"
+                    onClick={() => handleStatusFilter(item)}
+                  >
+                    <GrFormClose></GrFormClose>
+                    {item}
+                  </button>
+                ))}
+              </>
             )}
             {typologyFilter.length > 0 && (
               <>
@@ -542,17 +529,23 @@ const Projects = ({ data, location }) => {
           </button>
           <button
             className="project-options-button"
-            onClick={() => setRecent(!recent)}
+            onClick={() => handleStatusFilter("Completed")}
           >
-            <div className={`check-box ${recent ? "checked" : ""}`}></div>{" "}
-            Recently Completed
+            <div
+              className={`check-box ${
+                statusFilter.includes("Completed") ? "checked" : ""
+              }`}
+            ></div>{" "}
+            Completed
           </button>
           <button
             className="project-options-button"
-            onClick={() => setProgressFilter(!progressFilter)}
+            onClick={() => handleStatusFilter("In Progress")}
           >
             <div
-              className={`check-box ${progressFilter ? "checked" : ""}`}
+              className={`check-box ${
+                statusFilter.includes("In Progress") ? "checked" : ""
+              }`}
             ></div>{" "}
             In Progress
           </button>

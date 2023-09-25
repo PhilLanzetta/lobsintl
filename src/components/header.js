@@ -2,7 +2,6 @@ import * as React from "react"
 import { useState, useEffect, useLayoutEffect } from "react"
 import { Link } from "gatsby"
 import useWindowSize from "../utils/useWindowSize"
-import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import { Fade } from "react-awesome-reveal"
 
 const Header = ({ location }) => {
@@ -349,17 +348,24 @@ const Header = ({ location }) => {
                 </Link>
                 <Link
                   to="/news"
-                  state={{ category: "Article" }}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Articles
-                </Link>
-                <Link
-                  to="/news"
                   state={{ category: "Award" }}
                   onClick={() => setIsOpen(false)}
                 >
                   Awards
+                </Link>
+                <Link
+                  to="/news"
+                  state={{ category: "Lecture" }}
+                  onClick={() => setIsOpen(false)}
+                >
+                  Lectures
+                </Link>
+                <Link
+                  to="/news"
+                  state={{ category: "Event" }}
+                  onClick={() => setIsOpen(false)}
+                >
+                  Events
                 </Link>
                 <Link
                   to="/news"
@@ -391,17 +397,24 @@ const Header = ({ location }) => {
                     </Link>
                     <Link
                       to="/news"
-                      state={{ category: "Article" }}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Articles
-                    </Link>
-                    <Link
-                      to="/news"
                       state={{ category: "Award" }}
                       onClick={() => setIsOpen(false)}
                     >
                       Awards
+                    </Link>
+                    <Link
+                      to="/news"
+                      state={{ category: "Lecture" }}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Lectures
+                    </Link>
+                    <Link
+                      to="/news"
+                      state={{ category: "Event" }}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Events
                     </Link>
                     <Link
                       to="/news"

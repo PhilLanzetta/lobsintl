@@ -27,8 +27,9 @@ const News = ({ data, location }) => {
           News
         </Link>{" "}
         | <button onClick={() => filterNews("Project")}>Projects</button> |{" "}
-        <button onClick={() => filterNews("Article")}>Articles</button> |{" "}
         <button onClick={() => filterNews("Award")}>Awards</button> |{" "}
+        <button onClick={() => filterNews("Lecture")}>Lectures</button> |{" "}
+        <button onClick={() => filterNews("Event")}>Events</button> |{" "}
         <button onClick={() => filterNews("Person")}>People</button>
       </HideOnScroll>
       <div className="news-page">
