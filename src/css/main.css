@@ -2383,6 +2383,23 @@ News Page
     padding: 20px;
     padding-top: 120px;
   }
+
+  .news-item,
+  .news-item:nth-of-type(3n + 1),
+  .news-item:nth-of-type(4n + 1) {
+    width: 100%;
+    padding: 0;
+    border-right: none;
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--fadedColor);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .news-item .news-item-image,
+  .news-item:nth-of-type(4n + 1) .news-item-image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+  }
 }
 
 /*
