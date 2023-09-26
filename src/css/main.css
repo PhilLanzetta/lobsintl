@@ -2447,14 +2447,16 @@ Single News Page
 
 .press-page-item {
   width: calc(25% - (var(--spacing-md) * 0.75));
-  border: 1px solid var(--color);
+  opacity: 1;
   padding: var(--spacing-sm);
+  transition: all var(--fast-transition);
 }
 
 .press-page-item:hover {
   color: var(--background);
   background: var(--color);
   opacity: 1;
+  transition: all var(--fast-transition);
 }
 
 .press-page-item a:hover {
@@ -2469,6 +2471,8 @@ Single News Page
   font-weight: 400;
   padding: var(--spacing-sm) 0;
 }
+
+
 
 @media screen and (max-width: 900px) {
   .press-page-item {

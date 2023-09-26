@@ -21,9 +21,9 @@ const Press = ({ data }) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <p className="press-item-pub">{item.publication}</p>
-                <p className="press-item-title">{item.title}</p>
-                <p className="press-item-date">
+                <h2 className="news-headline">{item.publication}</h2>
+                <p className="news-headline">{item.title}</p>
+                <p className="news-date">
                   {new Date(item.publicationDate).toLocaleDateString("en-us", {
                     month: "long",
                     year: "numeric",
