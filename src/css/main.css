@@ -1032,6 +1032,7 @@ PROJECTS PAGE
   height: 13px;
   border: 1px solid var(--color);
   border-radius: 50px;
+  margin-right: var(--spacing-xs);
 }
 
 .checked {
