@@ -118,7 +118,6 @@ const HomeSlider = ({ images }) => {
       >
         {randomizeImages?.map((image, index) => (
           <div className="home-slide-container" key={index}>
-            <Link to={`/projects/${image.slug}`}>
               <GatsbyImage
                 image={image?.heroImage?.gatsbyImageData}
                 alt={image?.heroImage?.description}
@@ -127,7 +126,6 @@ const HomeSlider = ({ images }) => {
                   height: `${mobile ? initialHeight + "px" : height + "px"}`,
                 }}
               ></GatsbyImage>
-            </Link>
             <div className="home-slider-text">
               <Link to={`/projects/${image.slug}`} className="home-title-link">
                 <p className="upper">{image.projectName}</p>
