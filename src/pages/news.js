@@ -21,7 +21,7 @@ const News = ({ data, location }) => {
   }
 
   return (
-    <Layout>
+    <Layout location={location} filterNews={filterNews}>
       <HideOnScroll>
         <Link to="/news" onClick={() => setNewsItems(allNews)}>
           News

@@ -10,10 +10,10 @@ import Header from "./header"
 import Footer from "./footer"
 import { motion, AnimatePresence } from "framer-motion"
 
-const Layout = ({ children, location }) => {
+const Layout = ({ children, location, filterNews }) => {
   return (
     <>
-      <Header location={location} />
+      <Header location={location} filterNews={filterNews} />
       <AnimatePresence>
         <motion.div
           initial={{ opacity: 0 }}

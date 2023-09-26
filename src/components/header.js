@@ -4,17 +4,17 @@ import { Link } from "gatsby"
 import useWindowSize from "../utils/useWindowSize"
 import { Fade } from "react-awesome-reveal"
 
-const Header = ({ location }) => {
+const Header = ({ location, filterNews }) => {
   const [aboutOpen, setAboutOpen] = useState(false)
   const [teamOpen, setTeamOpen] = useState(false)
   const [newsOpen, setNewsOpen] = useState(false)
   const { width } = useWindowSize()
   const mobile = width < 601
-  const isHome = location !== undefined
+  const isHome = location?.pathname === "/"
+  const isNews = location?.pathname === "/news/"
   const [logoHeight, setLogoHeight] = useState(0)
   const [logoWidth, setLogoWidth] = useState(0)
   const [isOpen, setIsOpen] = useState(false)
-
   const toggleMenu = () => {
     setIsOpen(!isOpen)
   }
@@ -334,47 +334,96 @@ const Header = ({ location }) => {
                   </svg>
                 </button>
               </aside>
-              <aside
-                className={`drop-down-link-container news ${
-                  newsOpen ? "" : "hide-drop-down"
-                }`}
-              >
-                <Link
-                  to="/news"
-                  state={{ category: "Project" }}
-                  onClick={() => setIsOpen(false)}
+              {isNews ? (
+                <aside
+                  className={`drop-down-link-container news ${
+                    newsOpen ? "" : "hide-drop-down"
+                  }`}
                 >
-                  Projects
-                </Link>
-                <Link
-                  to="/news"
-                  state={{ category: "Award" }}
-                  onClick={() => setIsOpen(false)}
+                  <button
+                    onClick={() => {
+                      setIsOpen(false)
+                      filterNews("Project")
+                    }}
+                  >
+                    Projects
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsOpen(false)
+                      filterNews("Award")
+                    }}
+                  >
+                    Awards
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsOpen(false)
+                      filterNews("Lecture")
+                    }}
+                  >
+                    Lectures
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsOpen(false)
+                      filterNews("Event")
+                    }}
+                  >
+                    Events
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsOpen(false)
+                      filterNews("Person")
+                    }}
+                  >
+                    People
+                  </button>
+                </aside>
+              ) : (
+                <aside
+                  className={`drop-down-link-container news ${
+                    newsOpen ? "" : "hide-drop-down"
+                  }`}
                 >
-                  Awards
-                </Link>
-                <Link
-                  to="/news"
-                  state={{ category: "Lecture" }}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Lectures
-                </Link>
-                <Link
-                  to="/news"
-                  state={{ category: "Event" }}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Events
-                </Link>
-                <Link
-                  to="/news"
-                  state={{ category: "Person" }}
-                  onClick={() => setIsOpen(false)}
-                >
-                  People
-                </Link>
-              </aside>
+                  <Link
+                    to="/news"
+                    state={{ category: "Project" }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Projects
+                  </Link>
+                  <Link
+                    to="/news"
+                    state={{ category: "Award" }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Awards
+                  </Link>
+                  <Link
+                    to="/news"
+                    state={{ category: "Lecture" }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Lectures
+                  </Link>
+                  <Link
+                    to="/news"
+                    state={{ category: "Event" }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Events
+                  </Link>
+                  <Link
+                    to="/news"
+                    state={{ category: "Person" }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    People
+                  </Link>
+                </aside>
+              )}
             </section>
           ) : (
             <div
@@ -387,47 +436,95 @@ const Header = ({ location }) => {
               </Link>
               {newsOpen && (
                 <div className="header-page-sub-menu">
-                  <Fade cascade damping={0.05}>
-                    <Link
-                      to="/news"
-                      state={{ category: "Project" }}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Projects
-                    </Link>
-                    <Link
-                      to="/news"
-                      state={{ category: "Award" }}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Awards
-                    </Link>
-                    <Link
-                      to="/news"
-                      state={{ category: "Lecture" }}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Lectures
-                    </Link>
-                    <Link
-                      to="/news"
-                      state={{ category: "Event" }}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Events
-                    </Link>
-                    <Link
-                      to="/news"
-                      state={{ category: "Person" }}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      People
-                    </Link>
-                  </Fade>
+                  {isNews ? (
+                    <Fade cascade damping={0.05}>
+                      <button
+                        onClick={() => {
+                          setIsOpen(false)
+                          filterNews("Project")
+                        }}
+                      >
+                        Projects
+                      </button>
+                      <button
+                        onClick={() => {
+                          setIsOpen(false)
+                          filterNews("Award")
+                        }}
+                      >
+                        Awards
+                      </button>
+                      <button
+                        onClick={() => {
+                          setIsOpen(false)
+                          filterNews("Lecture")
+                        }}
+                      >
+                        Lectures
+                      </button>
+                      <button
+                        onClick={() => {
+                          setIsOpen(false)
+                          filterNews("Event")
+                        }}
+                      >
+                        Events
+                      </button>
+                      <button
+                        onClick={() => {
+                          setIsOpen(false)
+                          filterNews("Person")
+                        }}
+                      >
+                        People
+                      </button>
+                    </Fade>
+                  ) : (
+                    <Fade cascade damping={0.05}>
+                      <Link
+                        to="/news"
+                        state={{ category: "Project" }}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Projects
+                      </Link>
+                      <Link
+                        to="/news"
+                        state={{ category: "Award" }}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Awards
+                      </Link>
+                      <Link
+                        to="/news"
+                        state={{ category: "Lecture" }}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Lectures
+                      </Link>
+                      <Link
+                        to="/news"
+                        state={{ category: "Event" }}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Events
+                      </Link>
+                      <Link
+                        to="/news"
+                        state={{ category: "Person" }}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        People
+                      </Link>
+                    </Fade>
+                  )}
                 </div>
               )}
             </div>
           )}
+          <Link to="/press" onClick={() => setIsOpen(false)}>
+            Press
+          </Link>
           <Link to="/clients" onClick={() => setIsOpen(false)}>
             Clients
           </Link>
