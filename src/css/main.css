@@ -2440,6 +2440,10 @@ Single News Page
   opacity: 1;
 }
 
+.press-page-item a:hover {
+  opacity: 1;
+}
+
 .press-item-pub {
   font-size: var(--font-md-resp);
 }
