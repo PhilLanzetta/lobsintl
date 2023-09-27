@@ -138,7 +138,9 @@ const About = ({ data }) => {
                     <div className="about-award">
                       <div>
                         <p className="upper">{award.awardName}</p>
-                        <p>{award.project[0].projectName}</p>
+                        {award.project?.length && (
+                          <p>{award.project[0].projectName}</p>
+                        )}
                       </div>
                       <p className="faded">{award.year}</p>
                     </div>
