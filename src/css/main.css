@@ -2452,17 +2452,6 @@ Single News Page
   transition: all var(--fast-transition);
 }
 
-.press-page-item:hover {
-  color: var(--background);
-  background: var(--color);
-  opacity: 1;
-  transition: all var(--fast-transition);
-}
-
-.press-page-item a:hover {
-  opacity: 1;
-}
-
 .press-item-pub {
   font-size: var(--font-md-resp);
 }
