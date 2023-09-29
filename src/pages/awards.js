@@ -50,7 +50,10 @@ const Awards = ({ data }) => {
 
 export const query = graphql`
   query {
-    allContentfulAward(sort: { year: DESC }) {
+    allContentfulAward(
+      sort: { year: DESC }
+      filter: { showOnAwardsPage: { ne: false } }
+    ) {
       nodes {
         id
         awardName

@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import HideOnScroll from "../components/hideOnScroll"
 import { Fade } from "react-awesome-reveal"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const Press = ({ data }) => {
   const pressItems = data.allContentfulPress.nodes
@@ -21,6 +22,12 @@ const Press = ({ data }) => {
                 target="_blank"
                 rel="noreferrer"
               >
+                {item.pressImage && (
+                  <GatsbyImage
+                    image={item.pressImage.gatsbyImageData}
+                    alt={item.pressImage.description}
+                  ></GatsbyImage>
+                )}
                 <h2 className="news-headline">{item.publication}</h2>
                 <p className="news-headline">{item.title}</p>
                 <p className="news-date">
@@ -40,13 +47,20 @@ const Press = ({ data }) => {
 
 export const query = graphql`
   query {
-    allContentfulPress(sort: { publicationDate: DESC }) {
+    allContentfulPress(
+      sort: { publicationDate: DESC }
+      filter: { showOnPressPage: { ne: false } }
+    ) {
       nodes {
         id
         link
         publication
         publicationDate
         title
+        pressImage {
+          description
+          gatsbyImageData
+        }
       }
     }
   }
