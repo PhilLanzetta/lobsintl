@@ -127,7 +127,7 @@ const HomeSlider = ({ images }) => {
                 }}
               ></GatsbyImage>
             <div className="home-slider-text">
-              <Link to={`/projects/${image.slug}`} className="home-title-link">
+              <Link to={`/project/${image.slug}`} className="home-title-link">
                 <p className="upper">{image.projectName}</p>
                 <p>{image.shortExcerpt}</p>
               </Link>

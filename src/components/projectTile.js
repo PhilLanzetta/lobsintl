@@ -15,7 +15,7 @@ const ProjectTile = ({
   return (
     <div key={project.id} className="project-tile">
       <Fade triggerOnce={true}>
-        <Link to={`/projects/${project.slug}`}>
+        <Link to={`/project/${project.slug}`}>
           <GatsbyImage
             image={project.heroImage?.gatsbyImageData}
             alt={project.heroImage?.description}

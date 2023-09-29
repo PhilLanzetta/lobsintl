@@ -29,7 +29,7 @@ const Hit = ({ hit }) => {
               <p className="upper search-result-category">Project</p>
               <div className="search-info-container">
                 <Link
-                  to={`/projects/${slug}`}
+                  to={`/project/${slug}`}
                   className="search-result-image-container"
                 >
                   <GatsbyImage
@@ -40,7 +40,7 @@ const Hit = ({ hit }) => {
                 </Link>
                 <div className="search-info-text">
                   <div>
-                    <Link to={`/projects/${slug}`}>
+                    <Link to={`/project/${slug}`}>
                       <p className="search-result-title">{title}</p>
                     </Link>
                     <div className="tile-tag-container">
@@ -73,7 +73,7 @@ const Hit = ({ hit }) => {
                       )}
                     </div>
                   </div>
-                  <Link to={`/projects/${slug}`} className="search-learn-more">
+                  <Link to={`/project/${slug}`} className="search-learn-more">
                     <AiOutlinePlus></AiOutlinePlus> Learn More
                   </Link>
                 </div>

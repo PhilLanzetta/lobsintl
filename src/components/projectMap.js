@@ -74,7 +74,7 @@ const ProjectMap = ({
               ]}
               data-tooltip-id={project.id}
             >
-              <Link to={`/projects/${project.slug}`}>
+              <Link to={`/project/${project.slug}`}>
                 <circle r={2 / scaleFactor} className="map-marker" />
               </Link>
             </Marker>

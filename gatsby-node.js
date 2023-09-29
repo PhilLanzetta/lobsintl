@@ -47,7 +47,7 @@ exports.createPages = async ({ actions, graphql }) => {
   projects.forEach(({ node }, index) => {
     const projectSlug = node.slug
     createPage({
-      path: `/projects/${projectSlug}`,
+      path: `/project/${projectSlug}`,
       component: path.resolve(`./src/templates/singleProject.js`),
       context: {
         slug: projectSlug,
