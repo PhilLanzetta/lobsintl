@@ -2474,3 +2474,23 @@ Single News Page
     width: 100%;
   }
 }
+
+
+.error-page {
+  display: flex;
+  height: 95vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.error-page h1 {
+  font-weight: var(--thin-weight);
+}
+
+.error-button {
+  margin-top: var(--spacing-md);
+  text-decoration: underline;
+}
