@@ -22,6 +22,7 @@ const ProjectMap = ({
   const [scaleFactor, setScaleFactor] = useState(1)
   const cleanedData = projects.filter(project => project.exactLocation !== null)
 
+
   function handleZoomIn() {
     if (position.zoom >= 100) return
     setPosition(pos => ({ ...pos, zoom: pos.zoom * 1.2 }))
@@ -48,6 +49,7 @@ const ProjectMap = ({
             setScaleFactor(zoom)
           }}
           onMoveEnd={handleMoveEnd}
+          maxZoom={100}
         >
           <Geographies geography="https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json">
             {({ geographies }) =>

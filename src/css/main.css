@@ -1365,6 +1365,10 @@ PROJECTS PAGE
   .project-list-header {
     display: none;
   }
+
+  .zoom-button-container {
+    bottom: 90px;
+  }
 }
 
 /*
@@ -2461,8 +2465,6 @@ Single News Page
   padding: var(--spacing-sm) 0;
 }
 
-
-
 @media screen and (max-width: 900px) {
   .press-page-item {
     width: calc(50% - (var(--spacing-md) * 0.5));
@@ -2474,7 +2476,6 @@ Single News Page
     width: 100%;
   }
 }
-
 
 .error-page {
   display: flex;
