@@ -19,7 +19,7 @@ const Projects = ({ data, location }) => {
   const [projects, setProjects] = useState(allProjects)
   const [view, setView] = useState()
   const [paddingTop, setPaddingTop] = useState(145)
-  const [featuredFilter, setFeaturedFilter] = useState(true)
+  const [featuredFilter, setFeaturedFilter] = useState(false)
   const [statusFilter, setStatusFilter] = useState(
     location.state?.statusFilter || []
   )
@@ -235,6 +235,9 @@ const Projects = ({ data, location }) => {
       setView(localStorage.getItem("view"))
     } else {
       setView("grid")
+    }
+    if (isDisabled) {
+      setFeaturedFilter(true)
     }
   }, [])
 
