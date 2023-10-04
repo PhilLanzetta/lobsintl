@@ -19,7 +19,7 @@ const Projects = ({ data, location }) => {
   const [projects, setProjects] = useState(allProjects)
   const [view, setView] = useState()
   const [paddingTop, setPaddingTop] = useState(145)
-  const [featuredFilter, setFeaturedFilter] = useState(false)
+  const [featuredFilter, setFeaturedFilter] = useState(true)
   const [statusFilter, setStatusFilter] = useState(
     location.state?.statusFilter || []
   )

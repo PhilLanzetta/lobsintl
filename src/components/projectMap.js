@@ -9,6 +9,7 @@ import {
 import { Tooltip } from "react-tooltip"
 import { Link } from "gatsby"
 import ProjectTile from "./projectTile"
+import map from '../images/map.json'
 
 const ProjectMap = ({
   projects,
@@ -51,7 +52,7 @@ const ProjectMap = ({
           onMoveEnd={handleMoveEnd}
           maxZoom={100}
         >
-          <Geographies geography="https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json">
+          <Geographies geography={map}>
             {({ geographies }) =>
               geographies.map(geo => (
                 <Geography

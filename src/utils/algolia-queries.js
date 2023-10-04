@@ -16,6 +16,7 @@ const pagesQuery = `{
           }
           city
           client
+          state
           country
           geographicRegion
           id
