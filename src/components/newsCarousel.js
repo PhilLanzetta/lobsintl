@@ -59,7 +59,12 @@ const NewsCarousel = ({ news }) => {
         {news.map(newsItem => (
           <div key={newsItem.id}>
             {newsItem.externalLink ? (
-              <a href={newsItem.externalLink} className="news-carousel-item">
+              <a
+                href={newsItem.externalLink}
+                target="_blank"
+                rel="noreferrer"
+                className="news-carousel-item"
+              >
                 <GatsbyImage
                   image={newsItem.heroImage.gatsbyImageData}
                   alt={newsItem.heroImage.description}
