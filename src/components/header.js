@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useState, useEffect, useLayoutEffect } from "react"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import useWindowSize from "../utils/useWindowSize"
 import { Fade } from "react-awesome-reveal"
 
@@ -65,11 +65,7 @@ const Header = ({ location, filterNews }) => {
   return (
     <header>
       {isHome ? (
-        <Link
-          to="/"
-          className="header-logo-link"
-          onClick={() => setIsOpen(false)}
-        >
+        <Link to="/" className="header-logo-link">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 69.764 44.94"
@@ -77,6 +73,10 @@ const Header = ({ location, filterNews }) => {
               height: `${logoHeight}px`,
               width: `${logoWidth}px`,
               ...style,
+            }}
+            onClick={() => {
+              navigate("/")
+              setIsOpen(false)
             }}
           >
             <g
@@ -106,15 +106,15 @@ const Header = ({ location, filterNews }) => {
           </svg>
         </Link>
       ) : (
-        <Link
-          to="/"
-          className="header-logo-link"
-          onClick={() => setIsOpen(false)}
-        >
+        <Link to="/" className="header-logo-link">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 69.764 44.94"
             className="header-logo"
+            onClick={() => {
+              navigate("/")
+              setIsOpen(false)
+            }}
           >
             <g
               id="Group_373"
