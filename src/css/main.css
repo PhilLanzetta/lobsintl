@@ -873,8 +873,7 @@ SINGLE PROJECT PAGE
 
   .next-button,
   .prev-button {
-    width: 20px;
-    height: 20px;
+    padding: 5px;
   }
 
   .home-next-button,
