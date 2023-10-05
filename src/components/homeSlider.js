@@ -100,8 +100,8 @@ const HomeSlider = ({ images }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     infinite: true,
-    nextArrow: <NextArrow addClassName="next-button" />,
-    prevArrow: <PrevArrow addClassName="prev-button" />,
+    nextArrow: <NextArrow addClassName="next-button home-next-button" />,
+    prevArrow: <PrevArrow addClassName="prev-button home-prev-button" />,
     useTransform: false,
     autoplay: true,
   }

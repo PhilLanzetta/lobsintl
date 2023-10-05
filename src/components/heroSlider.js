@@ -67,7 +67,6 @@ function PrevArrow(props) {
 
 const HeroSlider = ({ images }) => {
   const [imageIndex, setImageIndex] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
 
   const settings = {
     infinite: true,
