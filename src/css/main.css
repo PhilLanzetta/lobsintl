@@ -593,6 +593,7 @@ SINGLE PROJECT PAGE
 
 .highlight {
   background: none;
+  height: 0;
   transition: all 400ms;
 }
 
