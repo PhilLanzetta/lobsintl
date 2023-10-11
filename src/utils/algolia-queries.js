@@ -44,6 +44,7 @@ const pagesQuery = `{
           title: projectName
           slug
           typology
+          projectCode
           year
           heroImage {
             description
