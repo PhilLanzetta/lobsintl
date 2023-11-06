@@ -104,6 +104,8 @@ const HomeSlider = ({ images }) => {
     prevArrow: <PrevArrow addClassName="prev-button home-prev-button" />,
     useTransform: false,
     autoplay: true,
+    autoplaySpeed: 5000,
+    fade: true,
   }
 
   return (
@@ -118,14 +120,14 @@ const HomeSlider = ({ images }) => {
       >
         {randomizeImages?.map((image, index) => (
           <div className="home-slide-container" key={index}>
-              <GatsbyImage
-                image={image?.heroImage?.gatsbyImageData}
-                alt={image?.heroImage?.description}
-                className="home-slide-image"
-                style={{
-                  height: `${mobile ? initialHeight + "px" : height + "px"}`,
-                }}
-              ></GatsbyImage>
+            <GatsbyImage
+              image={image?.heroImage?.gatsbyImageData}
+              alt={image?.heroImage?.description}
+              className="home-slide-image"
+              style={{
+                height: `${mobile ? initialHeight + "px" : height + "px"}`,
+              }}
+            ></GatsbyImage>
             <div className="home-slider-text">
               <Link to={`/project/${image.slug}`} className="home-title-link">
                 <p className="upper">{image.projectName}</p>
