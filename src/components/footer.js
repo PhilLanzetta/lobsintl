@@ -118,6 +118,17 @@ const Footer = () => {
       </div>
       <div className="footer-column-links">
         <div>
+          <p className="upper">Newsletter</p>
+          <a
+            href="https://lp.constantcontactpages.com/sl/N8pDHRJ"
+            target="_blank"
+            rel="noreferrer"
+            className="careers-link"
+          >
+            Sign Up <HiArrowUpRight></HiArrowUpRight>
+          </a>
+        </div>
+        <div>
           <p className="upper">Careers</p>
           <Link to="/team/#careers" className="careers-link">
             Join us <HiArrowUpRight></HiArrowUpRight>
