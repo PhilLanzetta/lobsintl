@@ -102,9 +102,9 @@ const HomeSlider = ({ images }) => {
     infinite: true,
     nextArrow: <NextArrow addClassName="next-button home-next-button" />,
     prevArrow: <PrevArrow addClassName="prev-button home-prev-button" />,
-    useTransform: false,
     autoplay: true,
     autoplaySpeed: 5000,
+    fade: true,
   }
 
   return (
