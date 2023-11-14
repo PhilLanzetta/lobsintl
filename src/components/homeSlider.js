@@ -105,6 +105,7 @@ const HomeSlider = ({ images }) => {
     useTransform: false,
     autoplay: true,
     autoplaySpeed: 5000,
+    fade: true,
   }
 
   return (
@@ -119,18 +120,20 @@ const HomeSlider = ({ images }) => {
       >
         {randomizeImages?.map((image, index) => (
           <div className="home-slide-container" key={index}>
-            <GatsbyImage
-              image={image?.heroImage?.gatsbyImageData}
-              alt={image?.heroImage?.description}
-              className="home-slide-image"
-              style={{
-                height: `${mobile ? initialHeight + "px" : height + "px"}`,
-              }}
-            ></GatsbyImage>
+            <Link to={`/project/${image.slug}`} className="home-image-link">
+              <GatsbyImage
+                image={image?.heroImage?.gatsbyImageData}
+                alt={image?.heroImage?.description}
+                className="home-slide-image"
+                style={{
+                  height: `${mobile ? initialHeight + "px" : height + "px"}`,
+                }}
+              ></GatsbyImage>
+            </Link>
             <div className="home-slider-text">
               <Link to={`/project/${image.slug}`} className="home-title-link">
                 <p className="upper">{image.projectName}</p>
-                <p>{image.shortExcerpt}</p>
+                {/* <p>{image.shortExcerpt}</p> */}
               </Link>
               <div className="tile-tag-container">
                 {image.typology.map((type, index) => (

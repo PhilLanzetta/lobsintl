@@ -1407,6 +1407,10 @@ HOME
   width: 100%;
 }
 
+.home-image-link:hover {
+  opacity: 1;
+}
+
 .home-slider-text {
   position: absolute;
   left: 0;
@@ -1432,7 +1436,7 @@ HOME
 }
 
 .home-container {
-  padding: 10% 5% 5% 5%;
+  padding: 5%;
   display: flex;
 }
 

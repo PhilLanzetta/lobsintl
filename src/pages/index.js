@@ -46,7 +46,7 @@ const IndexPage = ({ location, data }) => {
           </div>
         </div>
       </Fade>
-      <Fade triggerOnce={true} fraction={0.25}>
+      {/* <Fade triggerOnce={true} fraction={0.25}>
         <WorksInProgress projects={worksInProgress}></WorksInProgress>
       </Fade>
       <Fade triggerOnce={true}>
@@ -105,7 +105,7 @@ const IndexPage = ({ location, data }) => {
             </div>
           </div>
         </div>
-      </Fade>
+      </Fade> */}
     </Layout>
   )
 }
@@ -120,7 +120,7 @@ export const query = graphql`
         geographicRegion
         heroImage {
           description
-          gatsbyImageData
+          gatsbyImageData(layout: FULL_WIDTH)
         }
         projectName
         slug
@@ -167,7 +167,7 @@ export const query = graphql`
         id
         heroImage {
           description
-          gatsbyImageData
+          gatsbyImageData(layout: FULL_WIDTH)
         }
         title
         date
