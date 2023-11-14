@@ -105,7 +105,6 @@ const HomeSlider = ({ images }) => {
     useTransform: false,
     autoplay: true,
     autoplaySpeed: 5000,
-    fade: true,
   }
 
   return (
