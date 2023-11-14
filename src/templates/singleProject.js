@@ -75,6 +75,7 @@ const SingleProject = ({ data }) => {
         awards={awards}
         status={status}
         size={size}
+        year={year}
         dateCompleted={dateCompleted}
         team={team}
         principal={hervIsPrincipal}

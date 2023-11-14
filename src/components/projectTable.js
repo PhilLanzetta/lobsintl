@@ -7,6 +7,7 @@ const ProjectTable = ({
   designTeam,
   status,
   dateCompleted,
+  year,
   awards,
   team,
   client,
@@ -74,12 +75,12 @@ const ProjectTable = ({
               </div>
             </div>
           )}
-          {dateCompleted && (
+          {status === 'Completed' && (
             <div>
               <hr className="faded-line"></hr>
               <div className="project-table-row">
                 <p>Date Completed</p>
-                <p>{new Date(dateCompleted).getFullYear()}</p>
+                <p>{year}</p>
               </div>
             </div>
           )}
