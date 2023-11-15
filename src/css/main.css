@@ -594,6 +594,7 @@ SINGLE PROJECT PAGE
 
 .highlight {
   background: none;
+  z-index: -1;
 }
 
 .hero-svg {
