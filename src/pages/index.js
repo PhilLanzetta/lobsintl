@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "gatsby"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
@@ -11,7 +11,34 @@ import { Fade } from "react-awesome-reveal"
 import NewsCarousel from "../components/newsCarousel"
 
 const IndexPage = ({ location, data }) => {
+  const [randomImages, setRandomImages] = useState([])
   const homeImages = data.contentfulHomePageCarousel.projectSlides
+  const mobileImages = randomImages.slice(0, 15)
+
+  const shuffleData = array => {
+    let currentIndex = array.length,
+      randomIndex
+
+    // While there remain elements to shuffle.
+    while (currentIndex !== 0) {
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex)
+      currentIndex--
+
+      // And swap it with the current element.
+      ;[array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ]
+    }
+
+    return array
+  }
+
+  useEffect(() => {
+    setRandomImages(shuffleData(homeImages))
+  }, [])
+
   const aboutHeadline =
     data.contentfulAboutLObservatoireHeadlineTextNode.headline
 
@@ -29,7 +56,10 @@ const IndexPage = ({ location, data }) => {
 
   return (
     <Layout location={location}>
-      <HomeSlider images={homeImages}></HomeSlider>
+      <HomeSlider
+        images={randomImages}
+        mobileImages={mobileImages}
+      ></HomeSlider>
       <Fade triggerOnce={true} fraction={0.25}>
         <div className="home-container">
           <Link to="/about" className="home-preface-link">

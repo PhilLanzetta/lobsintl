@@ -66,33 +66,9 @@ function PrevArrow(props) {
   )
 }
 
-const HomeSlider = ({ images }) => {
-  const [randomizeImages, setRandomizeImages] = useState([])
+const HomeSlider = ({ images, mobileImages }) => {
   const { width } = useWindowSize()
   const isMobile = width < 601
-  const shuffleData = array => {
-    let currentIndex = array.length,
-      randomIndex
-
-    // While there remain elements to shuffle.
-    while (currentIndex !== 0) {
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex)
-      currentIndex--
-
-      // And swap it with the current element.
-      ;[array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ]
-    }
-
-    return array
-  }
-
-  useEffect(() => {
-    setRandomizeImages(shuffleData(images))
-  }, [])
 
   const settings = {
     slidesToShow: 1,
@@ -109,47 +85,87 @@ const HomeSlider = ({ images }) => {
   return (
     <div className="home-slider-container">
       <Slider {...settings} className="home-slider">
-        {randomizeImages?.map((image, index) => (
-          <div className="home-slide-container" key={index}>
-            <Link to={`/project/${image.slug}`} className="home-image-link">
-              <GatsbyImage
-                image={
-                  isMobile
-                    ? image?.heroImage.mobileImage
-                    : image?.heroImage?.desktopImage
-                }
-                alt={image?.heroImage?.description}
-                className="home-slide-image"
-              ></GatsbyImage>
-            </Link>
-            <div className="home-slider-text">
-              <Link to={`/project/${image.slug}`} className="home-title-link">
-                <p className="upper">{image.projectName}</p>
-                {/* <p>{image.shortExcerpt}</p> */}
-              </Link>
-              <div className="tile-tag-container">
-                {image.typology.map((type, index) => (
+        {isMobile
+          ? mobileImages?.map((image, index) => (
+              <div className="home-slide-container" key={index}>
+                <Link to={`/project/${image.slug}`} className="home-image-link">
+                  <GatsbyImage
+                    image={image?.heroImage.mobileImage}
+                    alt={image?.heroImage?.description}
+                    className="home-slide-image"
+                  ></GatsbyImage>
+                </Link>
+                <div className="home-slider-text">
                   <Link
-                    className="tile-tag-btn"
-                    key={index}
-                    to="/projects"
-                    state={{ typologyFilter: [type] }}
+                    to={`/project/${image.slug}`}
+                    className="home-title-link"
                   >
-                    {type}
+                    <p className="upper">{image.projectName}</p>
+                    {/* <p>{image.shortExcerpt}</p> */}
                   </Link>
-                ))}
-                <div className="tile-tag-btn">
-                  <Link
-                    to="/projects"
-                    state={{ city: image.city, country: image.country }}
-                  >
-                    {image.city}, {image.country}
-                  </Link>
+                  <div className="tile-tag-container">
+                    {image.typology.map((type, index) => (
+                      <Link
+                        className="tile-tag-btn"
+                        key={index}
+                        to="/projects"
+                        state={{ typologyFilter: [type] }}
+                      >
+                        {type}
+                      </Link>
+                    ))}
+                    <div className="tile-tag-btn">
+                      <Link
+                        to="/projects"
+                        state={{ city: image.city, country: image.country }}
+                      >
+                        {image.city}, {image.country}
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        ))}
+            ))
+          : images?.map((image, index) => (
+              <div className="home-slide-container" key={index}>
+                <Link to={`/project/${image.slug}`} className="home-image-link">
+                  <GatsbyImage
+                    image={image?.heroImage.desktopImage}
+                    alt={image?.heroImage?.description}
+                    className="home-slide-image"
+                  ></GatsbyImage>
+                </Link>
+                <div className="home-slider-text">
+                  <Link
+                    to={`/project/${image.slug}`}
+                    className="home-title-link"
+                  >
+                    <p className="upper">{image.projectName}</p>
+                    {/* <p>{image.shortExcerpt}</p> */}
+                  </Link>
+                  <div className="tile-tag-container">
+                    {image.typology.map((type, index) => (
+                      <Link
+                        className="tile-tag-btn"
+                        key={index}
+                        to="/projects"
+                        state={{ typologyFilter: [type] }}
+                      >
+                        {type}
+                      </Link>
+                    ))}
+                    <div className="tile-tag-btn">
+                      <Link
+                        to="/projects"
+                        state={{ city: image.city, country: image.country }}
+                      >
+                        {image.city}, {image.country}
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
       </Slider>
     </div>
   )
