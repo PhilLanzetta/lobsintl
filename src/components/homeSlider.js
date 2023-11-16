@@ -90,13 +90,16 @@ const HomeSlider = ({ images, mobileImages }) => {
 
   return (
     <div className="home-slider-container">
-      <Slider {...settings} className="home-slider">
+      <Slider
+        {...settings}
+        className="home-slider"
+        style={{ height: `${isMobile ? initialHeight + "px" : height + "px"}` }}
+      >
         {isMobile
           ? mobileImages?.map((image, index) => (
               <div
                 className="home-slide-container"
                 key={index}
-                style={{ height: initialHeight + "px" }}
               >
                 <Link to={`/project/${image.slug}`} className="home-image-link">
                   <GatsbyImage
