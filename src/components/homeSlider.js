@@ -89,7 +89,10 @@ const HomeSlider = ({ images, mobileImages }) => {
   }
 
   return (
-    <div className="home-slider-container">
+    <div
+      className="home-slider-container"
+      style={{ height: `${isMobile ? initialHeight + "px" : height + "px"}` }}
+    >
       <Slider
         {...settings}
         className="home-slider"
@@ -97,10 +100,7 @@ const HomeSlider = ({ images, mobileImages }) => {
       >
         {isMobile
           ? mobileImages?.map((image, index) => (
-              <div
-                className="home-slide-container"
-                key={index}
-              >
+              <div className="home-slide-container" key={index}>
                 <Link to={`/project/${image.slug}`} className="home-image-link">
                   <GatsbyImage
                     image={image?.heroImage.mobileImage}
@@ -147,6 +147,7 @@ const HomeSlider = ({ images, mobileImages }) => {
                     image={image?.heroImage.desktopImage}
                     alt={image?.heroImage?.description}
                     className="home-slide-image"
+                    style={{ height: height + "px" }}
                   ></GatsbyImage>
                 </Link>
                 <div className="home-slider-text">
