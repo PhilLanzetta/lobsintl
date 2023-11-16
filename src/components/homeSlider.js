@@ -67,10 +67,7 @@ function PrevArrow(props) {
 }
 
 const HomeSlider = ({ images }) => {
-  const [initialHeight, setInitialHeight] = useState(800)
   const [randomizeImages, setRandomizeImages] = useState([])
-  const { height, width } = useWindowSize()
-  const mobile = width < 601
   const shuffleData = array => {
     let currentIndex = array.length,
       randomIndex
@@ -92,7 +89,6 @@ const HomeSlider = ({ images }) => {
   }
 
   useEffect(() => {
-    setInitialHeight(height)
     setRandomizeImages(shuffleData(images))
   }, [])
 
@@ -105,18 +101,12 @@ const HomeSlider = ({ images }) => {
     useTransform: false,
     autoplay: true,
     autoplaySpeed: 5000,
+    fade: true,
   }
 
   return (
-    <div
-      className="home-slider-container"
-      style={{ height: `${mobile ? initialHeight + "px" : height + "px"}` }}
-    >
-      <Slider
-        {...settings}
-        className="home-slider"
-        style={{ height: `${mobile ? initialHeight + "px" : height + "px"}` }}
-      >
+    <div className="home-slider-container">
+      <Slider {...settings} className="home-slider">
         {randomizeImages?.map((image, index) => (
           <div className="home-slide-container" key={index}>
             <Link to={`/project/${image.slug}`} className="home-image-link">
@@ -124,9 +114,6 @@ const HomeSlider = ({ images }) => {
                 image={image?.heroImage?.gatsbyImageData}
                 alt={image?.heroImage?.description}
                 className="home-slide-image"
-                style={{
-                  height: `${mobile ? initialHeight + "px" : height + "px"}`,
-                }}
               ></GatsbyImage>
             </Link>
             <div className="home-slider-text">
