@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import Slider from "react-slick"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
@@ -67,7 +67,7 @@ function PrevArrow(props) {
 }
 
 const HomeSlider = ({ images, mobileImages }) => {
-  const { width } = useWindowSize()
+  const { width, height } = useWindowSize()
   const isMobile = width < 601
 
   const settings = {
@@ -87,12 +87,17 @@ const HomeSlider = ({ images, mobileImages }) => {
       <Slider {...settings} className="home-slider">
         {isMobile
           ? mobileImages?.map((image, index) => (
-              <div className="home-slide-container" key={index}>
+              <div
+                className="home-slide-container"
+                key={index}
+                style={{ height: height + "px" }}
+              >
                 <Link to={`/project/${image.slug}`} className="home-image-link">
                   <GatsbyImage
                     image={image?.heroImage.mobileImage}
                     alt={image?.heroImage?.description}
                     className="home-slide-image"
+                    style={{ height: height + "px" }}
                   ></GatsbyImage>
                 </Link>
                 <div className="home-slider-text">
