@@ -68,6 +68,8 @@ function PrevArrow(props) {
 
 const HomeSlider = ({ images }) => {
   const [randomizeImages, setRandomizeImages] = useState([])
+  const { width } = useWindowSize()
+  const isMobile = width < 601
   const shuffleData = array => {
     let currentIndex = array.length,
       randomIndex
@@ -111,7 +113,11 @@ const HomeSlider = ({ images }) => {
           <div className="home-slide-container" key={index}>
             <Link to={`/project/${image.slug}`} className="home-image-link">
               <GatsbyImage
-                image={image?.heroImage?.gatsbyImageData}
+                image={
+                  isMobile
+                    ? image?.heroImage.mobileImage
+                    : image?.heroImage?.desktopImage
+                }
                 alt={image?.heroImage?.description}
                 className="home-slide-image"
               ></GatsbyImage>

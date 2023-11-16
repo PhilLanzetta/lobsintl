@@ -120,7 +120,8 @@ export const query = graphql`
         geographicRegion
         heroImage {
           description
-          gatsbyImageData(layout: FULL_WIDTH)
+          desktopImage: gatsbyImageData(layout: FULL_WIDTH)
+          mobileImage: gatsbyImageData(width: 800)
         }
         projectName
         slug
