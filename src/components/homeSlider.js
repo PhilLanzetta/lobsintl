@@ -91,12 +91,12 @@ const HomeSlider = ({ images, mobileImages }) => {
   return (
     <div
       className="home-slider-container"
-      style={{ height: `${isMobile ? initialHeight + "px" : height + "px"}` }}
+      style={{ height: `${isMobile ? initialHeight + "px" : '100vh'}` }}
     >
       <Slider
         {...settings}
         className="home-slider"
-        style={{ height: `${isMobile ? initialHeight + "px" : height + "px"}` }}
+        style={{ height: `${isMobile ? initialHeight + "px" : '100vh'}` }}
       >
         {isMobile
           ? mobileImages?.map((image, index) => (
