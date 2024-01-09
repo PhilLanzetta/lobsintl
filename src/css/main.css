@@ -2516,3 +2516,11 @@ Single News Page
   margin-top: var(--spacing-md);
   text-decoration: underline;
 }
+
+.slick-slide {
+  z-index: 998;
+}
+
+.slick-active.slick-current {
+  z-index: 999;
+}
