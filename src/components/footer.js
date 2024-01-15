@@ -6,10 +6,11 @@ import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import { BsSun, BsMoon } from "react-icons/bs"
 import { Fade } from "react-awesome-reveal"
 
-const Footer = () => {
+const Footer = ({ location }) => {
   const { width } = useWindowSize()
+  const home = location?.pathname === "/"
   return (
-    <footer className={`footer`}>
+    <footer className={`footer ${home ? "dark" : ""}`}>
       <div className="footer-column-logo">
         <Link to="/">
           <svg

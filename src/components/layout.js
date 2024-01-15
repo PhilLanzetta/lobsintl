@@ -23,7 +23,7 @@ const Layout = ({ children, location, filterNews }) => {
           <main>{children}</main>
         </motion.div>
       </AnimatePresence>
-      <Footer></Footer>
+      <Footer location={location}></Footer>
     </>
   )
 }
