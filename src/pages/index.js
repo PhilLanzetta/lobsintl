@@ -61,7 +61,7 @@ const IndexPage = ({ location, data }) => {
         mobileImages={mobileImages}
       ></HomeSlider>
       <Fade triggerOnce={true} fraction={0.25}>
-        <div className="home-container">
+        <div className="home-container dark">
           <Link to="/about" className="home-preface-link">
             About
           </Link>
