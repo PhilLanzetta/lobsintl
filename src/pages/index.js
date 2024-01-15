@@ -60,22 +60,27 @@ const IndexPage = ({ location, data }) => {
         images={randomImages}
         mobileImages={mobileImages}
       ></HomeSlider>
-      <Fade triggerOnce={true} fraction={0.25}>
-        <div className="home-container dark">
-          <Link to="/about" className="home-preface-link">
-            About
-          </Link>
-          <div className="home-right">
-            <div
-              dangerouslySetInnerHTML={{ __html: marked.parse(aboutHeadline) }}
-              className="home-headline"
-            ></div>
-            <Link to="/about" className="home-link">
-              <BsArrowRight></BsArrowRight> Learn More
+      <div className="dark">
+        <Fade triggerOnce={true} fraction={0.25}>
+          <div className="home-container">
+            <Link to="/about" className="home-preface-link">
+              About
             </Link>
+            <div className="home-right">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: marked.parse(aboutHeadline),
+                }}
+                className="home-headline"
+              ></div>
+              <Link to="/about" className="home-link">
+                <BsArrowRight></BsArrowRight> Learn More
+              </Link>
+            </div>
           </div>
-        </div>
-      </Fade>
+        </Fade>
+      </div>
+
       {/* <Fade triggerOnce={true} fraction={0.25}>
         <WorksInProgress projects={worksInProgress}></WorksInProgress>
       </Fade>
