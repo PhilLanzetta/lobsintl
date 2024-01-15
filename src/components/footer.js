@@ -10,7 +10,7 @@ const Footer = ({ location }) => {
   const { width } = useWindowSize()
   const home = location?.pathname === "/"
   return (
-    <footer className={`footer ${home ? "dark" : ""}`}>
+    <footer className={`footer ${home ? "footer-home" : ""}`}>
       <div className="footer-column-logo">
         <Link to="/">
           <svg
