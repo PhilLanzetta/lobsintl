@@ -21,7 +21,10 @@ const ProjectTile = ({
             alt={project.heroImage?.description}
             className="project-tile-image"
           ></GatsbyImage>
-          <p className="tile-title">{project.projectName}</p>
+          <div className="tile-title-container">
+            <p className="tile-title">{project.projectName}</p>
+            <p>{project.year}</p>
+          </div>
         </Link>
         <div className="tile-tag-container">
           {project.typology?.map((type, index) =>

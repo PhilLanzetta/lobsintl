@@ -922,7 +922,11 @@ PROJECTS PAGE
   margin-bottom: var(--spacing-md);
 }
 
-.tile-title {
+.tile-title-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: var(--spacing-xs);
   margin: var(--spacing-xs) 0;
 }
 
