@@ -9,7 +9,9 @@ import {
 import { Tooltip } from "react-tooltip"
 import { Link } from "gatsby"
 import ProjectTile from "./projectTile"
-import map from '../images/map.json'
+import map from "../images/map.json"
+import countries from "../images/countries.json"
+import { motion, AnimatePresence } from "framer-motion"
 
 const ProjectMap = ({
   projects,
@@ -22,7 +24,6 @@ const ProjectMap = ({
   const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 })
   const [scaleFactor, setScaleFactor] = useState(1)
   const cleanedData = projects.filter(project => project.exactLocation !== null)
-
 
   function handleZoomIn() {
     if (position.zoom >= 100) return
@@ -58,6 +59,9 @@ const ProjectMap = ({
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
+                  stroke={position.zoom > 1 ? "var(--background)" : "none"}
+                  strokeOpacity={0.5}
+                  strokeWidth={1 / scaleFactor}
                   style={{
                     default: { outline: "none" },
                     hover: { outline: "none" },
@@ -68,6 +72,27 @@ const ProjectMap = ({
               ))
             }
           </Geographies>
+          {position.zoom > 5 &&
+            countries.ref_country_codes.map(country => (
+              <Marker
+                key={country.numeric}
+                coordinates={[country.longitude, country.latitude]}
+              >
+                <AnimatePresence>
+                  <motion.text
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    textAnchor="middle"
+                    fontSize={8 / scaleFactor}
+                    fill="var(--color)"
+                    opacity={0.75}
+                  >
+                    {country.country}
+                  </motion.text>
+                </AnimatePresence>
+              </Marker>
+            ))}
           {cleanedData.map(project => (
             <Marker
               key={project.id}
