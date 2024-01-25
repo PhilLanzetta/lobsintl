@@ -1245,6 +1245,7 @@ PROJECTS PAGE
 
 .map-marker {
   fill: var(--color);
+  stroke: transparent;
 }
 
 .zoom-button-container {
@@ -2533,4 +2534,3 @@ Single News Page
 .slick-active.slick-current {
   z-index: 999;
 }
-

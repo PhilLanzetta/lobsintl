@@ -60,8 +60,8 @@ const ProjectMap = ({
                   key={geo.rsmKey}
                   geography={geo}
                   stroke={position.zoom > 1 ? "var(--background)" : "none"}
-                  strokeOpacity={0.5}
-                  strokeWidth={1 / scaleFactor}
+                  strokeOpacity={0.25}
+                  strokeWidth={0.5 / scaleFactor}
                   style={{
                     default: { outline: "none" },
                     hover: { outline: "none" },
@@ -72,7 +72,7 @@ const ProjectMap = ({
               ))
             }
           </Geographies>
-          {position.zoom > 5 &&
+          {position.zoom > 1.5 &&
             countries.ref_country_codes.map(country => (
               <Marker
                 key={country.numeric}
@@ -81,12 +81,11 @@ const ProjectMap = ({
                 <AnimatePresence>
                   <motion.text
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    animate={{ opacity: 0.75 }}
                     exit={{ opacity: 0 }}
                     textAnchor="middle"
-                    fontSize={8 / scaleFactor}
+                    fontSize={position.zoom > 4 ? 5 / scaleFactor : 1.5}
                     fill="var(--color)"
-                    opacity={0.75}
                   >
                     {country.country}
                   </motion.text>
@@ -103,7 +102,11 @@ const ProjectMap = ({
               data-tooltip-id={project.id}
             >
               <Link to={`/project/${project.slug}`}>
-                <circle r={2 / scaleFactor} className="map-marker" />
+                <circle
+                  r={2.5 / scaleFactor}
+                  strokeWidth={8 / scaleFactor}
+                  className="map-marker"
+                />
               </Link>
             </Marker>
           ))}
