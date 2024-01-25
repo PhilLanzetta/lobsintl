@@ -542,6 +542,14 @@ SINGLE PROJECT PAGE
   animation: fadeOut var(--slow-transition) forwards;
 }
 
+.single-hero-slider {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 @keyframes fadeOut {
   90% {
     opacity: 0;
@@ -918,7 +926,7 @@ PROJECTS PAGE
 }
 
 .project-tile {
-  width: 32%;
+  width: 23.5%;
   margin-bottom: var(--spacing-md);
 }
 
