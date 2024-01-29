@@ -153,19 +153,19 @@ const Footer = ({ location }) => {
           <a
             target="_blank"
             rel="noreferrer"
-            href="https://twitter.com/LOBSINTL"
-          >
-            X
-          </a>
-          <a
-            target="_blank"
-            rel="noreferrer"
             href="https://www.linkedin.com/in/hdescottes"
           >
             Linkedin
           </a>
           <a target="_blank" rel="noreferrer" href="https://vimeo.com/lobsintl">
             Vimeo
+          </a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://twitter.com/LOBSINTL"
+          >
+            X
           </a>
           <p className="footer-credit-mobile">
             Website Designed and Developed by{" "}
