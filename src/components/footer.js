@@ -155,7 +155,7 @@ const Footer = ({ location }) => {
             rel="noreferrer"
             href="https://twitter.com/LOBSINTL"
           >
-            Twitter
+            X
           </a>
           <a
             target="_blank"
