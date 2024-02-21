@@ -21,7 +21,7 @@ const ProjectMap = ({
   handleTypeFilter,
   setRegion,
 }) => {
-  const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 })
+  const [position, setPosition] = useState({ coordinates: [0, -11], zoom: 0.75 })
   const [scaleFactor, setScaleFactor] = useState(1)
   const cleanedData = projects.filter(project => project.exactLocation !== null)
 
@@ -32,7 +32,7 @@ const ProjectMap = ({
   }
 
   function handleZoomOut() {
-    if (position.zoom <= 1) return
+    if (position.zoom <= 0.75) return
     setPosition(pos => ({ ...pos, zoom: pos.zoom / 1.2 }))
     setScaleFactor(scale => scale / 1.2)
   }
