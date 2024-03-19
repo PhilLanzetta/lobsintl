@@ -86,29 +86,46 @@ const HeroSlider = ({ images }) => {
   return (
     <div className="hero-slider-container">
       <div className="load"></div>
-      <Slider {...settings} className="hero-slider">
-        {images?.map((image, index) => {
-          const imgWidth =
-            (image?.gatsbyImageData.width * 90) / image?.gatsbyImageData.height
-          return (
-            <div className="hero-slide-container" key={index}>
-              <div className="slide-flex-container">
-                <GatsbyImage
-                  image={image?.gatsbyImageData}
-                  alt={image?.description}
-                  style={{ width: `${imgWidth}vh` }}
-                  className="hero-slide-image"
-                ></GatsbyImage>
-                {index === imageIndex ? (
-                  <div className="hero-slide-overlay highlight"></div>
-                ) : (
-                  <div className="hero-slide-overlay darken"></div>
-                )}
+      {images.length > 1 ? (
+        <Slider {...settings} className="hero-slider">
+          {images?.map((image, index) => {
+            const imgWidth =
+              (image?.gatsbyImageData.width * 90) /
+              image?.gatsbyImageData.height
+            return (
+              <div className="hero-slide-container" key={index}>
+                <div className="slide-flex-container">
+                  <GatsbyImage
+                    image={image?.gatsbyImageData}
+                    alt={image?.description}
+                    style={{ width: `${imgWidth}vh` }}
+                    className="hero-slide-image"
+                  ></GatsbyImage>
+                  {index === imageIndex ? (
+                    <div className="hero-slide-overlay highlight"></div>
+                  ) : (
+                    <div className="hero-slide-overlay darken"></div>
+                  )}
+                </div>
               </div>
-            </div>
-          )
-        })}
-      </Slider>
+            )
+          })}
+        </Slider>
+      ) : (
+        <div className="single-hero-slider">
+          <GatsbyImage
+            image={images[0].gatsbyImageData}
+            alt={images[0].description}
+            style={{
+              width: `${
+                (images[0].gatsbyImageData.width * 90) /
+                images[0].gatsbyImageData.height
+              }vh`,
+            }}
+            className="hero-slide-image"
+          ></GatsbyImage>
+        </div>
+      )}
     </div>
   )
 }
