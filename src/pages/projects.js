@@ -236,6 +236,9 @@ const Projects = ({ data, location }) => {
     } else {
       setView("grid")
     }
+    if (isDisabled) {
+      setFeaturedFilter(true)
+    }
   }, [])
 
   return (
