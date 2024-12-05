@@ -2323,7 +2323,7 @@ News Page
 }
 
 .news-item .news-item-image {
-  aspect-ratio: 2 /3;
+  aspect-ratio: 3 / 2;
 }
 
 .news-headline {
@@ -2393,7 +2393,7 @@ News Page
 
   .news-item:nth-of-type(4n + 1) .news-item-image {
     width: 100%;
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 3 / 2;
   }
 
   .news-item:nth-of-type(4n + 1) .news-date {
