@@ -160,8 +160,12 @@ const Search = () => {
                           <CustomSortBy
                             items={[
                               {
-                                label: "Newest to oldest",
+                                label: "Relevance",
                                 value: "Pages",
+                              },
+                              {
+                                label: "Newest to oldest",
+                                value: "Pages_Date_DESC",
                               },
                               {
                                 label: "Oldest to newest",
