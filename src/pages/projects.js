@@ -39,10 +39,11 @@ const Projects = ({ data, location }) => {
   const isMobile = width < 941
   const projectOptionsRef = useRef()
 
+
   useEffect(() => {
     const { bottom } = projectOptionsRef.current.getBoundingClientRect()
     setPaddingTop(bottom)
-  })
+  }, [projectOptionsRef])
 
   const isDisabled =
     !featuredFilter &&
@@ -70,7 +71,7 @@ const Projects = ({ data, location }) => {
 
   const filterByFeatured = array => {
     if (featuredFilter) {
-      return [...array, array.filter(item => item.featured)]
+      return [array.filter(item => item.featured)]
     } else return array
   }
 
@@ -141,8 +142,8 @@ const Projects = ({ data, location }) => {
   const handleFilter = () => {
     let result = allProjects
     if (featuredFilter || statusFilter.length) {
-      result = filterSelectedStatus(result)
       result = filterByFeatured(result)
+      result = filterSelectedStatus(result)
       result = result
         .filter(item => item.length)
         .reduce((a, b) => a.concat(b), [])
