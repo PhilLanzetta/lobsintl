@@ -38,8 +38,8 @@ const Projects = ({ data, location }) => {
 
   const isMobile = width < 941
   const projectOptionsRef = useRef()
-  const url = new URL(`${location.origin}${location.pathname}`)
-  const searchParams = new URLSearchParams(location.search)
+  const url = new URL('https://www.lobsintl.com/projects/')
+  const searchParams = new URLSearchParams(url.search)
   useEffect(() => {
     for (const [key, value] of searchParams.entries()) {
       if (key === "featured") {
