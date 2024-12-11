@@ -38,7 +38,31 @@ const Projects = ({ data, location }) => {
 
   const isMobile = width < 941
   const projectOptionsRef = useRef()
-
+  const url = new URL(`${location.origin}${location.pathname}`)
+  const searchParams = new URLSearchParams(location.search)
+  useEffect(() => {
+    for (const [key, value] of searchParams.entries()) {
+      if (key === "featured") {
+        setFeaturedFilter(value)
+      } else if (key === "network") {
+        setNetwork(value)
+      } else if (key === "year") {
+        setYear(parseInt(value, 10))
+      } else if (key === "city") {
+        setCity(value)
+      } else if (key === "country") {
+        setCountry(value)
+      } else if (key === "client") {
+        setClient(value)
+      } else if (key === "status") {
+        setStatusFilter(prev => [...prev, value])
+      } else if (key === "location") {
+        setRegionFilter(prev => [...prev, value])
+      } else if (key === "typology") {
+        setTypologyFilter(prev => [...prev, value])
+      }
+    }
+  }, [])
 
   useEffect(() => {
     const { bottom } = projectOptionsRef.current.getBoundingClientRect()
@@ -72,7 +96,9 @@ const Projects = ({ data, location }) => {
   const filterByFeatured = array => {
     if (featuredFilter) {
       return [array.filter(item => item.featured)]
-    } else return array
+    } else {
+      return array
+    }
   }
 
   const filterByCity = array => {
@@ -139,6 +165,41 @@ const Projects = ({ data, location }) => {
     }
   }
 
+  const updateURL = () => {
+    const params = new URLSearchParams({})
+    const obj = {
+      featured: featuredFilter ? featuredFilter : "",
+      status: statusFilter,
+      typology: typologyFilter,
+      location: regionFilter,
+      city: city,
+      year: year,
+      country: country,
+      network: network,
+      client: client,
+    }
+    for (const key in obj) {
+      if (Array.isArray(obj[key])) {
+        for (const value of obj[key]) {
+          params.append(key, value)
+        }
+      } else {
+        params.append(key, obj[key])
+      }
+    }
+    let keysForDel = []
+    params.forEach((value, key) => {
+      if (value == "" || value == "null") {
+        keysForDel.push(key)
+      }
+    })
+    keysForDel.forEach(key => {
+      params.delete(key)
+    })
+    const new_url = `${url}?${params}`
+    window.history.pushState({}, "", new_url)
+  }
+
   const handleFilter = () => {
     let result = allProjects
     if (featuredFilter || statusFilter.length) {
@@ -197,6 +258,8 @@ const Projects = ({ data, location }) => {
     setNetwork("")
     setClient("")
     setProjects(allProjects)
+    const new_url = `${url}`
+    window.history.pushState({}, "", new_url)
   }
 
   const typologies = allProjects
@@ -217,6 +280,7 @@ const Projects = ({ data, location }) => {
       return
     } else {
       handleFilter()
+      updateURL()
     }
   }, [
     city,
@@ -236,9 +300,6 @@ const Projects = ({ data, location }) => {
       setView(localStorage.getItem("view"))
     } else {
       setView("grid")
-    }
-    if (isDisabled) {
-      setFeaturedFilter(true)
     }
   }, [])
 
@@ -601,6 +662,7 @@ const Projects = ({ data, location }) => {
               className="filter-apply"
               onClick={() => {
                 handleFilter()
+                updateURL()
                 setFilterOpen(false)
               }}
             >

@@ -36,6 +36,7 @@
     "react-instantsearch-dom": "^6.39.1",
     "react-instantsearch-hooks-web": "^6.42.0",
     "react-player": "^2.11.0",
+    "react-router-dom": "^7.0.2",
     "react-simple-maps": "^3.0.0",
     "react-slick": "^0.29.0",
     "react-tooltip": "^5.21.1",
