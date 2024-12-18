@@ -40,7 +40,7 @@ const Projects = ({ data, location }) => {
   const projectOptionsRef = useRef()
   const url = new URL("https://lobsintl.com/projects/")
   const searchParams = new URLSearchParams(location.search)
-  console.log(searchParams)
+  
   useEffect(() => {
     for (const [key, value] of searchParams.entries()) {
       if (key === "featured") {
@@ -86,15 +86,11 @@ const Projects = ({ data, location }) => {
   }
 
   const filterSelectedStatus = array => {
-    if (statusFilter?.length > 0) {
-    return [
+    return [ 
       statusFilter
         .map(term => array.filter(item => item.status === term))
         .reduce((a, b) => a.concat(b), []),
     ]
-  } else {
-    return array
-  }
   }
 
   const filterByFeatured = array => {
@@ -206,8 +202,14 @@ const Projects = ({ data, location }) => {
 
   const handleFilter = () => {
     let result = allProjects
-    if (featuredFilter || statusFilter.length) {
+    if (featuredFilter) {
       result = filterByFeatured(result)
+      result = result
+        .filter(item => item.length)
+        .reduce((a, b) => a.concat(b), [])
+        .filter(onlyUnique)
+    }
+    if (statusFilter.length) {
       result = filterSelectedStatus(result)
       result = result
         .filter(item => item.length)
