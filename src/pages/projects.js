@@ -86,11 +86,15 @@ const Projects = ({ data, location }) => {
   }
 
   const filterSelectedStatus = array => {
+    if (statusFilter?.length > 0) {
     return [
       statusFilter
         .map(term => array.filter(item => item.status === term))
         .reduce((a, b) => a.concat(b), []),
     ]
+  } else {
+    return array
+  }
   }
 
   const filterByFeatured = array => {
