@@ -12,7 +12,9 @@ const TeamMember = ({ data }) => {
 
   const endsInS = name.charAt(name.length - 1) === "s"
 
-  const orderedProjects = project?.sort((a, b) => (a.year < b.year ? 1 : -1))
+  const orderedProjects = project?.slice().sort((a, b) => (a.year < b.year ? 1 : -1))
+
+  console.log(project)
 
   return (
     <Layout>

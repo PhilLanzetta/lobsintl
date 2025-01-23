@@ -20,6 +20,7 @@ const Team = ({ data }) => {
   const nyTeam = data.contentfulTeamPage.nyTeam
   const parisTeam = data.contentfulTeamPage.parisTeam
   const seoulTeam = data.contentfulTeamPage.seoulTeam
+  const londonTeam = data.contentfulTeamPage.londonTeam
 
   return (
     <Layout>
@@ -127,6 +128,27 @@ const Team = ({ data }) => {
                 ))}
               </div>
             </div>
+            <div className="team-location-container">
+              <p className="home-preface-link">London</p>
+              <div className="head-shot-container">
+                {londonTeam.map(member => (
+                  <Link
+                    to={`/team/${member.slug}`}
+                    key={member.id}
+                    className="head-shot"
+                  >
+                    <Fade triggerOnce={true}>
+                      <GatsbyImage
+                        image={member.headShot.gatsbyImageData}
+                        alt={member.headShot.description}
+                      ></GatsbyImage>
+                      <p>{member.name}</p>
+                      <p>{member.title}</p>
+                    </Fade>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </Fade>
         <div className="anchor-margin" id="careers"></div>
@@ -202,6 +224,16 @@ export const query = graphql`
         title
       }
       seoulTeam {
+        id
+        headShot {
+          description
+          gatsbyImageData
+        }
+        name
+        slug
+        title
+      }
+      londonTeam {
         id
         headShot {
           description

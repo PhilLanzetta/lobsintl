@@ -61,7 +61,9 @@ const Footer = ({ location }) => {
       </div>
       <div className="footer-middle">
         <div className="footer-column-location">
-          <p className="upper footer-locations">New York | Paris | Seoul</p>
+          <p className="upper footer-locations">
+            New York | Paris | Seoul | London
+          </p>
           <div>
             <p className="upper">New York</p>
             <a
