@@ -86,6 +86,27 @@ const Team = ({ data }) => {
             </div>
             <Fade triggerOnce={true}>
               <div className="team-location-container">
+                <p className="home-preface-link">London</p>
+                <div className="head-shot-container">
+                  {londonTeam.map(member => (
+                    <Link
+                      to={`/team/${member.slug}`}
+                      key={member.id}
+                      className="head-shot"
+                    >
+                      <Fade triggerOnce={true}>
+                        <GatsbyImage
+                          image={member.headShot.gatsbyImageData}
+                          alt={member.headShot.description}
+                        ></GatsbyImage>
+                        <p>{member.name}</p>
+                        <p>{member.title}</p>
+                      </Fade>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <div className="team-location-container">
                 <p className="home-preface-link">Paris</p>
                 <div className="head-shot-container">
                   {parisTeam.map(member => (
@@ -111,27 +132,6 @@ const Team = ({ data }) => {
               <p className="home-preface-link">Seoul</p>
               <div className="head-shot-container">
                 {seoulTeam.map(member => (
-                  <Link
-                    to={`/team/${member.slug}`}
-                    key={member.id}
-                    className="head-shot"
-                  >
-                    <Fade triggerOnce={true}>
-                      <GatsbyImage
-                        image={member.headShot.gatsbyImageData}
-                        alt={member.headShot.description}
-                      ></GatsbyImage>
-                      <p>{member.name}</p>
-                      <p>{member.title}</p>
-                    </Fade>
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <div className="team-location-container">
-              <p className="home-preface-link">London</p>
-              <div className="head-shot-container">
-                {londonTeam.map(member => (
                   <Link
                     to={`/team/${member.slug}`}
                     key={member.id}
