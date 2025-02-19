@@ -151,7 +151,10 @@ const Header = ({ location, filterNews }) => {
       </button>
       <section className={`secondary-menu ${isOpen ? "show" : "hide"}`}>
         <div className="secondary-link-container">
-          <Link to="/projects/?featured=true" onClick={() => setIsOpen(false)}>
+          <Link
+            to="/projects/?featured=true&status=Completed"
+            onClick={() => setIsOpen(false)}
+          >
             Projects
           </Link>
           {mobile ? (
