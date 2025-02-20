@@ -15,8 +15,8 @@ const ProjectTable = ({
   press,
   principal,
   projectLeader,
+  sustainability,
 }) => {
-
   return (
     <div className="project-table-container">
       <div className="project-table-max-width">
@@ -69,12 +69,25 @@ const ProjectTable = ({
               </div>
             </div>
           )}
-          {status === 'Completed' && (
+          {status === "Completed" && (
             <div>
               <hr className="faded-line"></hr>
               <div className="project-table-row">
                 <p>Date Completed</p>
                 <p>{year}</p>
+              </div>
+            </div>
+          )}
+          {sustainability && (
+            <div>
+              <hr className="faded-line"></hr>
+              <div className="project-table-row">
+                <p>Sustainability</p>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: sustainability.childMarkdownRemark.html,
+                  }}
+                ></p>
               </div>
             </div>
           )}

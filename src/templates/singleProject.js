@@ -32,6 +32,7 @@ const SingleProject = ({ data }) => {
     photoCredit,
     press,
     projectLeader,
+    sustainability,
     slug,
     metadata,
     hervIsPrincipal,
@@ -77,6 +78,7 @@ const SingleProject = ({ data }) => {
         size={size}
         year={year}
         dateCompleted={dateCompleted}
+        sustainability={sustainability}
         team={team}
         principal={hervIsPrincipal}
         projectLeader={projectLeader}
@@ -108,6 +110,11 @@ export const query = graphql`
       status
       size
       projectName
+      sustainability {
+        childMarkdownRemark {
+          html
+        }
+      }
       designTeam {
         id
         name
