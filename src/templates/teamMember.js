@@ -14,8 +14,6 @@ const TeamMember = ({ data }) => {
 
   const orderedProjects = project?.slice().sort((a, b) => (a.year < b.year ? 1 : -1))
 
-  console.log(project)
-
   return (
     <Layout>
       <HideOnScroll>

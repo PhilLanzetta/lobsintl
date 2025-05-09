@@ -105,10 +105,15 @@ const pagesQuery = `{
 const pageToAlgoliaRecord = edge => {
   const { project, news, team, id, ...rest } = edge.node
   if (project) {
+    let leedCert = ' '
+    if (edge.node.leedCertification !== null && edge.node.leedCertification !== 'None') {
+      leedCert = `LEED Certified ${edge.node.leedCertification}`
+    }
     return {
       objectID: id,
       searchCategory: "Projects",
       principal: "Hervé Descottes",
+      sustainability: leedCert,
       ...rest,
     }
   } else if (news) {
