@@ -19,9 +19,9 @@ const Projects = ({ data, location }) => {
   const [projects, setProjects] = useState(allProjects)
   const [view, setView] = useState()
   const [paddingTop, setPaddingTop] = useState(145)
-  const [featuredFilter, setFeaturedFilter] = useState(false)
+  const [featuredFilter, setFeaturedFilter] = useState(true)
   const [statusFilter, setStatusFilter] = useState(
-    location.state?.statusFilter || []
+    location.state?.statusFilter || ["Completed"]
   )
   const [typologyFilter, setTypologyFilter] = useState(
     location.state?.typologyFilter || []
@@ -35,6 +35,8 @@ const Projects = ({ data, location }) => {
   const [network, setNetwork] = useState(location.state?.network || "")
   const [client, setClient] = useState(location.state?.client || "")
   const { width } = useWindowSize()
+
+  console.log(location)
 
   const isMobile = width < 941
   const projectOptionsRef = useRef()
