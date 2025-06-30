@@ -95,6 +95,16 @@ export const query = graphql`
           }
           margin
         }
+        ... on ContentfulVideoModule {
+          videoId: id
+          caption
+          coverImage {
+            description
+            gatsbyImageData
+          }
+          margin
+          vimeoLink
+        }
       }
       showHeroImageInEntry
       slug
