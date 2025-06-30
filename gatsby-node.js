@@ -1,11 +1,6 @@
 const path = require("path")
 exports.createPages = async ({ actions, graphql }) => {
-  const { createPage, createRedirect } = actions
-
-  createRedirect({
-    fromPath: `/projects`,
-    toPath: `/projects/?featured=true&status=Completed`,
-  })
+  const { createPage } = actions
 
   const result = await graphql(
     `
