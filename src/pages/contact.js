@@ -18,7 +18,7 @@ const Contact = () => {
         <div className="contact-text-container">
           {width > 600 && (
             <h2>
-              Based in New York, Paris, and Seoul, we’re one team driven by the
+              Based in New York, Paris, Seoul, and London, we’re one team driven by the
               same values and passion
             </h2>
           )}
