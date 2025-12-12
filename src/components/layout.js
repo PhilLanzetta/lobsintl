@@ -9,10 +9,11 @@ import * as React from "react"
 import Header from "./header"
 import Footer from "./footer"
 import { motion, AnimatePresence } from "framer-motion"
+import { MyContextProvider } from "../context/context"
 
 const Layout = ({ children, location, filterNews }) => {
   return (
-    <>
+    <MyContextProvider>
       <Header location={location} filterNews={filterNews} />
       <AnimatePresence>
         <motion.div
@@ -24,7 +25,7 @@ const Layout = ({ children, location, filterNews }) => {
         </motion.div>
       </AnimatePresence>
       <Footer location={location}></Footer>
-    </>
+    </MyContextProvider>
   )
 }
 
