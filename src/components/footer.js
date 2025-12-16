@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Link } from "gatsby"
 import { HiArrowUpRight } from "react-icons/hi2"
 import useWindowSize from "../utils/useWindowSize"
@@ -17,8 +17,19 @@ const Footer = ({ location }) => {
   const [email, setEmail] = useState("")
   const [first, setFirst] = useState("")
   const [last, setLast] = useState("")
+  const newsletter = location?.hash === '#newsletter'
+
+  useEffect(() => {
+    if (newsletter) {
+      updateSubscribeOpen(true)
+    } else {
+      return
+    }
+  }, [])
 
   const postUrl = process.env.GATSBY_MAILCHIMP_URL
+
+  console.log(location)
 
   const handleEmailChange = e => {
     setEmail(e.target.value)
